@@ -18,8 +18,15 @@ function readDashboard(root) {
   for (const [relative, expected] of Object.entries(data.audit.inputs)) {
     const full = path.resolve(root, relative);
     if (!full.startsWith(path.resolve(root) + path.sep)) throw new Error("Caminho de auditoria inválido");
-    const found = fs.existsSync(full) ? createHash("sha256").update(fs.readFileSync(full)).digest("hex") : null;
-    if (found !== expected) {
+    const bytes = fs.existsSync(full) ? fs.readFileSync(full) : null;
+    const variants = bytes ? [bytes] : [];
+    // O Git pode converter finais de linha do código entre Windows e Linux.
+    // CSVs e bases continuam sujeitos à comparação exata de bytes.
+    if (bytes && relative.endsWith(".py")) {
+      const lf = bytes.toString("utf8").replace(/\r\n/g, "\n");
+      variants.push(Buffer.from(lf), Buffer.from(lf.replace(/\n/g, "\r\n")));
+    }
+    if (!variants.some(value => createHash("sha256").update(value).digest("hex") === expected)) {
       const error = new Error("Os arquivos mudaram desde a auditoria. Execute scripts/validar_bertweet.py novamente.");
       error.status = 409; throw error;
     }

@@ -7,6 +7,7 @@ const path = require("node:path");
 const { randomUUID } = require("node:crypto");
 const { blockFilename, exportChatBlock } = require("./chat_block_export");
 const { readDashboard } = require("./bertweet_dashboard");
+const { loadParticipation } = require("./participacao");
 
 const root = path.resolve(__dirname, "..");
 const blocksPath = path.join(root, "output/2026/blocos.json");
@@ -14,6 +15,8 @@ const routes = new Map([
   ["/resultados", ["analise_sentimentos/web/resultados.html", "text/html; charset=utf-8"]],
   ["/resultados.css", ["analise_sentimentos/web/resultados.css", "text/css; charset=utf-8"]],
   ["/termometro.css", ["analise_sentimentos/web/termometro.css", "text/css; charset=utf-8"]],
+  ["/participacao.css", ["analise_sentimentos/web/participacao.css", "text/css; charset=utf-8"]],
+  ["/participacao.js", ["analise_sentimentos/web/participacao.js", "text/javascript; charset=utf-8"]],
   ["/assets/lula.jpg", ["Assets/Lula foto Oficial.jpg", "image/jpeg"]],
   ["/assets/flavio.jpg", ["Assets/Flavio foto oficial.jpg", "image/jpeg"]],
   ["/resultados.js", ["analise_sentimentos/web/resultados.js", "text/javascript; charset=utf-8"]],
@@ -93,6 +96,12 @@ http.createServer(async (request, response) => {
       const data = readDashboard(root);
       sendJson(response, 200, pathname === "/api/bertweet" ? data : data.audit);
     } catch (error) { sendJson(response, error.status || 500, { error: error.message }); }
+    return;
+  }
+  if (pathname === "/api/participacao") {
+    if (request.method !== "GET") { sendJson(response, 405, { error: "Método inválido" }); return; }
+    try { sendJson(response, 200, loadParticipation(root)); }
+    catch (error) { sendJson(response, 500, { error: error.message }); }
     return;
   }
   if (pathname === "/api/blocks") {

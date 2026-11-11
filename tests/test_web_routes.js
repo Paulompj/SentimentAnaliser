@@ -35,7 +35,7 @@ test("o painel serve os arquivos movidos para o pacote", async t => {
     }),
   ]).finally(() => clearTimeout(timeout));
 
-  for (const route of ["/", "/coleta", "/resultados", "/resultados.css", "/termometro.css", "/resultados.js", "/bertweet_metrics.js"]) {
+  for (const route of ["/", "/coleta", "/resultados", "/resultados.css", "/termometro.css", "/participacao.css", "/participacao.js", "/resultados.js", "/bertweet_metrics.js"]) {
     const response = await fetch(`http://127.0.0.1:${port}${route}`);
     assert.equal(response.status, 200, route);
     assert.ok((await response.text()).length > 0, route);

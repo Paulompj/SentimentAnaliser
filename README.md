@@ -135,6 +135,46 @@ arquivos e deixa os experimentos do modelo vazios.
 
 Veja os [resultados e limites da validação](docs/VALIDACAO_BERTWEET.md).
 
+### Participação capturada e publicação
+
+A aba **Participação** apresenta mensagens por conta, eventos pagos,
+distribuição pelos blocos e por início/meio/fim, repetição na própria conta,
+mensagens com `?`, expressões frequentes, coocorrência de referências e
+evolução temporal das classes BERTweet. Contas com três ou mais mensagens
+comuns podem ter sua sequência textual inspecionada. Os códigos de conta
+substituem os identificadores originais; não representam pessoas únicas,
+identidades políticas ou detecção de robôs.
+
+“Uma ocorrência no recorte” significa uma mensagem comum **capturada** nos
+quatro blocos, sem afirmar que foi a única publicação da conta no chat inteiro.
+Repetição normaliza caixa, espaços e Unicode; textos iguais em contas distintas
+são contabilizados separadamente das repetições da própria conta. Perguntas
+são apenas a presença de `?`. Diversidade lexical em textos curtos é instável.
+As sequências descrevem mudanças de rótulos dos textos, não mudança de opinião.
+
+Para gerar a versão estática de consulta, sem coletor ou operações de escrita:
+
+```powershell
+npm test
+npm run build
+```
+
+O build verifica os hashes da auditoria, gera as métricas de participação e
+monta `dist/` com uma lista explícita de arquivos públicos. O snapshot auditado
+`output/2026/bertweet_validacao/painel.json` é versionado para que o build não
+precise baixar os modelos. `.gitattributes` preserva os bytes dos dados usados
+nos hashes. Ao atualizar as classificações, execute o validador novamente e
+versione o novo snapshot.
+
+`vercel.json` configura o build estático e os caminhos de leitura usados pelo
+painel. Credenciais, `.env`, `.venv`, caches, documentos de apoio e o servidor
+local não são publicados em `dist/`. Na conta Vercel conectada:
+
+```powershell
+vercel link --project eleisent
+vercel --prod
+```
+
 ### Debate de 2026: chat ao vivo
 
 O chat da transmissão e os comentários do vídeo publicado são fontes

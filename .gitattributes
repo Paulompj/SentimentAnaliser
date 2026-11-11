@@ -1,0 +1,3 @@
+# Preserva os bytes usados pelos hashes da auditoria em qualquer plataforma.
+output/** -text
+Assets/** -text

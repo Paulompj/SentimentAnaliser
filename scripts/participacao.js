@@ -35,7 +35,7 @@ function addLabel(counter, value) {
 function analyzeParticipation(events, predictions, blocks, gaps = []) {
   const orderedBlocks = blocks.filter(b => b.name !== "1 parte").map(b => ({ ...b,
     start: Date.parse(b.started_at_utc), end: Date.parse(b.ended_at_utc) })).sort((a, b) => a.start - b.start);
-  if (!orderedBlocks.length || orderedBlocks.some(b => !Number.isFinite(b.start) || b.end <= b.start)) throw new Error("Blocos inválidos");
+  if (!orderedBlocks.length || orderedBlocks.some(b => !Number.isFinite(b.start) || !Number.isFinite(b.end) || b.end <= b.start)) throw new Error("Blocos inválidos");
   let elapsed = 0;
   for (const block of orderedBlocks) { block.offset = elapsed; elapsed += block.end - block.start; }
   const accounts = new Map();
@@ -57,6 +57,7 @@ function analyzeParticipation(events, predictions, blocks, gaps = []) {
   let questionMessages = 0;
   for (const event of [...events].sort((a, b) => Date.parse(a.published_at) - Date.parse(b.published_at))) {
     const time = Date.parse(event.published_at);
+    if (!Number.isFinite(time)) throw new Error("Evento sem horário válido");
     const blockIndex = orderedBlocks.findIndex(b => time >= b.start && time < b.end && (!b.video_id || b.video_id === event.video_id));
     if (blockIndex < 0) continue;
     if (!event.message_id || seen.has(event.message_id)) throw new Error("ID de mensagem vazio ou duplicado");

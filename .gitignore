@@ -10,4 +10,6 @@ output/2026/bertweet_band/checkpoint.sqlite
 build/
 dist/
 node_modules/
-output/2026/bertweet_validacao/painel.json
+.vercel/
+.vercel
+.env*

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "rewrites": [
+    { "source": "/resultados", "destination": "/index.html" },
+    { "source": "/api/bertweet", "destination": "/data/bertweet.json" },
+    { "source": "/api/participacao", "destination": "/data/participacao.json" }
+  ],
+  "headers": [
+    { "source": "/(.*)", "headers": [
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+    ] },
+    { "source": "/api/(.*)", "headers": [
+      { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+    ] }
+  ]
+}

@@ -2,12 +2,13 @@
   "name": "analise-sentimentos-debates",
   "version": "0.1.0",
   "private": true,
-  "description": "Painéis locais de análise, coleta e rotulação de debates",
+  "description": "EleiSent: sentimento e participação no chat da Band de 2026",
   "engines": {
     "node": ">=22"
   },
   "scripts": {
     "start": "node scripts/servir_painel.js",
-    "test": "node --test tests/test_rotulacao_chat.js tests/test_web_routes.js tests/test_bertweet_dashboard.js"
+    "build": "node scripts/build_site.js",
+    "test": "node --test tests/test_rotulacao_chat.js tests/test_web_routes.js tests/test_bertweet_dashboard.js tests/test_participacao.js tests/test_build_site.js"
   }
 }
