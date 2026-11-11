@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Status da coleta ao vivo</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="coleta.css">
+  <script src="coleta.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <div>
+        <p class="eyebrow">Debate 2026 · YouTube</p>
+        <h1>Coleta do chat ao vivo</h1>
+        <p class="subtitle">Acompanhamento da captura de mensagens em tempo real.</p>
+      </div>
+      <nav class="monitor-links" aria-label="Páginas do projeto">
+        <a class="button button-light" href="/rotulacao">Rotular chat de 2026</a>
+        <a class="button button-light" href="/">Explorar análise de 2022</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="shell monitor">
+    <section class="monitor-status" aria-live="polite">
+      <div class="status-heading"><span id="phaseDot" class="phase-dot"></span><div><p class="eyebrow dark">Estado atual</p><h2 id="phaseTitle">Consultando estado…</h2></div></div>
+      <p id="phaseMessage">Aguarde um instante.</p>
+      <p id="staleWarning" class="warning" hidden>O estado não é atualizado há mais de um minuto. Verifique o terminal do coletor.</p>
+      <div class="status-footer"><span id="lastUpdate">Última atualização: —</span><button id="refresh" class="button button-outline" type="button">Atualizar agora</button></div>
+    </section>
+
+    <section id="coverageWarning" class="coverage-warning" aria-live="polite" hidden>
+      <strong>Intervalo sem registros</strong>
+      <p id="coverageText"></p>
+      <p>Esse intervalo não representa zero mensagens no chat e deve ser considerado ao analisar o debate.</p>
+    </section>
+
+    <section class="summary" aria-label="Números da coleta">
+      <div class="metric"><span>Mensagens salvas</span><strong id="messages">0</strong></div>
+      <div class="metric"><span>Páginas consultadas</span><strong id="pages">0</strong></div>
+      <div class="metric"><span>Último lote</span><strong id="lastBatch">0</strong></div>
+      <div class="metric"><span>Tempo desde início</span><strong id="elapsed">—</strong></div>
+    </section>
+
+    <div class="monitor-grid">
+      <section class="monitor-card">
+        <p class="eyebrow dark">Etapas</p><h2>Fluxo da coleta</h2>
+        <ol class="steps">
+          <li id="step-wait"><strong>Aguardar a transmissão</strong><span>Localizar o chat ativo pelo ID do vídeo.</span></li>
+          <li id="step-collect"><strong>Gravar mensagens</strong><span>Salvar cada resposta no CSV e manter ponto de retomada.</span></li>
+          <li id="step-finish"><strong>Encerrar a captura</strong><span>Registrar o encerramento informado pela API.</span></li>
+        </ol>
+      </section>
+      <section class="monitor-card">
+        <p class="eyebrow dark">Fonte</p><h2 id="videoTitle">Aguardando link da transmissão</h2>
+        <dl class="facts">
+          <div><dt>ID do vídeo</dt><dd id="videoId">—</dd></div>
+          <div><dt>Primeira resposta do chat</dt><dd id="firstResponse">—</dd></div>
+          <div><dt>Última resposta da API</dt><dd id="lastResponse">—</dd></div>
+          <div><dt>Última mensagem publicada</dt><dd id="lastMessage">—</dd></div>
+          <div><dt>Arquivo CSV</dt><dd><a id="csvLink" href="/chat-csv">output/2026/chat_ao_vivo.csv</a><span id="csvSize"> · ainda não criado</span></dd></div>
+        </dl>
+      </section>
+    </div>
+
+    <section class="monitor-card activity-card">
+      <div class="activity-heading"><div><p class="eyebrow dark">Atividade</p><h2>Mensagens por consulta</h2></div><span id="activityNote" class="hint">Ainda sem consultas.</span></div>
+      <div id="activity" class="activity" aria-label="Últimos lotes de mensagens"></div>
+      <p class="hint">Cada barra corresponde a uma resposta da API. A quantidade entregue pode variar com a atividade do chat.</p>
+    </section>
+    <section class="monitor-card block-card" aria-labelledby="blocksTitle">
+      <p class="eyebrow dark">Anotação do debate</p><h2 id="blocksTitle">Blocos do debate</h2>
+      <p class="hint">Marque o início e o fim de cada bloco enquanto o coletor continua gravando o chat. Os horários ficam em <code>output/2026/blocos.json</code>.</p>
+      <form id="blockForm" class="block-form">
+        <label for="blockName">Nome do próximo bloco</label>
+        <input id="blockName" name="name" type="text" maxlength="80" placeholder="Ex.: Bloco 1 — perguntas entre candidatos" required>
+        <button id="startBlock" class="button button-primary" type="submit">Iniciar bloco</button>
+        <button id="endBlock" class="button button-outline" type="button" disabled>Encerrar bloco atual</button>
+      </form>
+      <p id="blockFeedback" class="block-feedback" role="status" aria-live="polite"></p>
+      <div id="blocksEmpty" class="hint">Nenhum bloco marcado.</div>
+      <ol id="blocksList" class="blocks-list"></ol>
+    </section>
+    <p class="footnote">A tela atualiza a cada 3 segundos. “Encerrada” indica o fim da captura, sem garantir cobertura integral do chat.</p>
+  </main>
+</body>
+</html>

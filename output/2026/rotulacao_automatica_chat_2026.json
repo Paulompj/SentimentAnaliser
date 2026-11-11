@@ -1,0 +1,36 @@
+{
+  "created_at_utc": "2026-10-22T03:55:36.030153+00:00",
+  "source": "output\\2026\\rotulacao_chat_2026.csv",
+  "source_sha256": "765183d2705f1f4dc56a71b1fe9dc36de22a6be931cfe22cb53d32a60490801b",
+  "rows": 500,
+  "model_id": "pysentimiento/bertweet-pt-sentiment",
+  "model_revision": "726612815d49447cbfe3f55bbfc2993c1f5fad10",
+  "transformers_version": "4.57.6",
+  "torch_version": "2.14.1+cpu",
+  "minimum_probability_for_candidate_proxy": 0.6,
+  "maximum_model_tokens": 128,
+  "preprocessing": "analysis.social_preprocessing.preprocess_social_text: hashtags, menções, URLs, alongamentos, risadas e emojis em português",
+  "counts": {
+    "sentimento_geral_automatico": {
+      "positivo": 75,
+      "neutro": 217,
+      "negativo": 208
+    },
+    "sentimento_lula_automatico": {
+      "sem_referencia": 299,
+      "incerto": 98,
+      "neutro": 39,
+      "negativo": 39,
+      "positivo": 25
+    },
+    "sentimento_flavio_automatico": {
+      "positivo": 16,
+      "incerto": 103,
+      "sem_referencia": 292,
+      "neutro": 32,
+      "negativo": 57
+    }
+  },
+  "method": "Polaridade geral POS/NEG/NEU do texto completo; transferência apenas para menção nominal única. Outras referências ficam incertas ou sem referência.",
+  "limitations": "Rótulos automáticos não são verdade de referência. Probabilidades do modelo não medem acurácia; polaridade geral não equivale a apoio político nem a sentimento dirigido a um candidato. A amostra é estratificada e não estima prevalência do chat."
+}

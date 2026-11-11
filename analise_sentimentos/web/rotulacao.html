@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Análise da amostra do chat de 2026</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="rotulacao.css">
+  <script src="rotulacao.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <div>
+        <p class="eyebrow">Debate 2026 · amostra do chat</p>
+        <h1>Análise das mensagens</h1>
+        <p class="subtitle">Veja as previsões automáticas e, se quiser, confira mensagens individualmente.</p>
+      </div>
+      <a class="button button-light" href="/coleta">Voltar à coleta</a>
+    </div>
+  </header>
+
+  <main class="shell annotation-page">
+    <section class="annotation-intro">
+      <div>
+        <h2>Previsões automáticas</h2>
+        <p>O modelo classificou as 500 mensagens sem preenchimento manual. O CSV contém o sentimento da frase, probabilidades e uma atribuição conservadora por candidato. São previsões exploratórias, não respostas conferidas para medir acurácia.</p>
+      </div>
+      <a class="button button-outline" href="/rotulacao-automatica.csv" download>Baixar previsões automáticas</a>
+    </section>
+
+    <section class="annotation-intro">
+      <div>
+        <h2>Conferência manual opcional</h2>
+        <p>As mensagens foram escolhidas entre quatro blocos substantivos. O formulário abaixo grava rótulos humanos em um CSV separado; as previsões automáticas não o preenchem. As proporções desta amostra não representam a frequência real de opiniões no chat.</p>
+      </div>
+      <a class="button button-outline" href="/api/rotulacao.csv">Baixar CSV manual</a>
+    </section>
+
+    <section class="annotation-progress" aria-label="Progresso da rotulação">
+      <div><strong id="progressText">Carregando amostra…</strong><span id="positionText"></span></div>
+      <progress id="progressBar" value="0" max="500"></progress>
+    </section>
+
+    <section id="annotationCard" class="annotation-card" hidden>
+      <div class="annotation-meta"><span id="blockName"></span><span id="publishedAt"></span></div>
+      <p id="messageText" class="annotation-text"></p>
+      <p id="messageId" class="annotation-id"></p>
+
+      <form id="annotationForm">
+        <div class="target-grid">
+          <label for="labelLula">Em relação a Lula
+            <select id="labelLula" required>
+              <option value="">Escolha um rótulo</option>
+              <option value="sem_referencia">Sem referência a Lula</option>
+              <option value="positivo">Positivo: elogio ou apoio</option>
+              <option value="negativo">Negativo: crítica ou rejeição</option>
+              <option value="neutro">Neutro: referência sem avaliação</option>
+              <option value="misto">Misto: elogio e crítica</option>
+              <option value="incerto">Incerto: não dá para determinar</option>
+            </select>
+          </label>
+          <label for="labelFlavio">Em relação a Flávio Bolsonaro
+            <select id="labelFlavio" required>
+              <option value="">Escolha um rótulo</option>
+              <option value="sem_referencia">Sem referência a Flávio</option>
+              <option value="positivo">Positivo: elogio ou apoio</option>
+              <option value="negativo">Negativo: crítica ou rejeição</option>
+              <option value="neutro">Neutro: referência sem avaliação</option>
+              <option value="misto">Misto: elogio e crítica</option>
+              <option value="incerto">Incerto: não dá para determinar</option>
+            </select>
+          </label>
+        </div>
+        <p class="hint">Se a mensagem fala de apenas um candidato, marque “Sem referência” para o outro. Para “13” ou “22” isolados, use “Incerto” quando não conseguir justificar a intenção pelo texto.</p>
+        <div class="annotation-actions">
+          <button id="previous" class="button button-outline" type="button">Anterior</button>
+          <button id="next" class="button button-outline" type="button">Próxima</button>
+          <button id="nextPending" class="button button-outline" type="button">Próxima pendente</button>
+          <button id="save" class="button button-primary" type="submit">Salvar e continuar</button>
+        </div>
+      </form>
+      <p id="feedback" class="annotation-feedback" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="annotation-guide">
+      <h2>Como decidir</h2>
+      <p><strong>Positivo</strong> e <strong>negativo</strong> exigem apoio, elogio, crítica ou rejeição identificável ao candidato. <strong>Neutro</strong> significa que ele é citado sem avaliação. <strong>Incerto</strong> significa que o texto não permite uma decisão segura. Uma mensagem pode ser positiva para um candidato e negativa para o outro.</p>
+      <p>Os rótulos são gravados em <code>output/2026/rotulacao_chat_2026.csv</code> quando você clica em <strong>Salvar e continuar</strong>. Você pode voltar e corrigir uma classificação depois.</p>
+    </section>
+  </main>
+</body>
+</html>

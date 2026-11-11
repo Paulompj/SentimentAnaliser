@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Explorador da análise de sentimentos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <div>
+        <p class="eyebrow">Projeto de análise de sentimentos</p>
+        <h1>Explorar comentários</h1>
+        <p class="subtitle">Filtre o resultado por comentário, classificação, scores, termos e synsets.</p>
+      </div>
+      <div class="source-box">
+        <a class="button button-light" href="/coleta">Status da coleta de 2026</a>
+        <a class="button button-light" href="/rotulacao">Rotular chat de 2026</a>
+        <span id="sourceName" class="source-name">Nenhum arquivo carregado</span>
+        <label class="button button-light" for="fileInput">Abrir outro JSONL</label>
+        <input id="fileInput" type="file" accept=".jsonl,.ndjson,application/x-ndjson" hidden>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <div id="status" class="status" role="status" aria-live="polite">Preparando o painel…</div>
+
+    <section class="summary" aria-label="Resumo dos filtros">
+      <div class="metric"><span>Registros carregados</span><strong id="totalCount">—</strong></div>
+      <div class="metric"><span>Resultados do filtro</span><strong id="filteredCount">—</strong></div>
+      <div class="metric"><span>Positivos</span><strong id="positiveCount">—</strong></div>
+      <div class="metric"><span>Negativos</span><strong id="negativeCount">—</strong></div>
+    </section>
+
+    <section class="workbench">
+      <aside class="filters" aria-labelledby="filterTitle">
+        <div class="panel-heading">
+          <div><p class="eyebrow dark">Exploração</p><h2 id="filterTitle">Filtros</h2></div>
+          <button id="resetFilters" class="text-button" type="button">Limpar</button>
+        </div>
+        <form id="filtersForm">
+          <div class="filter-section">
+            <h3>Comentário</h3>
+            <label>ID do comentário<input name="comment_id" type="search" placeholder="Parte do ID"></label>
+            <label>Texto contém<input name="text" type="search" placeholder="Palavra ou expressão"></label>
+            <label>Sentimento
+              <select name="sentiment"><option value="">Todos</option><option value="positive">Positivo</option><option value="negative">Negativo</option><option value="neutral">Neutro</option><option value="insufficient_evidence">Sem evidência</option></select>
+            </label>
+            <label>Período
+              <select name="periodo"><option value="">Todos</option><option value="durante_debate">Durante o debate</option><option value="entre_debate_e_publicacao">Entre debate e publicação</option><option value="apos_publicacao">Após a publicação</option></select>
+            </label>
+          </div>
+
+          <div class="filter-section">
+            <h3>Data e scores totais</h3>
+            <div class="pair"><label>De (Brasília)<input name="date_from" type="date"></label><label>Até (Brasília)<input name="date_to" type="date"></label></div>
+            <div class="pair"><label>Positivo mín.<input name="positive_min" type="number" min="0" step="any" placeholder="0"></label><label>Positivo máx.<input name="positive_max" type="number" min="0" step="any" placeholder="—"></label></div>
+            <div class="pair"><label>Negativo mín.<input name="negative_min" type="number" min="0" step="any" placeholder="0"></label><label>Negativo máx.<input name="negative_max" type="number" min="0" step="any" placeholder="—"></label></div>
+          </div>
+
+          <div class="filter-section">
+            <h3>Termos e synsets</h3>
+            <p class="hint">Quando combinar estes campos, todos devem corresponder ao mesmo termo.</p>
+            <label>Palavra ou lema contém<input name="token" type="search" placeholder="Ex.: horrível"></label>
+            <label>Classe gramatical
+              <select name="pos"><option value="">Todas</option></select>
+            </label>
+            <label>Negado
+              <select name="negated"><option value="">Todos</option><option value="true">Sim</option><option value="false">Não</option></select>
+            </label>
+            <div class="pair"><label>Score positivo do termo ≥<input name="token_positive_min" type="number" min="0" step="any" placeholder="—"></label><label>Score negativo do termo ≥<input name="token_negative_min" type="number" min="0" step="any" placeholder="—"></label></div>
+            <label>Nome do synset contém<input name="synset" type="search" placeholder="Ex.: good.a.01"></label>
+            <div class="pair"><label>Positivo do synset ≥<input name="synset_positive_min" type="number" min="0" step="any" placeholder="—"></label><label>Negativo do synset ≥<input name="synset_negative_min" type="number" min="0" step="any" placeholder="—"></label></div>
+          </div>
+        </form>
+      </aside>
+
+      <section class="results" aria-labelledby="resultsTitle">
+        <div class="results-header">
+          <div>
+            <p class="eyebrow dark">Resultado</p>
+            <h2 id="resultsTitle">Comentários</h2>
+            <p class="hint">Clique no título de uma coluna para ordenar. Abra uma linha para ver termos e synsets.</p>
+          </div>
+          <div class="actions">
+            <details class="column-picker"><summary class="button button-outline">Colunas visíveis</summary><div id="columnOptions" class="column-options"></div></details>
+            <button id="exportCsv" class="button button-primary" type="button" disabled>Exportar CSV filtrado</button>
+          </div>
+        </div>
+        <div class="table-scroll">
+          <table id="resultsTable"><thead id="tableHead"></thead><tbody id="tableBody"></tbody></table>
+        </div>
+        <div id="emptyState" class="empty-state" hidden>Nenhum comentário corresponde aos filtros.</div>
+        <div class="pager">
+          <label>Linhas por página <select id="pageSize"><option>25</option><option>50</option><option>100</option></select></label>
+          <div class="pager-controls"><button id="prevPage" type="button" class="button button-outline">Anterior</button><span id="pageInfo">—</span><button id="nextPage" type="button" class="button button-outline">Próxima</button></div>
+        </div>
+      </section>
+    </section>
+    <p class="footnote">Os scores e a classificação são do comentário inteiro. O arquivo detalhado não contém uma classificação de apoio ou rejeição por candidato.</p>
+  </main>
+  <script src="app.js" defer></script>
+</body>
+</html>

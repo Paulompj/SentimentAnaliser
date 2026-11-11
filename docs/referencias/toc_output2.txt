@@ -1,0 +1,1066 @@
+--- Page 26 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Capítulo 1
+O que é PLN?
+Helena de Medeiros Caseli
+Maria das Graças V olpe Nunes
+Adriana Pagano
+Publicado em: 26/09/2023
+Atualizado em: 16/04/2026
+1.1 Introdução
+O Processamento de Linguagem Natural (PLN) é um campo de pesquisa que tem como
+objetivo investigar e propor métodos e sistemas de processamento computacional da lingua-
+gem humana. O adjetivo “Natural”, na sigla, se refere às línguas faladas pelos humanos,
+distinguindo-as das demais linguagens (matemáticas, visuais, gestuais, de programação
+etc.). No decorrer deste livro, os termos “língua”, “linguagem humana” e “linguagem
+natural” serão usados indistintamente; já “linguagem” pode eventualmente se referir a
+qualquer tipo de linguagem. Na área da Ciência da Computação, PLN está ligado à área
+de Inteligência Artificial (IA) e também está intrinsecamente relacionada à Linguística
+Computacional.
+Para deixar mais claro o que entendemos por PLN, vamos esclarecer o que se faz nessa
+área. De modo geral, em PLN buscam-se soluções para problemas computacionais, ou seja,
+tarefas, sistemas, aplicações ou programas, que requerem o tratamento computacional de
+uma língua (português, inglês etc.), seja escrita (texto) ou falada (fala). Línguas como as
+de sinais também têm sido alvo de estudos da área. Cada modo tem suas especificidades.
+No caso da fala, as características que a distinguem da língua escrita são relacionadas a
+questões da produção (síntese) e recepção (reconhecimento) do som. Recursos da fala,
+como a entonação, o volume, o sotaque, podem tanto dificultar o reconhecimento ou a
+síntese, como também facilitar o reconhecimento de sentimentos ou intenções do falante.
+Qualquer que seja o modo, fala, escrita, línguas orais e línguas de sinais compartilham a
+dificuldade maior em PLN: a apreensão do significado de uma expressão linguística. Isso
+vai ficar claro no decorrer deste livro.
+O PLN se divide em duas grandes subáreas: Interpretação (ou Compreensão) de
+Linguagem Natural – NLU (do inglês, Natural Language Understanding ), e Geração
+de Linguagem Natural – NLG (do inglês, Natural Language Generation )1.
+Situa-se em NLU tudo o que diz respeito ao processamento que visa à análise e à inter-
+pretação da língua. Por análise, entende-se a segmentação e classificação dos componentes
+linguísticos (e.g. palavras e suas classes morfológicas e gramaticais, seus traços semânticos
+1Embora algumas siglas, como NLP ( Natural Language Processing ) e AI ( Artificial Intel ligence ) tenham
+sido traduzidas e sejam amplamente utilizadas em português, as siglas NLU e NLG são utilizadas, em
+textos em português, em sua grafia inglesa.
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).5
+--- Page 27 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Capítulo 1 O que é PLN?
+ou ontológicos etc.). Já interpretação se refere à tentativa de apreender significados cons-
+truídos pelo ser humano. Numa interação com um chatbot , por exemplo, a interpretação
+ocorre quando o sistema processa um texto do usuário para descobrir o que ele – o sistema
+– deve fazer a seguir: se fornecer uma resposta ou executar uma ação. Logo ficará claro
+que respostas mais ou menos bem-sucedidas do sistema para o significado tencionado pelo
+humano podem ser suficientes para muitas aplicações, e que o completo alinhamento entre
+o significado tencionado pelo humano e aquele interpretado pela máquina não deve ser
+parte das nossas expectativas.
+Em NLG, por outro lado, o objetivo é a geração de linguagem natural. Um exemplo
+de NLG é a geração de respostas ao usuário dos chatbots . Para o sistema, isso significa
+decidir o que responder e como apresentar essa resposta ao usuário. O ChatGPT2é um
+exemplo de sucesso: é capaz de gerar língua de forma tão ou mais fluente quanto muitos
+humanos.
+É importante esclarecer, desde já, alguns conceitos amplamente usados no decorrer deste
+livro. Eles dizem respeito à classificação de alguns sistemas de PLN quanto ao seu uso.
+Esses conceitos são: aplicações, recursos e ferramentas.
+Primeiramente, é relevante observar como esses conceitos se relacionam entre si. A
+Figura 1.1esquematiza essa dinâmica.
+Figura 1.1 :Relacionamento entre conceitos
+Como vemos na Figura 1.1, em PLN as ferramentas auxiliam na construção de uma
+aplicação, que pode ser um sistema computacional (desktop, web) ou um aplicativo. As
+aplicações fornecem um resultado ao usuário tendo uma entrada ( input) ou saída ( output )
+em linguagem natural. Aplicações fazem uso de ferramentas ou conjuntos de ferramentas,
+conhecidos como “ toolkits ”. Também necessitam recursos, os quais fornecem informações
+linguísticas necessárias para que as aplicações consigam processar a língua da maneira
+adequada.
+É importante notar que a denominação utilizada – aplicação, recurso ou ferramenta
+– é imprecisa e depende do uso. Por exemplo, um corretor ortográfico pode ser uma
+aplicação a ser usada de forma autônoma ou um passo intermediário para uma aplicação
+de correção de redações; um tradutor automático pode ser uma aplicação em si, com uma
+interface para colocar um texto de entrada e obter um texto de saída, mas também pode
+ser usado como ferramenta para traduzir um corpus de uma língua para outra, visando
+2https://chat.openai.com/
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).6
+--- Page 28 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Capítulo 1 O que é PLN?
+a criação de recursos em línguas de comunidades tecnologicamente menos desenvolvidas;
+um sumarizador automático pode ser usado para criar resumos para um usuário qualquer,
+mas também pode ser usado por um buscador da web como passo intermediário para um
+sistema de recuperação de informação; um dicionário é um recurso, mas também pode
+ser usado como um aplicativo para consulta; um modelo de língua pode se transformar
+num chatbot , e assim por diante. Os conceitos são caracterizados e exemplificados no
+Quadro 1.1.
+Quadro 1.1: Exemplos de aplicações, recursos e ferramentas
+Conceito Caracterização Exemplos
+Aplicações processam uma entrada ( input )
+em linguagem natural e a
+transformam produzindo um
+determinado resultado- tradutor automático
+- corretor ortográfico ou gramatical
+- assistentes virtuais/ chatbots
+- sumarizador automático
+- sistemas de recomendação em sites de
+e-commerce ou entretenimento
+- sistemas de auxílio à escrita
+- sistemas de classificação textual
+- sistemas de recuperação de informação
+- sistemas de detecção de fake news
+Recursos são fontes de informação
+linguística para sistemas- léxicos (listas de palavras com informações
+associadas) da língua em geral ou de
+terminologia de domínio
+- dicionários monolíngues ou bilíngues
+-corpus (datasets linguísticos) anotados manual
+ou automaticamente (para referência, teste ou
+treinamento de algoritmos de aprendizado de
+máquina)
+- listas de frequências de palavras
+- (mais estruturados) taxonomias, ontologias,
+redes de sinônimos e antônimos
+- em formato matemático: modelos de língua
+estatísticos (probabilidades) ou neurais (pesos)
+para informar qual palavra deve ser a próxima
+num dado contexto
+F erramentas auxiliam na construção de uma
+aplicação ou até de outras
+ferramentas- segmentadores textuais em tokens
+(tokenizador), sentenças, parágrafos
+-stemmers (extratores de raiz de uma palavra
+(e.g. “corr” de “correr”)
+- lematizadores (e.g. “correr” de “corri”)
+- etiquetadores morfossintáticos (PoS taggers )
+para classe de palavras (verbo, substantivo,
+adjetivo, artigo, preposição, advérbio etc.)
+- etiquetadores semânticos, analisadores
+sintáticos parciais ( chunkers ) e completos
+(parsers )
+- concordanciadores
+- interfaces de anotação de corpus
+- componentes em kits de ferramentas ( toolkits ),
+como o NL TK3
+Neste livro iremos aumentar gradativamente a complexidade do tratamento da língua
+no PLN, com foco no português brasileiro. Antes de iniciar esta trajetória, a Seção 1.2
+apresenta nosso objeto de pesquisa, a língua. Em seguida, a Seção 1.4introduz os prin-
+cipais paradigmas do PLN, que serão retomados em diversos momentos neste livro. Por
+fim, a Seção 1.5destaca os principais pontos apresentados no capítulo.
+3https://www.nltk.org
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).7
+--- Page 29 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Capítulo 1 O que é PLN?
+1.2 A língua
+A capacidade de usarmos a linguagem para representar nossa realidade e nos comunicar é
+algo que distingue o ser humano dos outros seres vivos. Poder criar significados, expressar-
+se e ser compreendida é um dos grandes avanços no desenvolvimento de uma criança. Nos
+primeiros anos de vida, um bebê vai adquirindo a habilidade de se expressar em sua língua
+materna. Anos depois, normalmente a criança adquire a capacidade de utilizar símbolos
+para registrar aquilo que ela deseja por meio da língua escrita. A língua, como um sistema
+de construção de representações do mundo e comunicação, sobretudo no modo escrito, é
+o foco deste livro.
+Ao longo do livro, nosso foco predominante será a língua escrita4, ou seja, sequências
+de caracteres representados de forma grafológica, os quais constroem significados para nós
+humanos. Em PLN, chamamos a língua escrita de texto , para distingui-la da linguagem
+oral, que é chamada de fala. Portanto, apesar de a linguística reconhecer que existem
+textos escritos e textos falados, em PLN a palavra texto se refere principalmente ao texto
+escrito. Em relação à língua, neste livro, os exemplos estão em português brasileiro ,
+embora muitas das técnicas descritas aqui possam ser aplicadas a outros idiomas.
+A linguagem humana organiza-se em diferentes dimensões. A Figura 1.2mostra uma
+representação das subáreas que estudam o sistema linguístico.
+Figura 1.2 :Representação das subáreas de estudo da linguagem
+Na Figura 1.2, a língua é representada por meio de círculos concêntricos, sendo cada um
+deles objeto de estudo de uma subárea dos estudos linguísticos. No núcleo, os sons e sua
+organização são estudados pela fonética e pela fonologia . Envolvendo a estrutura sonora,
+temos o estudo de como os morfemas se organizam para formar palavras, que é objeto de
+estudo da morfologia . Envolvendo a morfologia, temos o estudo de como as palavras se
+organizam em estruturas para formar sintagmas e orações, objeto de estudo da sintaxe .
+No círculo envolvendo a sintaxe, temos a semântica , que estuda o significado de palavras
+e frases, enquanto a pragmática enfoca como as orações são utilizadas na interação para
+fins comunicativos específicos. Já discurso é uma denominação que abrange os estudos
+com foco no texto como um todo, podendo se referir à análise das relações entre frases ou
+partes de um texto, ou das etapas na estrutura de um texto.
+Cada língua tem suas especificidades que determinam, por exemplo, desde como os ca-
+racteres podem ser combinados para compor uma palavra (uma sequência válida que tenha
+significado naquela língua) até regras que definem a estrutura (sintaxe) dessa língua. No
+decorrer deste livro, serão abordados os desafios do PLN em cada uma dessas subáreas.
+4Com exceção de alguns capítulos que tratam de processamento da língua falada.
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).8
+--- Page 30 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Capítulo 1 O que é PLN?
+Contudo, é importante que fique claro que as estratégias computacionais usadas para o
+processamento da linguagem muitas vezes utilizam conhecimentos de várias subáreas ao
+mesmo tempo. Por exemplo, no processamento morfossintático realizado por um etique-
+tador ( tagger ), informações morfológicas e sintáticas são consideradas para se determinar
+a categoria gramatical ( part-of-speech , PoS) de uma palavra.
+1.3 Um breve histórico do PLN
+A pesquisa em PLN teve início na primeira metada do século XX combinando ideias da
+linguística e da computação. Naquela época, havia duas visões conflitantes de como o
+processamento automático da língua deveria acontecer: o racionalismo e o empirismo. O
+racionalismo advoga que parte significativa do conhecimento humano não vem dos sentidos,
+mas é herdada geneticamente. Noam Chomsky é um dos advogados desta vertente com
+suas convicções sobre a linguagem inata e a gramática universal. O empirismo, por outro
+lado, acredita que a mente não é dotada de princípios e procedimentos pré-determinados,
+mas sim de capacidade para realizar operações gerais de associação, reconhecimento de
+padrões e generalizações. Para essa linha, não há conhecimento inato e o aprendizado
+decorre da experiência. Segundo Freitas (2022), “para o empirismo, somos bons em ge-
+neralizar, mesmo com dados esparsos […] e é isso que nos possibilita viver em um mundo
+repleto de incertezas”. O racionalismo está associado ao paradigma simbólico enquanto o
+empirismo, ao estatístico e neural. Esses paradigmas serão apresentados na Seção 1.4. Foi
+o empirismo que passou a dominar as pesquisas em PLN neste século.
+O empirismo – e consequentemente o aprendizado de máquina estatístico e neural –
+baseia-se no uso de corpora para estudar e formalizar fenômenos, verificar e validar hipóte-
+ses e evidências linguísticas. Um exemplo desta linha de pensamento é a famosa frase de
+Firth (1957): “You shall know a word by the company it keeps”, que é a fundamentação
+por trás de modelos de representação textual que definem o significado de uma palavra
+com base no seu contexto.
+A Figura 1.3traz a linha do tempo do PLN com alguns marcos importantes. A história
+do PLN teve início por volta de 1940. As primeiras ideias para criação da área surgiram
+logo após a 2ª Guerra Mundial (Jurafsky; Martin, 2008). Na computação, esta época foi
+marcada por avanços com as máquinas de estados finitos, os modelos probabilísticos e as
+gramáticas de Chomsky.
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).9
+--- Page 31 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Capítulo 1 O que é PLN?
+Figura 1.3 :Timeline do PLN
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).10
+--- Page 32 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Capítulo 1 O que é PLN?
+No final de 1950 até por volta de 1970, o PLN se dividiu em dois paradigmas: o simbó-
+lico e o estatístico. Nesta época, o paradigma simbólico se baseava nas linguagens formais
+de Chomsky e nas estratégias de parsing top-down ebottom-up , em programação dinâmica
+e nos trabalhos de raciocínio lógico da IA (sistemas de Q&A baseados em casamento de
+padrão e buscas por palavras-chave). Já o paradigma estatístico, ainda engatinhava, com
+os métodos bayesianos que eram usados, por exemplo, para reconhecimento ótico de carac-
+teres e atribuição de autoria. Também foi na década de 1960 que surgiram os primeiros
+recursos online: o Brown Corpus, para o inglês, e o DOC (Dictionary on Computer) para
+o chinês.
+A partir de 1970 as pesquisas em PLN ganham força e podem ser organizadas em qua-
+tro paradigmas: estatístico, baseado em lógica, NLU e discurso. No paradigma estatístico
+surgem novos algoritmos para reconhecimento de fala, principalmente cadeias de Markov
+(HMM), e a metáfora do canal ruidoso ( noisy channel ) e decodificação que seriam a funda-
+mentação para diversos avanços no PLN (ver os Capítulos 2eTradução Automática ). No
+paradigma lógico, os trabalhos da época se baseavam em gramáticas funcionais. Trabalhos
+de interpretação textual (NLU) também surgiram naquela época com os primeiros progra-
+mas para entendimento da linguagem ( input em língua natural) com foco na semântica,
+no discurso, papéis semânticos e suas representações. Por fim, também foram propostos
+trabalhos que focavam no discurso para problemas como a resolução de correferência (ver
+Capítulo 12).
+As décadas de 1980 e 1990 marcam o estabelecimento do paradigma estatístico como a
+estratégia hegemônica. Nesse período, modelos que haviam perdido popularidade, como as
+máquinas de estados finitos e modelos probabilísticos (da IBM), retornam com força total e
+são a base para avanços como os da tradução automática estatística (ver Capítulo Tradução
+Automática ). Uma vez que sistemas de PLN passam a ser produzidos e consumidos, cresce
+o foco na forma de avaliação dos modelos, com definição de procedimentos e métricas.
+Tamém foi nessa época que o aprendizado neural deu seus primeiros passos no PLN e uma
+das arquiteturas neurais muito utilizadas surgiu nesse período (1985): as RNNs (Recurrent
+Neural Networks).
+A década de 1990 se encerra com a consagração da estatística como paradigma domi-
+nante no PLN. Probabilidades passam a ser incorporadas em algoritmos para parsing ,
+part-of-speech tagging , resolução de correferência e processamento de discurso. As meto-
+dologias de avaliação emprestadas do reconhecimento de fala e recuperação de informação
+passam a ser usadas em diveras aplicações de PLN. Os avanços na velocidade e na capa-
+cidade de memória dos computadores permitem a exploração comercial de aplicações de
+PLN (e.g. reconhecimento de fala e correção gramatical). O surgimento da web enfatiza a
+necessidade por recuperação (Capítulo Recuperação de Informação ) e extração (Capítulo
+Extração de Informação ) de informação baseadas em linguagem. Por fim, outra arqui-
+tetura neural muito usada no início do aprendizado neural em PLN também é proposta
+nesse período (1997): as LSMTs (Long Short-Term Memory).
+A primeira década deste século (2000-2010) viu a disponibilidade cada vez maior de
+grandes quantidades de dados que, combinados com o aprendizado supervisionado e má-
+quinas cada vez mais poderosas, foram usados para gerar soluções para diversos problemas
+de PLN. Algoritmos de AM como SVM (Support Vector Machines) e técnicas de máxima
+verossimilhança ( maximum entropy ) se tornaram bastante usuais na geração de modelos
+de PLN. Também foi nesse período que o aprendizado não-supervisionado ganhou atenção
+renovada em aplicações como a tradução estatística (ver Capítulo Tradução Automática )
+e a modelagem de tópicos.
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).11
+--- Page 33 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Capítulo 1 O que é PLN?
+Podemos dizer que a era que se seguiu, que é a que estamos no momento, é a era do
+aprendizado neural e profundo onde surgiram as técnicas que garantiram uma revolução no
+PLN como as word embeddings (e.g. word2vec em 2013), as arquiteturas encoder-decoder
+(em 2014), o modelo de atenção (em 2017) e os primeiros modelos de linguagem pré-
+treinados (e.g. BERT e GPT a partir de 2018). A partir de 2019 passamos a viver na
+era dos modelos de linguagem de larga escala e a eles dedicamos um volume inteiro nesta
+edição do livro: o Volume 2 .
+No Brasil, as primeiras pesquisas em PLN datam da década de 1970. Em 1984 ocorreu
+a primeira edição da principal conferência de inteligência artificial do Brasil, o BRACIS
+(antes conhecido como SBIA), na qual haviam vários trabalhos de PLN. Na década de
+1990 surgiram grupos de pesquisa de PLN em instituições como a UFRGS, a PUCRS,
+a Unisinos, a PUC-Rio, a Unicamp, a UFPE e o ICMC-USP. Foi em 1993 que o NILC
+(Núcleo Interinstitucional de Linguística Computacional) foi criado a partir de um projeto
+audacioso de desenvolvimento do primeiro revisor ortográfico e gramatical para o português
+do Brasil.
+Atualmente, a principal conferência dedicada ao PLN no Brasil é o STIL5, criado em
+2003 (como TIL) por pesquisadores do NILC. O PROPOR, que existe desde 1993, é outra
+importante conferência da área para quem se dedica ao PLN do português e suas variantes.
+Em 2007 o PLN passou a ter representação junto à Sociedade Brasileira de Computação
+por meio da Comissão Especial de PLN6(CEPLN). Em 2020, o grupo Brasileiras em PLN7
+(BPLN) foi criado para unir mulheres brasileiras atuantes ou interessadas no PLN. Foi em
+2023 que a primeira edição deste livro, uma iniciativa inovadora do BPLN, foi lançada.
+1.4 Os Paradigmas de PLN
+Até a década de 1980, o PLN se baseava no que chamamos de paradigma simbólico , se-
+gundo o qual todo conhecimento sobre a língua é expresso explicitamente em formalismos
+como léxicos, regras, linguagens lógicas etc., ou seja, formas compreensíveis ao humano.
+Por exemplo, é possível escrever regras que determinem que, em português, há concordân-
+cia entre o gênero gramatical atribuído a um substantivo e o gênero atribuído ao adjetivo
+que o acompanha. Assim, exemplos como “abacaxi maduro” serão considerados corretos
+de acordo com essa regra, enquanto que outros, como “abacaxi madura”, não.
+No início dos anos 1990, as máquinas ganharam mais capacidade de memória e proces-
+samento, e diversos algoritmos de aprendizado de máquina foram propostos dando origem
+ao que chamamos de paradigma estatístico . Grandes conjuntos de textos (também
+chamados de corpus ) passaram a ser usados como fonte de conhecimento para “ensinar”
+as máquinas. Por exemplo, fenômenos como a concordância entre substantivo e adjetivo,
+mencionada anteriormente, passaram a ser aprendidos a partir de exemplos de ocorrência
+no corpus como: “tomate estragado”, “kiwi maduro”, “gergelim preto”. A língua é, então,
+representada em modelos probabilísticos aprendidos a partir da frequência de ocorrência.
+Regras explícitas ou implícitas (percursos em árvores, por exemplo) são criadas com base
+em probabilidades calculadas a partir dos exemplos. Esses modelos são usados para classi-
+ficar, resumir, traduzir ou gerar novos textos. Uma vez que esses modelos são aprendidos
+a partir de dados reais, eles têm uma grande chance de serem bons modelos da língua.
+5https://sol.sbc.org.br/index.php/stil/issue/archive
+6https://www.sbc.org.br/processamento-de-linguagem-natural/
+7https://brasileiraspln.com/
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).12
+--- Page 34 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Capítulo 1 O que é PLN?
+A tradução automática (Capítulo Tradução Automática ) foi a aplicação de PLN que deu
+notoriedade a esse paradigma estatístico, que era o mais aplicado até a década de 2010.
+O tempo passou e as máquinas continuam ganhando poder de memória e processamento,
+o que possibilita que grandes quantidades de dados sejam processadas por estruturas (ar-
+quiteturas e algoritmos) bastante complexas, como as Redes Neurais Profundas (conheci-
+das em inglês como deep learning ). No momento da escrita deste capítulo, o paradigma
+neural é o mais adotado para tarefas de PLN. Da mesma forma que o paradigma esta-
+tístico, as redes neurais também se baseiam em grandes volumes de dados para aprender
+um modelo; contudo, a forma como esse aprendizado é realizado é diferente, uma vez que
+envolve várias camadas de unidades de processamento para reconhecer os padrões recor-
+rentes (para saber mais, sugere-se a leitura do Capítulo Modelos de linguagem ). Assim,
+enquanto em outras técnicas de aprendizado de máquina ( machine learning) tradicional
+(shal low ou baseado em features ) os algoritmos especificam como o aprendizado deve ocor-
+rer, no deep learning , devido à complexidade das arquiteturas compostas por diversas
+camadas de processamento, não é possível saber exatamente com base em quê o modelo
+foi aprendido. Além disso, diferentemente do paradigma simbólico, no paradigma neural,
+o conhecimento da língua é dado por valores numéricos, e não por símbolos ou regras.
+Dessa forma, o conhecimento linguístico ou a parte do código que tenha produzido um
+determinado comportamento são praticamente irrecuperáveis, tornando o código opaco, e
+seu efeito, não previsível (não determinístico).
+Nesse sentido, pode-se notar que o PLN tem acompanhado a evolução de paradigmas
+da IA: simbólico, estatístico e neural. Porém, diante da insuficiência de uma única aborda-
+gem, ganham espaço os paradigmas híbridos , que combinam principalmente o simbólico
+com um dos demais, garantindo, assim, alguma explicitação do conhecimento, consequen-
+temente, alguma explicabilidade dos passos seguidos pelos algoritmos.
+Além da IA, o PLN tem intersecção com diversos campos de pesquisa e de aplicação
+no mercado de trabalho como mineração de textos, recuperação de informação (Capítulo
+Recuperação de Informação ) e ciência de dados. Na atualidade, todas as aplicações compu-
+tacionais que processam texto são passíveis de utilizar em maior ou menor grau as técnicas
+de PLN.
+1.5 Vale a pena relembrar
+Antes de passarmos para os próximos capítulos deste livro, seguem algumas considerações
+importantes:
+• Diferentes abordagens podem ser aplicadas no PLN, desde aquelas associadas
+ao paradigma mais tradicional (o simbólico) àquelas possibilitadas por paradigmas
+mais recentes, como o estatístico e o neural.
+• T odas as estratégias automáticas para processamento da língua têm limi-
+tações . Assim, o que define a escolha da melhor estratégia são diversos fatores como:
+apoio de especialistas (necessário para o paradigma simbólico), poder computacional
+(um limitante para o paradigma neural) e a disponibilidade de recursos linguísticos
+em grande quantidade (necessária para as abordagens baseadas em corpus ).
+• A maioria das estratégias processa caracteres e não unidades linguísticas .
+Muitas estratégias geram modelos com base em coocorrência e contexto de ocorrência
+de palavras e frases, ou seja, são abordagens baseadas em padrões de caracteres.
+Um modelo neural, por exemplo, não sabe que “casa” pode significar o lugar onde
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).13
+--- Page 35 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Capítulo 1 O que é PLN?
+“alguém” mora. Desse modo, podemos dizer que as estratégias usadas na maioria
+das aplicações do PLN não aprendem a língua, mas apenas aprendem a reproduzir e,
+às vezes, extrapolar (generalizar) o que aprenderam em um corpus de treinamento.
+•Muita atenção tem sido dada aos algoritmos de aprendizado de máquina e às arquite-
+turas neurais, mas nem tanta atenção assim tem sido dada aos formalismos
+de representação semântica . Como vimos, nos diversos anos de pesquisa e de-
+senvolvimento em PLN, as estratégias e abordagens vão e vêm, mas a linguagem
+natural é muito mais complexa de se aprender e compreender do que uma simples
+contagem de frequências e coocorrências. Assim, apesar de muito esforço sendo em-
+pregado na investigação e evolução de métodos neurais, o conhecimento linguístico e
+de uso da língua ainda não foi completamente representado/capturado por nenhum
+dos métodos atuais. Por isso, o processamento completo e adequado da língua só
+será possível com formalismos de representação híbridos, que incorporam também
+estruturas semânticas explícitas, e, portanto, mais robustos do que os que são usados
+hoje por métodos estatísticos e neurais.
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).14
+--- Page 36 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/
+Parte II
+Fala
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).15
+--- Page 37 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Capítulo 2
+T exto ou fala?
+Camila de Araújo Azevedo
+Heliana Ribeiro de Mel lo
+Priscila Osório Côrtes
+Publicado em: 26/09/2023
+2.1 Histórico e panorama da área
+O processamento da língua falada depende de uma vasta gama de conhecimentos que inclui
+acústica, fonologia, fonética, linguística geral, semântica, sintaxe, pragmática, estruturas
+discursivas, entre outras. Para além disso, outros conhecimentos mais comuns à ciência
+da computação, à engenharia elétrica, à matemática e, até mesmo à psicologia, também
+são necessários. Neste contexto, este capítulo visa oferecer um panorama da área e das
+habilidades e métodos mais conhecidos no universo do processamento computacional da
+língua falada.
+Desde os primórdios do surgimento da interação falada na espécie humana até os dias de
+hoje – e podemos afirmar com tranquilidade, que assim também será no futuro imaginável
+–, a fala tem sido o principal instrumento para a troca de informações e de coesão social
+(Rizzolatti; Arbib, 1998). É através da fala1que expressamos nossas emoções, a nossa
+atitude em relação a fatos e eventos, bem como negociamos ideias e ações. A capacidade
+linguística nos diferencia de outras espécies, mas é a fala, e o que ela nos proporciona, que
+nos identifica como humanos. Estima-se que a fala tenha surgido na filogênese humana há
+cerca de 60 mil anos, enquanto a escrita, que é uma tecnologia desenvolvida pelos humanos,
+surgiu provavelmente há cerca de 10 mil anos. A chamada “dupla articulação” presente
+na linguagem humana é uma habilidade exclusiva da nossa espécie. Ela se caracteriza por
+ser a articulação entre unidades significativas (morfemas) e fonemas, que são elementos
+finitos que se combinam de forma variada, criando infinitas possibilidades de morfemas2.
+A língua falada é hoje expandida para além do domínio da interação face-a-face para meios
+como a telefonia, a televisão, a interação via computadores. Os aplicativos para intera-
+ções multimodais imagem/som ganharam uma dimensão inimaginável com a eclosão da
+pandemia do Sars-Cov-19 em 2020, demonstrando claramente a preferência dos humanos
+pela interação via fala.
+Tal preferência também se reflete na interação homem-máquina e, apesar de ainda es-
+tarmos distantes de um mundo em que homens e máquinas interagem majoritariamente
+1Ressaltamos que “fala” neste contexto inclui a comunicação gestual em língua de sinais. As línguas
+de sinais, como LIBRAS, para o português brasileiro, são línguas naturais, com a mesma riqueza e
+complexidade que as línguas que se utilizam de sinal sonoro.
+2Cf. a discussão sobre Ciências da Fala, em Barbosa, Plínio A. (2020) Ciências da fala. In: Speech
+Sciences Entries . Speech Prosody Studies Group. Disponível em: https://gepf.falar.org/entries/1 .
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).16
+--- Page 38 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Capítulo 2 T exto ou fala?
+através da verbalização oral, já temos aplicações que nos permitem interagir com as má-
+quinas através de comandos orais no contexto doméstico, comercial e computacional.
+Em sua fase inicial, o processamento de língua falada em português era bastante limitado
+devido à falta de recursos computacionais e técnicas apropriadas. As primeiras abordagens
+eram baseadas em regras gramaticais e modelos acústicos simples. No entanto, com o
+avanço da tecnologia e o aumento do poder computacional, novas técnicas e abordagens
+foram desenvolvidas, resultando em avanços significativos nessa área.
+A partir da década de 1990, técnicas baseadas em estatística começaram a ganhar po-
+pularidade. Esses modelos estatísticos utilizam algoritmos de aprendizado de máquina,
+como as redes neurais artificiais, para melhorar o desempenho do processamento de língua
+falada em português. Com a disponibilidade de grandes quantidades de dados de fala e
+avanços em hardware e software, os sistemas de reconhecimento de fala começaram a se
+tornar mais precisos e eficientes.
+Outro marco importante no processamento de língua falada em português foi a intro-
+dução dos sistemas de síntese de fala (Seção 2.2.3). Esses sistemas permitem que um
+computador gere fala humana a partir de texto escrito em português. Inicialmente, a
+síntese de fala em português era baseada em técnicas concatenativas, que envolviam a
+gravação de segmentos de fala de um locutor humano e a concatenação desses segmentos
+para gerar a fala sintetizada. A concatenação refere-se ao processo de unir ou combinar
+várias partes ou segmentos de fala para formar uma sequência contínua ou mais longa de
+palavras ou frases. Com o tempo, surgiram abordagens baseadas em síntese de formantes
+(na fala, um formante é uma ressonância específica ou pico de intensidade em um espec-
+trograma de som. Os formantes são associados à forma e ao posicionamento da cavidade
+oral, da faringe e da língua durante a produção de sons da fala, especialmente as vogais)
+e síntese de fala concatenativa com modelos estatísticos, proporcionando uma qualidade
+de síntese cada vez melhor.
+Avanços mais recentes no processamento da fala em português estão relacionados ao
+uso de modelos de linguagem neural (Capítulo Modelos de linguagem ), como os modelos
+de transformação de sequência a sequência (Seq2Seq) e as redes neurais convolucionais
+(CNNs) e recorrentes (RNNs). Esses modelos têm oferecido resultados impressionantes
+em várias tarefas de processamento de língua falada, como reconhecimento automático de
+fala, tradução automática de fala e resumo automático de áudio.
+Além disso, com o advento dos assistentes virtuais e sistemas de processamento de
+linguagem natural, a interação por meio da fala em português tornou-se cada vez mais
+comum. Empresas de tecnologia estão investindo em pesquisas e desenvolvimento para
+melhorar a compreensão e a resposta dos sistemas de processamento de língua falada em
+português, a fim de proporcionar uma experiência mais natural e intuitiva aos usuários.
+Para que se alcancem bons resultados no processamento computacional da fala é preciso
+que haja datasets ecorpora de fala3de alta qualidade. Tem havido um esforço considerável
+da comunidade de pesquisadores para a compilação de dados dessa natureza. Para o
+português brasileiro, destaca-se o recente corpus CORAA ASR v. 1.1 (Corpus de Áudios
+Anotados)4voltado para tarefas de reconhecimento de fala (Candido Junior et al., 2021),
+que é apresentado no Capítulo 3.
+Os sons da fala podem ser digitalizados e processados usando-se algoritmos tanto para
+reconhecimento de fala (transcrição de formas de onda em texto) quanto para síntese
+3Para saber mais sobre datasets ecorpora, sugere-se a leitura do Capítulo 16.
+4https://github.com/nilc-nlp/CORAA ehttps://sites.google.com/view/tarsila-c4ai/coraa-versions?pli
+=1
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).17
+--- Page 39 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Capítulo 2 T exto ou fala?
+de fala (conversão de texto em formas de onda). O processo de digitalização da fala
+envolve a conversão do sinal analógico das ondas sonoras em um formato digital que pode
+ser armazenado e manipulado por um computador. Isso é normalmente feito usando-se
+um conversor analógico-digital (CAD), que amostra, isto é, faz uma amostragem da onda
+sonora em intervalos regulares e converte cada amostra em um número binário. Uma
+vez que o sinal da fala tenha sido digitalizado, ele pode ser processado usando-se várias
+técnicas, como filtragem, compressão e análise.
+Um sistema computacional para a língua falada necessita de capacidades tanto de re-
+conhecimento quanto de síntese de fala. Entretanto, esses dois componentes não são
+suficientes para a construção de um sistema útil. Um componente de compreensão e diá-
+logo é necessário para a interação com o usuário; o conhecimento de domínio é necessário
+para guiar a interpretação da fala pelo sistema e permitir que ele determine a ação apro-
+priada. Para todos esses componentes, há uma série de desafios, que incluem robustez,
+flexibilidade, facilidade de integração e eficiência de engenharia.
+2.2 Aspectos teóricos fundamentais
+A língua falada é utilizada para diversas funções que se estabelecem entre falantes e ou-
+vintes. A produção e a percepção são ambos elementos importantes na cadeia da fala. A
+fala se inicia com uma intenção (volição) de comunicação no cérebro do falante, o qual
+ativa movimentos musculares para a produção de sons. O ouvinte, por sua vez, recebe os
+sinais sonoros em seu sistema auditivo, processando-os para transformá-los em sinais neu-
+rológicos que o cérebro pode compreender. O falante monitora e controla continuamente
+os órgãos vocais ao receber a sua própria fala como feedback (Moore, 2007).
+Considerando os componentes universais da comunicação verbal, a interação fa-
+lante/ouvinte é tecida a partir de vários elementos distintos. Como dito, o processo de
+produção da fala começa com a mensagem semântica na mente de uma pessoa a ser
+transmitida ao ouvinte através da fala. O equivalente computacional ao processo de
+formulação da mensagem é a semântica da aplicação que cria o conceito a ser expresso.
+Após a criação da mensagem, o próximo passo é convertê-la em uma sequência de palavras.
+Cada palavra consiste em uma sequência de fonemas e respectivos alofones (realizações
+fonéticas correlacionadas do fonema) que correspondem à pronúncia das palavras. Cada
+frase também contém um padrão prosódico que denota a duração de cada fonema,
+entonação da frase e volume dos sons. Uma vez que o sistema de linguagem finaliza
+o mapeamento, o falante executa uma série de sinais neuromusculares. Os comandos
+neuromusculares realizam o mapeamento articulatório para controlar as cordas vocais,
+lábios, mandíbula, língua e véu palatino, produzindo assim a sequência sonora como
+saída final. O processo de compreensão da fala funciona na ordem inversa. Primeiro, o
+sinal é enviado para a cóclea no ouvido interno, que realiza a análise de frequência como
+um banco de filtros. Em seguida, um processo de transdução neural converte o sinal
+espectral em sinais de atividade no nervo auditivo, correspondendo aproximadamente
+a um componente de extração de recursos. Atualmente, ainda não está claro como a
+atividade neural é mapeada no sistema de linguagem e como a compreensão da mensagem
+é alcançada no cérebro.
+Os sinais de fala são compostos de padrões sonoros analógicos que servem como base
+para uma representação discreta e simbólica da linguagem falada – fonemas, sílabas e
+palavras. A produção e interpretação desses sons são regidas pela sintaxe, semântica e
+estrutura informacional da língua falada. Neste capítulo, adotamos uma abordagem de
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).18
+--- Page 40 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Capítulo 2 T exto ou fala?
+baixo para cima para introduzir os conceitos básicos, começando pelos sons e passando
+pela fonética e fonologia, chegando até as sílabas e palavras.
+2.2.1 A estrutura da língua falada
+Nesta seção, revisamos brevemente os sistemas de produção e percepção de fala humana.
+Esperamos que, algum dia, a pesquisa em linguagem falada nos permita construir um
+sistema de computador tão bom quanto o nosso próprio sistema de produção e compreensão
+de fala.
+2.2.1.1 Som
+O som é uma onda de pressão longitudinal formada por compressões e rarefações das
+moléculas de ar, em uma direção paralela àquela da aplicação de energia. Compressões são
+zonas onde as moléculas de ar foram forçadas pela aplicação de energia a uma configuração
+mais apertada do que o normal, e rarefações são zonas onde as moléculas de ar estão
+menos densamente empacotadas. As configurações alternadas de compressão e rarefação
+de moléculas de ar ao longo do caminho de uma fonte de energia são às vezes descritas pelo
+gráfico de uma onda senoidal. A forma básica de uma curva senoidal (Figura 2.1) é de uma
+onda suave, que se repete ao longo de um eixo horizontal. Ela se assemelha a uma série
+de montanhas e vales, subindo e descendo de forma suave. Neste tipo de representação,
+as cristas da curva senoidal correspondem a momentos de compressão máxima e os vales
+correspondem a momentos de rarefação máxima.
+Figura 2.1 :Curva senoidal
+2.2.1.2 Produção de Fala5
+Aqui revisamos os sistemas básicos de produção de fala humana, que influenciaram a
+pesquisa em codificação, síntese e reconhecimento de fala.6
+2.2.1.2.1 Articuladores
+A fala é produzida por ondas de pressão de ar que emanam da boca e das narinas de
+um falante.7Na maioria das línguas do mundo, o inventário de fonemas pode ser dividido
+em duas classes básicas:
+• Consoantes – articuladas na presença de constrições na garganta ou obstruções na
+boca (língua, dentes, lábios) enquanto falamos;
+• V ogais – articuladas sem grandes constrições e obstruções.
+5Recomendamos o PRAAT como software para análise da fala: https://www.fon.hum.uva.nl/praat/man
+ual/Intro.html
+6Toda a seção sobre produção da fala é orientada pelo livro de Huang et al. (2001).
+7Cf. O site Fonética e Fonologia: https://fonologia.org/
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).19
+--- Page 41 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Capítulo 2 T exto ou fala?
+Os sons podem ser subdivididos ainda mais em subgrupos com base em certas propri-
+edades articulatórias. Essas propriedades derivam da anatomia de alguns articuladores
+importantes e dos locais onde eles tocam as fronteiras do trato vocal humano. Além disso,
+um grande número de músculos contribui para a posição e o movimento dos articuladores.
+Nós nos restringimos a apenas uma visão esquemática dos principais articuladores. Os
+componentes principais do aparelho de produção da fala são os pulmões, traquéia, laringe
+(órgão de produção de voz), cavidade faríngea (garganta), cavidade oral e nasal. As cavi-
+dades faríngea e oral são geralmente referidas como o trato vocal, e a cavidade nasal como
+o trato nasal. O aparelho de produção de fala humano consiste em:
+• Pulmões: fonte de ar durante a fala;
+• Cordas vocais (laringe): quando as pregas vocais são mantidas próximas uma da
+outra e oscilam uma contra a outra durante um som da fala, o som é categorizado
+como sonoro. Por exemplo, /b d g/. Quando as pregas são muito soltas ou tensas
+para vibrar periodicamente, o som é categorizado como surdo. Por exemplo, /p t k/.
+O local onde as pregas vocais se unem é chamado de glote;
+• Véu palatino (palato mole): atua como uma válvula, abrindo para permitir a
+passagem de ar (e, portanto, ressonância) através da cavidade nasal. Sons produzidos
+com a aba aberta incluem /m/ e /n/;
+•Palato duro: uma superfície relativamente dura e longa no teto dentro da boca;
+quando a língua é colocada contra ela, permite a articulação de consoantes, como o
+𝜆em alho /a 𝜆u/;
+• Língua: articulador flexível, afastado do palato para vogais, colocado próximo ou
+sobre o palato ou outras superfícies duras para articulação de consoantes;
+• Dentes: outro local de articulação usado para segurar a língua para certas conso-
+antes, como /t d/;
+• Lábios: podem ser arredondados ou espalhados para afetar a qualidade das vogais,
+e completamente fechados para interromper o fluxo de ar oral em certas consoantes
+/p b m/.
+2.2.1.2.2 O Mecanismo de Sonorização
+A distinção mais fundamental entre os tipos de som na fala é a distinção sonoro/surdo.
+Sons sonoros, incluindo vogais, têm em sua estrutura temporal e de frequência um padrão
+regular que sons surdos, como a consoante /s/, não possuem. Sons sonoros geralmente têm
+mais energia. O que no mecanismo de produção de fala cria essa distinção fundamental?
+Como já dito na Seção 2.2.1.2.1 , quando as pregas vocais vibram durante a articulação
+do fonema, o fonema é considerado sonoro; caso contrário, é surdo. Vogais são sonoras
+durante toda a sua duração. Os timbres distintos de vogais são criados usando a língua e
+os lábios para moldar a principal cavidade de ressonância oral de maneiras diferentes. As
+pregas vocais vibram em taxas mais lentas ou mais rápidas, desde tão baixas quanto 60
+ciclos por segundo (Hz) para um homem de tamanho grande, até 300 Hz ou mais para uma
+mulher ou criança pequena. A taxa de ciclagem (abertura e fechamento) das pregas vocais
+na laringe durante a fonação de sons sonoros é chamada de frequência fundamental(f0).
+Isso ocorre porque ela estabelece a linha de base periódica para todos os harmônicos
+de frequência mais alta contribuídos pelas cavidades de ressonância faríngea e oral. A
+frequência fundamental também contribui mais do que qualquer outro fator único para a
+percepção de altura (o aumento e queda semelhante à música das tonalidades de voz) na
+fala.
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).20
+--- Page 42 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Capítulo 2 T exto ou fala?
+Uma vez que a onda glotal é periódica, consistindo na frequência fundamental (f0) e em
+um número de harmônicos (múltiplos integrais de f0), ela pode ser analisada como uma
+soma de ondas senoidais. As ressonâncias do trato vocal (acima da glote) são excitadas
+pela energia glotal. Vamos supor, para simplicidade, que o trato vocal seja um tubo reto de
+área transversal uniforme, fechado na extremidade da glote e aberto nos lábios. Quando
+a forma do trato vocal muda, as ressonâncias também mudam. Harmônicos próximos
+às ressonâncias são enfatizados, e, na fala, as ressonâncias das cavidades que são típicas
+de configurações articulatórias particulares (por exemplo, os diferentes timbres vocálicos)
+são chamadas de formantes. As vogais em uma forma de onda de fala real podem ser
+visualizadas a partir de várias perspectivas diferentes, por exemplo, enfatizando uma visão
+em seção transversal das respostas harmônicas em um único momento ou, por outro lado,
+uma visão de longo prazo da evolução da trajetória dos formantes ao longo do tempo.
+2.2.1.3 Percepção da Fala
+Existem dois componentes principais no sistema de percepção auditiva: os órgãos auditivos
+periféricos (orelhas) e o sistema nervoso auditivo (cérebro). A orelha (ouvido externo)
+capta um sinal de pressão acústica, processa-o, transformando-o primeiro em um padrão
+de vibração mecânica na membrana basilar e depois representando o padrão por uma série
+de pulsos a serem transmitidos pelo nervo auditivo. A informação perceptual é extraída
+em vários estágios do sistema nervoso auditivo. Nesta seção, focamos principalmente nos
+órgãos auditivos.
+2.2.1.3.1 Fisiologia do Ouvido
+O ouvido humano tem três partes: o ouvido externo, o ouvido médio e o ouvido interno.
+O ouvido externo consiste na parte visível externa e no canal auditivo externo, que forma
+um tubo ao longo do qual o som viaja. Esse tubo tem cerca de 2,5 cm de comprimento
+e é coberto pelo tímpano na extremidade distante. Quando variações na pressão do ar
+alcançam o tímpano do exterior, ele vibra e transmite as vibrações aos ossos adjacentes
+do seu lado oposto. A vibração do tímpano está na mesma frequência (compressão e
+rarefação alternadas) que a onda de pressão sonora que chega. O ouvido médio é um
+espaço ou cavidade cheia de ar com cerca de 1,3 cm de largura e volume de cerca de 6 cm³.
+O ar viaja pela abertura (quando aberta) que conecta a cavidade com o nariz e a garganta.
+Há, ainda, a janela oval, que é uma pequena membrana na interface óssea com o ouvido
+interno (cóclea). Uma vez que as paredes da cóclea são ósseas, a energia é transferida por
+ação mecânica do estribo para uma impressão na membrana que se estende sobre a janela
+oval.
+A estrutura relevante do ouvido interno para a percepção sonora é a cóclea, que se
+comunica diretamente com o nervo auditivo, conduzindo uma representação do som para
+o cérebro. A cóclea é um tubo espiralado de cerca de 3,5 cm de comprimento, que se enrola
+cerca de 2,6 vezes. A espiral é dividida, principalmente pela membrana basilar que corre
+longitudinalmente, em duas câmaras preenchidas de líquido. A cóclea pode ser considerada
+grosseiramente como um banco de filtros, cujas saídas são ordenadas por localização, de
+modo que uma transformação de frequência local é realizada. Os filtros mais próximos
+da base da cóclea respondem às frequências mais altas, e aqueles mais próximos do ápice
+respondem às mais baixas.
+Em psicoacústica, faz-se uma distinção básica entre os atributos perceptuais de um som,
+especialmente de um som de fala, e as propriedades físicas mensuráveis que o caracterizam.
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).21
+--- Page 43 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Capítulo 2 T exto ou fala?
+Cada um dos atributos perceptuais, conforme listado a seguir, parece ter uma forte cor-
+relação com uma propriedade física principal, mas a conexão é complexa, porque outras
+propriedades físicas do som podem afetar a percepção de maneiras complexas.
+O Quadro 2.1traz a relação entre atributos perceptuais e físicos do som.
+Quadro 2.1: Relação entre atributos perceptuais e físicos do som
+Quantidade física Qualidade perceptual
+Intensidade Volume
+Frequência fundamental Tom
+Forma espectral Timbre
+Tempo de início/fim Temporização
+Diferença de fase na audição binaural Localização
+Embora sons com níveis de intensidade maiores geralmente soem mais altos, a sensibili-
+dade do ouvido varia com a frequência e a qualidade do som. Uma divergência fundamental
+entre as qualidades físicas e perceptuais é o fenômeno da percepção de igualdade de inten-
+sidade não uniforme de tons de frequências variadas. Em geral, tons de diferentes alturas
+têm diferentes níveis percebidos de volume. Há uma relativa insensibilidade do ouvido a
+sons de baixa frequência em níveis de intensidade moderados a baixos. A sensibilidade
+auditiva atinge um máximo em torno de 4 kHz, que está próximo da primeira frequên-
+cia de ressonância do canal auditivo externo, e atinge outro pico em torno de 13 kHz, a
+frequência da segunda ressonância.
+A altura está, de fato, mais intimamente relacionada com a frequência fundamental.
+Quanto maior a frequência fundamental, maior a altura que percebemos. No entanto, a
+discriminação entre duas alturas depende da frequência da altura inferior. A altura perce-
+bida mudará à medida que a intensidade aumentar e a frequência for mantida constante.
+Em um exemplo da não identidade de efeitos acústicos e perceptuais, foi observado
+experimentalmente que, quando o ouvido é exposto a dois ou mais tons diferentes, é
+comum que um tom possa mascarar os outros. O mascaramento provavelmente é mais
+bem explicado como um deslocamento ascendente no limiar auditivo do tom mais fraco pelo
+tom mais alto. Tons puros, sons complexos, bandas estreitas e amplas de ruído mostram
+diferenças em sua capacidade de mascarar outros sons. Em geral, tons puros, próximos em
+frequência, se mascaram mais do que tons amplamente separados em frequência. Um tom
+puro mascara tons de frequência mais alta com mais eficácia do que tons de frequência
+mais baixa. Quanto maior a intensidade do tom de mascaramento, mais ampla é a faixa
+de frequências que ele pode mascarar. O mascaramento, no contexto da fala e da audição,
+pode ter um impacto significativo, causando dificuldade de compreensão e reduzindo a
+inteligibilidade, além de aumentar o esforço de escuta. O mascaramento pode afetar o
+reconhecimento automático de fala aumentando a taxa de erros, levando à perda de partes
+importantes do discurso (perda de contexto) e dificultando a separação de vozes.
+A escuta binaural melhora muito nossa capacidade de sentir a direção da fonte de som.
+A atenção à localização está principalmente focada na discriminação lateral ou de lado a
+lado. As pistas de tempo e intensidade têm diferentes impactos para frequências baixas
+e altas, respectivamente. Sons de baixa frequência são lateralizados principalmente com
+base na diferença interaural de tempo, enquanto sons de alta frequência são localizados
+principalmente com base na diferença interaural de intensidade.
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).22
+--- Page 44 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Capítulo 2 T exto ou fala?
+Finalmente, uma questão perceptual interessante é a questão da qualidade de voz dis-
+tinta. O discurso de pessoas diferentes soa diferente. Em parte, isso se deve a fatores
+óbvios, como diferenças na frequência fundamental característica causada, por exemplo,
+pela maior massa e comprimento das pregas vocais masculinas adultas em comparação
+com as femininas. Mas existem efeitos mais sutis também.
+Em psicoacústica, o conceito de timbre (de um som ou instrumento) é definido como o
+atributo da sensação auditiva pelo qual um sujeito pode julgar que dois sons apresentados
+de maneira semelhante, com a mesma intensidade e altura, são diferentes. Em outras
+palavras, quando todas as diferenças facilmente mensuráveis são controladas, a percepção
+restante de diferença é atribuída ao timbre. Isso é mais facilmente ouvido na música, onde
+a mesma nota na mesma oitava, tocada por igual tempo, por exemplo, em um violino, soa
+diferente de uma flauta. O timbre de um som depende de muitas variáveis físicas, incluindo
+a distribuição de energia espectral do som, o envelope temporal, a taxa e profundidade de
+modulação de amplitude ou frequência e o grau de inarmonia de seus harmônicos.
+2.2.1.3.2 Análise de Frequência
+Pesquisadores têm realizado trabalhos experimentais psicoacústicos para derivar escalas
+de frequência que tentam modelar a resposta natural do sistema perceptual humano, uma
+vez que a cóclea do ouvido interno atua como um analisador de espectro. O complexo
+mecanismo do ouvido interno e do nervo auditivo implica que os atributos perceptuais
+de sons em diferentes frequências podem não ser completamente simples ou lineares por
+natureza. É bem conhecido que a altura musical ocidental é descrita em oitavas e semitons.
+A altura musical percebida de tons complexos é basicamente proporcional ao logaritmo da
+frequência. Para tons complexos, a diferença perceptível para frequência é essencialmente
+constante na escala de oitavas/semitons. As escalas de altura musical são usadas em
+pesquisas prosódicas (sobre a geração de contorno de entonação da fala).
+2.2.1.4 Panorama genérico dos níveis de análise da fala
+A fala, diferentemente da escrita, não é uma tecnologia desenvolvida pelos humanos. É
+algo bem mais complexo e antigo, sendo hoje considerada, por alguns, como uma dotação
+genética e, por outros, como o produto de diferentes processos cognitivos e corpóreos.
+A fala humana pode ser definida genericamente como o processo de expressar pensa-
+mentos, ideias e emoções por meio da produção de sons articulados. É uma forma de
+comunicação específica dos seres humanos e é fundamental para a interação social e o
+desenvolvimento das sociedades.
+A caracterização da fala humana envolve vários aspectos tais como:
+• Produção de sons articulados: A fala envolve a produção de sons através da
+coordenação dos órgãos articulatórios, como a língua, os lábios, os dentes e a glote.
+Esses órgãos são responsáveis por modificar a corrente de ar expirada pelos pulmões
+para produzir os diferentes sons da fala.
+• Sistema linguístico (linguagem): A fala é mediada pela linguagem, que é um
+sistema de símbolos e regras que permite a comunicação entre os indivíduos. A
+linguagem compreende elementos fonéticos (sons), fonológicos (padrões de som),
+morfológicos (estrutura das palavras), sintáticos (ordem das palavras), semânticos
+(significado das palavras) e pragmáticos (uso da linguagem em contextos específicos).
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).23
+--- Page 45 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Capítulo 2 T exto ou fala?
+• Expressão de pensamentos e emoções: A fala humana permite expressar uma
+ampla gama de pensamentos, ideias e emoções. Além da transmissão de informa-
+ções, a fala também é utilizada para expressar sentimentos, intenções, opiniões e
+experiências pessoais.
+• Comunicação social: A fala é um meio de interação social fundamental. Por meio
+da fala, os indivíduos podem se comunicar, compartilhar informações, estabelecer
+conexões emocionais, resolver problemas e coordenar atividades em grupo.
+• Aquisição: A habilidade de falar é adquirida ao longo do desenvolvimento humano.
+As crianças passam por um processo de aprendizado da fala, no qual adquirem
+as habilidades motoras necessárias para articular os sons e aprendem as regras e
+estruturas da linguagem de seu ambiente.
+É importante ressaltar que a fala humana é altamente diversa e comporta variações entre
+diferentes idiomas, culturas e indivíduos. Além disso, a fala também pode ser afetada por
+condições clínicas, como distúrbios da fala e da linguagem.
+Diferentemente do que acontece para a escrita, o processamento computacional da fala
+não parte do encadeamento simbólico de grafemas organizados em itens lexicais e suas
+supra-estruturas sintáticas. É preciso converter o sinal sonoro em símbolos passíveis de
+análise por um sistema computacional, ou seja, as ondas sonoras precisam ser convertidas
+em bits processáveis computacionalmente. Ademais, a fala não pode prescindir de um
+nível analítico comumente ignorado pelas análises da escrita: a pragmática e, mais espe-
+cificamente o seu nível prosódico e suas correspondências na estruturação informacional.
+Neste capítulo não há a possibilidade de explorarmos este assunto com a profundidade que
+ele merece, portanto recomendamos ao leitor recorrer a leituras específicas para se inteirar
+sobre isso.
+Nas próximas subseções, faremos um apanhado genérico sobre o nível analítico mínimo,
+o fonético-fonológico.
+2.2.1.4.1 Fonética e fonologia
+Agora discutiremos as noções de fonética e fonologia básicas necessárias para o proces-
+samento da linguagem falada. Fonética refere-se ao estudo dos sons da fala, sua produção,
+classificação e transcrição. Fonologia é o estudo da distribuição e padrões dos sons da fala
+em uma língua e das suas regras implícitas.
+Ao linguista Ferdinand de Saussure (1857-1913) atribui-se a observação de que a relação
+entre um sinal e o objeto significado por ele é arbitrária. Assim, um mesmo conceito
+é arbitrariamente expresso em línguas diferentes: usamos [pɛ]em português para nos
+referirmos ao mesmo conceito que em inglês foneticamente seria [fʊt]. Para a fonética,
+isso significa que os sons da fala não têm um significado intrínseco e devem ser distribuídos
+aleatoriamente no léxico.
+Os sons são apenas um conjunto de efeitos arbitrários disponibilizados pela anatomia
+vocal humana. Assim como as impressões digitais, a anatomia vocal de cada falante é única,
+o que resulta em vocalizações também únicas. No entanto, a comunicação linguística é
+baseada na comunalidade de formas no nível perceptual. Para permitir a discussão das
+semelhanças, os pesquisadores identificaram certas características gerais dos sons da fala
+que são adequadas para a descrição e classificação das palavras nos dicionários. Eles
+também adotaram vários sistemas de notação para representar o subconjunto de fenômenos
+fonéticos que são cruciais para o significado.
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).24
+--- Page 46 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Capítulo 2 T exto ou fala?
+Na ciência da fala, o termo fonema é usado para denotar qualquer uma das unidades
+mínimas de som da fala em uma língua que podem servir para distinguir uma palavra de
+outra. O termo fone é utilizado para denotar a realização acústica de um fonema. Há
+duas classes de fonemas: vogais e consoantes (Seção 2.2.1.2.1 ).
+As vogais são definidas fonologicamente com base em três características principais:
+qualidade, altura e tensão.
+A qualidade vocálica refere-se à diferença perceptível entre os diferentes sons de vogais.
+Ela é determinada principalmente pela posição da língua e pelos formatos das cavidades
+oral e faríngea durante a produção da vogal. Por exemplo, as vogais podem ser classificadas
+como “abertas” ou “fechadas”, dependendo da posição da mandíbula e da abertura da boca.
+Por exemplo, /a/ é uma vogal aberta e /i/ é uma vogal fechada.
+A altura vocálica se refere à posição vertical da língua em relação ao palato durante a
+produção da vogal. As vogais podem ser classificadas como “alta”, “média” ou “baixa”
+com base na posição da língua. Por exemplo, a vogal /i/ em “pique” é considerada alta,
+enquanto a vogal /a/ em “casa” é considerada baixa.
+A tensão vocálica se refere à tensão muscular envolvida na produção da vogal. As vo-
+gais podem ser classificadas como “tensas” ou “frouxas”. Vogais tensas são produzidas
+com maior tensão muscular e duração, enquanto vogais frouxas são produzidas com menos
+tensão muscular e têm uma duração mais curta. No português brasileiro não se considera
+que haja essa diferenciação. No português europeu, dependendo do dialeto, seriam encon-
+tradas vogais tensas como o /ɔ/em “corta” ou “porta”, e vogais frouxas como o /i/ em
+“pia” ou “fria”.
+Essas características fonológicas das vogais são usadas para distinguir as palavras em um
+determinado idioma. As diferenças na qualidade, altura e tensão vocálicas são consideradas
+contrastivas e podem levar a diferentes significados das palavras. Por exemplo, as palavras
+“bela”/ ˈbɛlɐ/e “bola”/ ˈbɔlɐ/são distinguidas pela qualidade vocálica dos fonemas /ɛ/e/ɔ/
+respectivamente.
+A forma e a posição da língua na cavidade oral não formam uma obstrução significativa
+do fluxo de ar durante a articulação das vogais. No entanto, variações no posicionamento
+da língua conferem a cada vogal seu caráter distintivo, alterando a ressonância, assim como
+diferentes tamanhos e formas de garrafas produzem efeitos acústicos diferentes quando
+são golpeadas. A energia primária que entra nas cavidades faríngea e oral na produção
+das vogais vibra na frequência fundamental. As principais ressonâncias das cavidades
+oral e faríngea para as vogais são chamadas de f1 e f2 - primeiro e segundo formantes,
+respectivamente. Eles são determinados pelo posicionamento da língua e pela forma do
+trato oral nas vogais e determinam o timbre ou a qualidade característica da vogal.
+As consoantes, por outro lado, são definidas fonologicamente como sons produzidos por
+meio de um bloqueio ou estreitamento parcial ou completo do trato vocal, que resulta na
+turbulência do ar que passa através do ponto de obstrução.
+Existem diferentes tipos de consoantes, classificadas de acordo com o ponto e modo de
+articulação, e também com a presença ou ausência de vozeamento (consoantes surdas e
+sonoras) (Seção 2.2.1.2.1 ). Por exemplo, as consoantes, quanto ao ponto de articulação,
+podem ser bilabiais, alveolares, palatais ou velares, além de serem oclusivas, fricativas,
+aproximantes ou nasais, quanto ao modo de articulação, entre outras classificações possí-
+veis.
+Um exemplo de um par de consoantes contrastivas no português seria /p/ e /b/. Ambas
+são consoantes oclusivas bilabiais, produzidas bloqueando completamente o fluxo de ar nos
+lábios (para /p/) ou. além disso, vibrando as cordas vocais enquanto bloqueiam o fluxo
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).25
+--- Page 47 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Capítulo 2 T exto ou fala?
+de ar (para /b/).
+2.2.1.4.2 O Alofone: Som e Contexto
+As tabelas que representam vogais e consoantes fornecem símbolos abstratos para os
+fonemas8– principais distinções sonoras. As unidades fonêmicas devem estar correlacio-
+nadas com distinções de significado potencial. Por exemplo, a mudança criada ao manter
+a língua alta e à frente (/i/) em comparação à posição diretamente abaixo (frontal) para
+/e/, no contexto consonantal /m _ w/, corresponde a uma importante distinção de signi-
+ficado no léxico do português: mil /miw/ vs. meu /mew/. Esta distinção de significado,
+condicionada por um par de sons bastante similares, em um contexto idêntico, justifica
+a inclusão de /i/ e /e/ como distinções logicamente separadas. No entanto, um dos sons
+fundamentais que distingue significados é muitas vezes modificado de forma sistemática
+por seus vizinhos fonéticos. O processo pelo qual sons vizinhos influenciam um ao outro
+é chamado de coarticulação. As variações na realização fonética de um fonema, resultan-
+tes dos processos coarticulatórios, são chamadas de alofones. As diferenças alofônicas são
+sempre categóricas, ou seja, podem ser entendidas e denotadas por meio de um pequeno
+número delimitado de símbolos ou diacríticos nos símbolos fonêmicos básicos.
+2.2.1.4.3 T axa de articulação e Coarticulação
+Além dos alofones, existem outras variações na fala para as quais não é possível deli-
+mitar um pequeno conjunto de categorias estabelecidas de variação. Essas variações são
+graduais, existindo ao longo de uma escala para cada dimensão relevante, com falantes
+distribuídos de maneira ampla. Falantes individuais podem variar suas taxas de acordo
+com o conteúdo e contexto de sua fala, e também pode haver grandes diferenças entre os
+falantes de uma dada língua. Alguns falantes podem fazer pausas frequentes, enquanto ou-
+tros podem falar muitas palavras por minuto com quase nenhuma pausa entre enunciados.
+Nas taxas mais rápidas, é menos provável que os alvos de formantes sejam completamente
+alcançados. Além disso, alofones individuais podem se fundir ou desaparecer completa-
+mente (por exemplo, possibilidades do dialeto mineirês no enunciado “você sabe se esse
+ônibus passa na Savassi”, passível de realização, em representação ortográfica, como “cê-
+sasessonspasansavas”)
+2.2.1.4.4 Sílabas e Palavras
+Os fonemas são como tijolos em uma construção. Para contribuir para o significado de
+uma língua, eles devem ser organizados em extensões coesas mais longas, e as unidades
+formadas devem ser combinadas em padrões característicos para ter significado, como
+sílabas e palavras.
+A sílaba, uma unidade intermediária, é considerada como interposta entre os fonemas
+e o nível da palavra. O conceito de sílaba é complexo, com implicações tanto para a
+produção quanto para a percepção da fala. Aqui trataremos a sílaba como uma unidade
+perceptual. Em português, as sílabas geralmente são centradas em torno de vogais. Por
+exemplo, numa palavra como “casa” /ka.za/, há duas sílabas porque há duas vogais. Para
+dividir completamente uma palavra em sílabas, é necessário fazer julgamentos de afiliação
+consonantal (tomando as vogais como pico da sílaba). A questão de saber se tais julga-
+mentos devem ser baseados em critérios articulatórios ou perceptuais, e como podem ser
+8Consultar a tabela da Associação Internacional de Fonética disponível em https://www.internationalp
+honeticassociation.org/content/full-ipa-chart e no Apêndice A.
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).26
+--- Page 48 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Capítulo 2 T exto ou fala?
+rigorosamente aplicados, ainda não está resolvida. Os núcleos das sílabas podem ser con-
+siderados picos de sonoridade (seções de alta amplitude). Esses picos de sonoridade têm
+vizinhanças afiliadas de sonoridade estritamente não crescente. Para a diferenciação dos
+níveis de sonoridade, pode-se utilizar uma escala de sonoridade, classificando consoantes
+ao longo de um continuum de oclusivas, africadas, fricativas e aproximantes. Portanto,
+em uma palavra como “verbal”, a silabificação seria “ver-bal”, mas não “ve-rbal”, porque
+colocar a aproximante /r/ antes da oclusiva /b/ na segunda sílaba violaria o requisito de
+sonoridade não crescente em direção à sílaba.
+As sílabas são consideradas pelos fonólogos como tendo uma estrutura interna, e vale
+a pena conhecer os termos atribuídos às partes dessa estrutura. Considere uma sílaba
+como “trans” /trans/, por exemplo. Ela consiste em um pico vocálico, chamado de núcleo,
+cercado pelos outros sons em suas posições características. O elemento inicial de uma sílaba
+é o ataque - preenchido por consoantes. O ataque é um elemento opcional - há sílabas
+sem ataque, por exemplo, em uma palavra como “as”. A rima consiste da combinação do
+núcleo com consoantes finais, a coda, se estas estiverem presentes. Em alguns tratamentos,
+a última consoante em um cluster de final de sílaba pertenceria a um apêndice e não à coda.
+Assim, em “trans”, teríamos /tr/ em ataque e /ans/ em rima; a rima é formada pelo núcleo,
+que é /a/, e pela coda que é /ns/. A sílaba é às vezes considerada o domínio primário da
+coarticulação, ou seja, os sons dentro de uma sílaba influenciam mais a realização uns dos
+outros do que os mesmos sons se estiverem separados por uma fronteira de sílaba.
+O conceito de palavra parece intuitivamente óbvio para a maioria dos falantes de línguas
+indo-europeias. A palavra pode ser definida, de forma geral, como: um item lexical, com
+um significado aceito em uma determinada comunidade de fala, e que tem a liberdade de
+combinação sintática permitida pela sua classe (substantivo, verbo etc.).
+Na fala, há um problema de segmentação das palavras: elas se fundem, a menos que
+sejam afetadas por uma disfluência (problema não intencional de produção de fala) ou
+pela pausa deliberada (silêncio) por alguma razão estrutural ou comunicativa. Isso é
+surpreendente para muitas pessoas, porque a alfabetização condicionou os falantes/leitores
+de línguas indo-europeias a esperar um espaço em branco entre as palavras na página
+impressa. Mas na fala, apenas algumas pausas verdadeiras (o equivalente sonoro de um
+espaço em branco entre sinais gráficos na escrita) podem estar presentes. Portanto, o
+que parece para o olho do leitor como “você sabe se esse ônibus passa na Savassi” na
+escrita, soaria para o ouvido, se simplesmente usarmos letras para representar seus sons
+correspondentes no dialeto mineirês, como “cêsasessonspasansavas” (Seção 2.2.1.4.3 ) – não
+há pausas nesse enunciado. Frequentemente, o que encontramos na fala, são quebras
+prosódicas, que podem ser de natureza não-terminal – indicando unidades entoacionais
+em um enunciado e representadas por /, e quebras terminais, indicando a conclusão de
+um enunciado e representadas por //. Assim, dependendo da constituição informacional,
+uma sequência de palavras como: “não deu a altura que a Mari marcou lá”, pode ser
+enunciada com propósitos ilocucionários distintos como as seguintes configurações, dentre
+outras:
+não deu a altura que a Mari marcou lá // um enunciado, com uma unidade
+entoacional;
+não // deu a altura que a Mari marcou lá // dois enunciados, com uma unidade
+entoacional cada;
+não // deu a altura / que a Mari marcou / lá // dois enunciados, um com uma
+unidade entoacional e o outro com três unidades entoacionais.
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).27
+--- Page 49 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Capítulo 2 T exto ou fala?
+Certos fatos sobre a estrutura das palavras e as suas possibilidades de combinação
+são evidentes para a maioria dos falantes nativos e foram confirmados por décadas de
+pesquisa linguística. Alguns desses fatos descrevem as relações entre as palavras quando
+consideradas isoladamente, outros dizem respeito a grupos de palavras relacionadas que
+parecem intuitivamente similares ao longo de alguma dimensão de forma ou significado
+- essas propriedades são chamadas de paradigmáticas. As propriedades paradigmáticas
+das palavras incluem a sua classe gramatical, a sua morfologia flexional e derivacional e
+a sua estrutura em compostos. Outras propriedades das palavras dizem respeito ao seu
+comportamento e distribuição quando combinadas para fins comunicativos em enunciados
+– essas propriedades são chamadas de sintagmáticas.
+2.2.2 Reconhecimento de fala
+A tarefa de reconhecimento de fala, também conhecida como ASR (do inglês, automatic
+speech recognition ), consiste na transformação do sinal acústico de um trecho de fala em
+um trecho de texto (Figura 2.2).
+Figura 2.2 :Conversão do áudio da fala em sua transcrição textual.
+Essa tarefa tem diversas aplicações, mas a mais difundida é no uso de assistentes de voz,
+também conhecidos como assistentes virtuais. Os assistentes, comumente embutidos em
+celulares, como o próprio nome revela, foram criados para ajudar as pessoas em tarefas
+corriqueiras, como enviar mensagens, fazer ligações, agendar compromissos etc. Para que
+a ajuda dos assistentes “valha a pena”, eles devem interagir com o humano da forma mais
+natural, isto é, por meio da fala. Para que isso aconteça, o assistente precisa, antes de
+tudo, compreender a fala do humano. A primeira etapa dessa compreensão9envolve o
+reconhecimento da fala, ou a sua conversão em texto.
+No processamento da fala, assim como em diversas aplicações de PLN na atualidade,
+também concluiu-se ao longo do tempo que os modelos de aprendizado profundo, baseados
+em dados, são os que geram melhores resultados. Essa abordagem se baseia em grandes
+quantidades de dados, a partir dos quais a rede neural conseguirá aprender, isto é, identifi-
+car padrões e ajustar os pesos dos neurônios. No caso do reconhecimento de fala, os dados
+são corpora de áudio e texto, isto é, para cada trecho de áudio produzido por humanos,
+em geral uma sentença ou enunciado, deve haver uma transcrição correspondente, para
+que o modelo consiga associar uma coisa à outra. A seguir, falaremos mais sobre como
+devem ser esses dados, e sobre aspectos fundamentais do reconhecimento de fala.
+9A compreensão da fala envolve também a tarefa chamada de NLU, Natural Language Understanding , na
+qual aspectos relacionados ao sentido do enunciado são processados pelo computador e convertidos em
+algum tipo de ação. No caso dos assistentes de voz, um enunciado como “Escrever um e-mail”, dito pelo
+usuário, será convertido na ação de escrita do e-mail - provavelmente algum aplicativo de e-mail será
+aberto ou o assistente perguntará para o usuário quem seria o destinatário ou qual o texto do e-mail
+etc. Essa tarefa não faz parte do que hoje está no escopo da maioria dos modelos de reconhecimento
+de fala, mas é a etapa que a segue.
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).28
+--- Page 50 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Capítulo 2 T exto ou fala?
+2.2.2.1 Coleta de dados
+Os dados, que são o ponto de partida para o treinamento de uma rede neural, devem
+ser os mais representativos possíveis para a língua falada que se deseja processar. O que
+isso quer dizer? Da mesma forma como acontece com humanos, a rede neural aprende
+a partir do que é mostrado a ela, e ela aprende melhor o que for mostrado mais vezes.
+Nesse sentido, essa seção aborda alguns pontos muito importantes na coleta dos dados:
+propósito, público-alvo, variações de fala e contexto.
+No caso do reconhecimento de fala, é ideal que se tenha em mente para qual tipo de
+produto o modelo de ASR será usado. Tomando novamente como exemplo os assistentes
+virtuais, seu objetivo principal é o reconhecimento correto de comandos de voz. Dessa
+forma, os dados para o treinamento da rede neural deverão conter também10comandos
+de voz, instâncias primordiais da interação de usuários com assistentes. É claro que é
+possível construir um reconhecedor de fala “geral”, isto é, que não esteja destinado a um
+tipo específico de aplicação, mas que visa a reconhecer qualquer tipo de fala que for dado
+como entrada, seja um diálogo com um chatbot , seja uma conversa entre amigos. No
+entanto, a acurácia de um modelo “geral” tenderá a ser bem inferior à de um modelo
+específico, uma vez que a fala espontânea encontrada em conversas entre amigos possui
+muitas particularidades que dificultam o reconhecimento, tais como sobreposição de fala,
+ruídos de ambiente e fala menos articulada.
+Os dados também precisam representar o usuário-alvo . Com relação a assistentes
+de voz, os usuários costumam ser pessoas portadoras de celulares, o que hoje em dia
+significa “praticamente todo mundo”. Mas, pensando bem, talvez nem tanto crianças
+abaixo de 12 anos ou idosos com mais de 70. Dessa forma, as gravações que compõem
+ocorpus de treinamento precisam ser feitas por todo tipo de usuário, mas especialmente
+por adolescentes e adultos de uma faixa etária entre 12 e 70 anos, em igual proporção de
+homens e mulheres. Se um modelo for treinado apenas com crianças do gênero feminino,
+por exemplo, ele será excelente em reconhecer a fala de crianças do gênero feminino, mas
+provavelmente bem ruim em reconhecer a fala de senhores de 70 anos.
+Outro ponto ao qual devemos nos atentar no momento de coleta de dados é a repre-
+sentatividade dialetal . Da mesma forma que o modelo precisa ver áudios produzidos
+tanto por homens quanto por mulheres, adolescentes e idosos, ele também precisa ver
+áudios de usuários de Caucaia (CE) e de Uruguaiana (RS), por exemplo, localidades nas
+quais o português falado difere consideravelmente no âmbito fonético, principalmente. Se
+o modelo for treinado com dados de usuários da mesma variedade dialetal, ele será bom
+em reconhecer a fala desses usuários, mas não tão bom em reconhecer a fala de usuários
+de outras regiões. Nesse sentido, vale mencionar que enquanto as variações de fala encon-
+tradas nas variantes do português brasileiro e europeu – ou mesmo nos diferentes sotaques
+e pronúncias dentro do próprio Brasil – têm um grande impacto no PLN da fala, esse
+impacto no PLN de texto é bem menor.
+Finalmente, é preciso também levar em consideração a forma como a gravação foi
+feita. Idealmente, para o produto assistente de voz, as gravações que comporão o corpus de
+treinamento deverão também ter sido feitas utilizando-se o gravador do celular, inclusive
+com os ruídos de fundo típicos do contexto de uso final da aplicação. As pessoas utilizam
+o celular na rua, dentro de carros, em casa, em restaurantes, onde há ruídos de conversas,
+trânsito, música etc., mas muito raramente em estúdios com isolamento acústico perfeito.
+10Digo“também”, porqueseosdadoscontiveremapenascomandosdevoz, aaplicaçãoficarámuitorestrita.
+Falaremos disso mais adiante.
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).29

@@ -1,0 +1,14 @@
+{
+  "source": "chat_ao_vivo.csv",
+  "source_sha256": "5953dd97570dedf4fd53a9da645de39edd43fab3362cf963134c0ed5b7aa53e4",
+  "selection": "Mensagens de texto distintas, quatro blocos com duração >= 1 minuto, 125 por bloco",
+  "strata_quotas_per_block": {
+    "lula": 35,
+    "flavio": 35,
+    "ambos": 15,
+    "outros": 40
+  },
+  "seed": "debate-2026-rotulacao-v1",
+  "sample_size": 500,
+  "note": "A amostra equilibra blocos e menções aproximadas; não estima prevalência no chat."
+}

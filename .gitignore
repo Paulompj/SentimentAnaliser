@@ -3,3 +3,5 @@ __pycache__/
 *.pyc
 .venv/
 venv/
+output/2026/bertweet_band/checkpoint.sqlite
+.cache_huggingface/

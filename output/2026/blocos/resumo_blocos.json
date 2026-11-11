@@ -1,0 +1,37 @@
+[
+  {
+    "name": "1 parte",
+    "file": "1_parte_4293a634.csv",
+    "started_at_utc": "2026-10-18T23:30:15.044000+00:00",
+    "ended_at_utc": "2026-10-18T23:30:22.530000+00:00",
+    "messages": 124
+  },
+  {
+    "name": "Bloco 1 - Livre",
+    "file": "bloco_1_livre_e240e9f2.csv",
+    "started_at_utc": "2026-10-18T23:30:38.562000+00:00",
+    "ended_at_utc": "2026-10-19T00:04:25.297000+00:00",
+    "messages": 11291
+  },
+  {
+    "name": "Bloco 2",
+    "file": "bloco_2_b578deb7.csv",
+    "started_at_utc": "2026-10-19T00:13:10.847000+00:00",
+    "ended_at_utc": "2026-10-19T00:35:03.081000+00:00",
+    "messages": 4347
+  },
+  {
+    "name": "Bloco 3",
+    "file": "bloco_3_75718f6a.csv",
+    "started_at_utc": "2026-10-19T00:43:01.265000+00:00",
+    "ended_at_utc": "2026-10-19T01:04:29.484000+00:00",
+    "messages": 6509
+  },
+  {
+    "name": "consideracoes",
+    "file": "consideracoes_6f0d822a.csv",
+    "started_at_utc": "2026-10-19T01:04:40.513000+00:00",
+    "ended_at_utc": "2026-10-19T01:12:19.632000+00:00",
+    "messages": 2251
+  }
+]

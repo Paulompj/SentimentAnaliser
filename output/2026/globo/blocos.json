@@ -1,0 +1,26 @@
+{
+  "debate": "Globo 2026",
+  "nota": "Preencha os horários reais de cada bloco (ISO 8601 com fuso). Exemplo: 2026-10-25T23:00:00-03:00",
+  "blocos": [
+    {
+      "nome": "bloco_1",
+      "inicio": "PREENCHER",
+      "fim": "PREENCHER"
+    },
+    {
+      "nome": "bloco_2",
+      "inicio": "PREENCHER",
+      "fim": "PREENCHER"
+    },
+    {
+      "nome": "bloco_3",
+      "inicio": "PREENCHER",
+      "fim": "PREENCHER"
+    },
+    {
+      "nome": "bloco_4",
+      "inicio": "PREENCHER",
+      "fim": "PREENCHER"
+    }
+  ]
+}

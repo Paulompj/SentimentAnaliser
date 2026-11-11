@@ -1,0 +1,828 @@
+--- Page 1 ---
+
+--- Page 2 ---
+Este livro é o produto de um sonho coletivo do grupo
+Brasileiras em Processamento de Linguagem Natural (BPLN)
+--- Page 3 ---
+© 2026 by Helena de Medeiros Caseli, Maria das Graças Volpe Nunes, organizadoras. 
+Editoração eletrônica: Helena de Medeiros Caseli 
+Licença CC BY-NC-ND 3.0 BR
+Ficha Catalográfica: Marina P. Freitas CRB-08/ 6069
+     Dados internacionais de Catalogação-na-Publicação (CIP)
+Processamento de Linguagem Natural: Conceitos, Técnicas e 
+Aplicações em Português / organização de  Helena de 
+Medeiros Caseli e Maria das Graças Volpe Nunes.  ── 4. 
+ed. - São Carlos : BPLN,  2026. Internet: 
+brasileiraspln.com/livro-pln-4ed/
+      1314 p.
+  
+      Em 3 volumes. 
+  
+  
+ISBN: 978-65-02-00178-3 
+  
+1. Processamento de Linguagem Natural 2. Inteligência 
+Artificial. 3. I. Título. 
+  
+  
+  
+  
+--- Page 4 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed/Processamento de Linguagem Natural
+Conceitos, Técnicas e Aplicações em Português
+Organizado por:
+Helena de Medeiros Caseli
+Maria das Graças V olpe Nunes
+4ª Edição
+Abril 2026
+--- Page 5 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed/Prefácio da 4a. edição
+O Processamento de Linguagem Natural (PLN) surgiu praticamente ao mesmo tempo
+que os computadores, por volta da década de 1940, já que a tradução automática entre
+línguas foi um dos primeiros problemas submetidos aos primeiros computadores1. No
+Brasil, as pesquisas em PLN começaram timidamente ainda na década de 1970, entre
+acadêmicos interessados em Inteligência Artificial (IA). Em 1984, foi realizada a primeira
+edição do Simpósio Brasileiro de Inteligência Artificial2(SBIA), em Porto Alegre, RS, e
+boa parte dos trabalhos apresentados nesse evento eram da área de PLN. Naquela época,
+os sistemas propostos para português eram muito simples, sendo apenas estudos de caso
+bem elementares, como os que visavam encontrar respostas para perguntas do tipo Qual?,
+O quê?, Onde? e Quando?. Demorou mais uma década até que houvesse uma massa
+crítica de cientistas brasileiros dedicados ao processamento computacional do português.
+No início da década de 1990, destacavam-se pesquisadores de PLN em diversos centros
+acadêmicos, como cientistas da computação e linguistas da UFRGS, PUCRS e da Unisinos,
+no RS; linguistas da PUC-Rio, no RJ; cientistas da computação na Unicamp, em SP , e na
+UFPE, em PE. T ambém nessa época, em 1993, nascia o NILC (Núcleo Interinstitucional
+de Linguística Computacional), no ICMC-USP/São Carlos3, um grupo pioneiro em PLN,
+que teve como desafio inicial produzir o primeiro revisor ortográfico e gramatical comercial
+para o português do Brasil. Para levar a cabo essa iniciativa, foi necessário compor uma
+equipe de informatas e linguistas que se tornaram agentes multiplicadores do PLN no
+Brasil.
+Em 1993 foi realizado o primeiro evento exclusivo de PLN dedicado ao português ibérico
+e brasileiro, em Lisboa. T al evento se tornou o International Conference on the Compu-
+tational Processing of Portuguese (PROPOR)4, realizado alternativamente no Brasil e em
+Portugal, com 17 edições realizadas até essa data (2026). No âmbito nacional, em 2003
+foi criado o Simpósio Brasileiro de T ecnologia da Informação e da Linguagem Humana
+(STIL)5, que abriga diferentes eventos satélites tratando de temas específicos para o pro-
+cessamento da língua, em particular o Português, com 15 edições realizadas até essa data
+(início de 2026). Em 2007, foi criada a Comissão Especial de PLN (CEPLN)6da Sociedade
+Brasileira de Computação. A comunidade cresceu, inicialmente graças à formação acadê-
+mica de profissionais e pesquisadores, posteriormente também em consequência da maior
+demanda de empresas tecnológicas e de outras naturezas, atraindo profissionais com dife-
+rentes formações. Em 2020, foi criado o grupo Brasileiras em PLN (BPLN)7, responsável
+pela idealização e edição deste livro.
+1Os primeiros computadores também foram massivamente usados para realizar cálculos numéricos com-
+plexos, mas a tradução automática foi a primeira aplicação simbólica da computação.
+2O SBIA é hoje o BRACIS. Para saber mais, consulte http://comissoes.sbc.org.br/ce-ia/pg/historico/?s
+ec=SBIA-1984 .
+3http://www.nilc.icmc.usp.br/
+4https://sites.google.com/view/ce-pln/eventos/propor
+5https://sites.google.com/view/ce-pln/eventos/stil
+6http://comissoes.sbc.org.br/ce-pln/
+7https://brasileiraspln.com/
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).1
+--- Page 6 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed/Prefácio da 4a. edição
+Já há algum tempo as aplicações de PLN saíram dos laboratórios acadêmicos e entra-
+ram definitivamente no nosso cotidiano. O desenvolvimento de diversas áreas da compu-
+tação de forma integrada (hardware, software, tratamento de grandes volumes de dados,
+aprendizado de máquina e aprendizado profundo) impulsionou o desenvolvimento do pro-
+cessamento da língua para uma nova esfera. Em novembro de 2022, o mundo conheceu o
+ChatGPT, um chatbot capaz de responder a qualquer pergunta ou solicitação (escrevendo
+códigos de programas, p. ex.), em língua natural, incluindo o português. Além de surpre-
+ender pelo seu desempenho linguístico, ele acendeu um sinal de alerta para a comunidade
+de IA e PLN, bem como para vários setores da sociedade. Várias indagações surgiram:
+Será que a IA está prestes a atingir a meta de criar sistemas que possam vir a substituir
+o homem em todas as tarefas? Quais os riscos que as diferentes sociedades correm se o
+mercado de trabalho for dominado por sistemas inteligentes? E se apenas poucas empresas
+dominarem o mercado de sistemas inteligentes? E o que pode acontecer com países não
+desenvolvidos? A conscientização desse cenário fez crescer o interesse pelas atividades da
+comunidade que desenvolve sistemas de IA, incluindo a de PLN, já que o ChatGPT é uma
+aplicação típica dessa área.
+Durante todas essas décadas, a comunidade brasileira de PLN dedicou-se a construir re-
+cursos linguístico-computacionais e também aplicações variadas para o português. No
+início, eram interfaces simples que entendiam perguntas feitas em linguagem natural.
+Seguiram-se ferramentas de auxílio à escrita, tradutores, sumarizadores, classificadores
+de documentos, reconhecedores e sintetizadores de fala, entre outros. Atualmente, muitas
+aplicações envolvem os conteúdos das redes sociais, sendo que a língua tem sido proces-
+sada também com o objetivo de conhecer a pessoa que faz uso dela, seja para lhe oferecer
+produtos e serviços, seja para analisar tendências e personalidades. Entram em cena os
+reconhecedores de opiniões e sentimentos, e de notícias falsas. Essa nova tendência de
+descobrir o que está implícito ou pode ser inferido da linguagem trouxe problemas muito
+desafiadores para a área. Vários domínios de conhecimento e atuação estão fortemente
+presentes nessa revolução tecnológica: educação, saúde, direito, bancos e financeiras, co-
+municação, comércio, segurança, governança, entre outros. T anto por serem afetados por
+ela como por ajudarem a construir novas soluções.
+Se antes os especialistas em PLN tinham a tarefa de explicitar e codificar conhecimento
+linguístico, hoje seu maior desafio é preparar dados/exemplos linguísticos para servirem
+de entrada aos algoritmos no treinamento de modelos computacionais capazes de trans-
+formar dados em conhecimento ou ações. E isso não é pouco. Para enriquecer os dados
+brutos de modo que o conhecimento adquirido seja o mais completo e correto possível,
+ou que a ação gerada seja a mais adequada, é preciso saber escolhê-los, prepará-los e
+eventualmente anotá-los com informações de várias naturezas: morfológicas, sintáticas,
+semânticas, extralinguísticas etc. É a essa tarefa que muitos especialistas em PLN de todo
+o mundo têm se dedicado ultimamente. Outro papel importante está nas avaliações de
+qualidade dos recursos e produtos construídos, o entendimento do problema, a identifica-
+ção das limitações e a proposta de melhorias. É crucial que as bases do desenvolvimento
+dessas tecnologias sejam fortes, bem informadas, consistentes e éticas. A linguagem nos
+define, e ela faz agora parte dos nossos artefatos, a complexidade deste cenário ainda não
+é bem compreendida. Com este livro, agora na quarta edição, composto por três volumes,
+com dez novos capítulos, os 117 autores e autoras (39 a mais do que na terceira edição)
+pretendem contribuir para que o desenvolvimento da tecnologia que envolve a linguagem
+humana seja bem fundamentado, consciente e ético.
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).2
+--- Page 7 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed/Sobre este livro
+Um dos grandes desafios de escrever um livro sobre uma área tecnológica, como o PLN,
+é fazê-lo de tal forma que ele não fique obsoleto pouco tempo depois de seu lançamento.
+E esse risco é, de fato, muito grande. Cada vez mais as tecnologias não apenas avançam
+rapidamente como podem ser totalmente substituídas por outras, tornando-se descartáveis.
+Ainda assim, há sempre um núcleo de conhecimento que se mantém relevante ao longo do
+tempo e que é indispensável para quem quer conhecer ou atuar nessa área. Por outro lado,
+por ser uma área tecnológica, é indispensável que o livro também apresente o que há de
+mais atual.
+Este livro aborda conhecimentos, técnicas e aplicações de PLN em português que são
+relevantes atualmente ou historicamente. Afinal, para chegar até aqui, um longo caminho
+de construção de conhecimento foi percorrido – ainda que possa parecer que cada nova
+tecnologia seja sempre uma nova invenção.
+Para contemplar história, estado da arte e não obsolescência, optou-se por criar um livro
+na forma digital, de acesso gratuito e dinâmico, ou seja, temos atualizado seu conteúdo a
+cada nova edição. Mais do que apenas atualizá-lo com novos conhecimentos, o livro tem
+sido ampliado com novos capítulos a cada nova edição. As possibilidades de expansão são
+inúmeras, já que há uma demanda crescente por novas aplicações que envolvem PLN.
+Na primeira edição , procuramos introduzir os principais conceitos e tarefas da área,
+algumas das aplicações mais relevantes hoje em dia, particularmente em português do
+Brasil, e algumas das principais técnicas usadas para o desenvolvimento dessas tarefas e
+aplicações. Os temas de todos os capítulos tinham potencial para serem aprofundados em
+edições futuras, o que de fato aconteceu.
+Na segunda edição , revisada e ampliada, o conteúdo foi estendido com seis novos capí-
+tulos organizados em doze partes. F oram acrescentadas duas novas partes: Interação e
+A valiação, dois temas importantíssimos para o PLN.
+A terceira edição foi estendida com seis novos capítulos e também trouxe material
+suplementar em alguns deles, com vídeos dos autores e slides de apresentação do conteúdo
+do capítulo.
+Nesta quarta edição, com o crescimento constante do livro, decidimos dividir os 46 ca-
+pítulos em 3 volumes. O V olume 1 é dedicado a 21 capítulos introdutórios e conceituais
+da área de PLN: Introdução, F ala, Palavras, Estrutura, Significado, Discurso, Geração
+e Interação, Dados, A valiação e Desafios e Perspectivas. O V olume 2 é composto por 7
+capítulos totalmente dedicados aos modelos de linguagem ( Language Models ): conceitua-
+ção, técnicas, treinamento, avaliação, aplicação. Já o V olume 3 concentra 18 capítulos que
+descrevem as aplicações variadas na área de PLN. Devido a essa nova organização, vários
+capítulos de edições anteriores receberam nova numeração.
+Esperamos que essa nova apresentação propicie aos leitores de diferentes perfis uma
+navegação mais confortável e eficaz. Em cada volume, há uma seção (Sobre o V olume)
+trazendo informações específicas sobre o mesmo.
+Esta edição foi estendida com dez novos capítulos, sendo um no V olume 1 , cinco no
+V olume 2 e quatro no V olume 3 . Outros nove capítulos foram atualizados, sendo dois
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).3
+--- Page 8 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed/Sobre este livro
+deles – capítulo Sumarização Automática e capítulo Complexidade T extual e suas T are-
+fas Relacionadas – significativamente estendidos com novas seções, com novos coautores.
+Finalmente, a dez capítulos foram anexados vídeos sobre seus temas.
+Ressaltamos que sempre é possível navegar de um capítulo a outro, de um volume
+a outro, e que não disponibilizamos versões impressas, mas que o arquivo pdf de cada
+capítulo está acessível logo abaixo de seu título.
+Este livro deve continuar crescendo com novas contribuições, na forma de novos capítu-
+los, novos recursos, ou novas versões dos capítulos já existentes. Por isso, atente-se sempre
+para a data de publicação dos conteúdos. A fim de abranger temas variados nessa área,
+contamos com um número cada vez maior de autores colaboradores. A quarta edição
+conta com 118 autores, sendo eles professores universitários das principais universidades
+brasileiras e também do exterior, pesquisadores brasileiros que atuam no exterior, alunos
+de pós-graduação em Computação e em Linguística, profissionais de PLN que atuam em
+empresas. A variedade de autoria e a forma colaborativa de construção de conteúdos, sob
+diferentes visões (computacional e linguística), dão a este livro uma característica única,
+uma personalidade. E essa personalidade, que tanto nos orgulha, faz deste livro uma
+história do PLN escrita a muitas mãos.
+Com este livro, as autoras e os autores pretendem oferecer um corpo de conhecimento
+suficientemente abrangente sobre o PLN em português do Brasil – ainda que não esgote
+todos os temas da área – que atenda expectativas de leitores com diferentes perfis. O
+livro pode ser usado como material didático para disciplinas de cursos de Computação ou
+Linguística, ou áreas afins, servindo como fonte de conhecimento teórico e prático para
+quem está aprendendo essa ciência. Pode servir de referência a profissionais que fazem
+uso do PLN para criar soluções tecnológicas, servindo como fonte de técnicas e métodos
+para desenvolvimento de sistemas tecnológicos. T ambém acadêmicos e curiosos, de um
+modo geral, nele encontrarão uma visão geral da área de PLN, e como ela pode interagir
+com outras áreas de conhecimento. Em Como ler este livro , apresentamos em detalhes os
+volumes desta edição.
+Agradecemos o apoio da NAACL RAF 2021, uma iniciativa da NAACL8(North Ame-
+rican Chapter of the Association for Computational Linguistics ) para apoiar projetos da
+comunidade de PLN na América Latina.
+8https://naacl.org/
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).4
+--- Page 9 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed/Como citar
+Caseli, H.M.; Nunes, M.G.V. (org.) Processamento de Linguagem Natural: Con-
+ceitos, Técnicas e Aplicações em Português . 4 ed. BPLN, 2026. ISBN 978-65-02-
+00178-3. Disponível em: https://brasileiraspln.ufscar.br/livro-pln-4ed .
+Note 1: Bibref
+@Book{BPLN_livro_4ed:2026,
+title = {Processamento de Linguagem Natural: Conceitos,
+Técnicas e Aplicações em Português},
+editor = {Caseli, H. M. and Nunes, M. G. V.},
+year = {2026},
+publisher = {BPLN},
+edition = {4},
+isbn = {978-65-02-00178-3},
+url = {https://brasileiraspln.ufscar.br/livro-pln-4ed}
+}
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).5
+--- Page 10 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed/Como ler este livro
+O objetivo dos autores deste livro (117 nesta edição) é oferecer aos leitores conhecimento
+sobre PLN, ao mesmo tempo, introdutório e abrangente, de modo a atender às expec-
+tativas de leitores com diferentes perfis. O livro pode ser usado como material didático
+para disciplinas de IA e PLN de cursos de computação ou linguística, ou áreas afins, e
+também pode servir de referência a profissionais que fazem uso do PLN para criar soluções
+tecnológicas.
+A fim de oferecer conhecimento sobre temas variados nessa área, foi importante contar
+com um grande número de especialistas brasileiros9, a quem as organizadoras agradecem
+profundamente.
+Esta quarta edição propõe uma nova organização do conteúdo do livro. Agora ele está
+dividido em três volumes, conforme indicado abaixo. Na seção Sobre o V olume, de cada
+volume, o leitor encontrará mais detalhes sobre seu conteúdo.
+O V olume 1 abriga os capítulos que introduzem a área, seus principais conceitos, um
+pouco de história do PLN brasileiro, conceitos da Linguística, as divisões usuais das tarefas
+do PLN (sintaxe, semântica, geração), o processamento da fala, o tema da avaliação de
+sistemas de PLN,o papel dos corpora , entre outros temas gerais. Esses capítulos podem
+ser lidos de forma sequencial por leitores iniciantes, já que estão em ordem crescente
+de complexidade; ou, dependendo do perfil e do interesse do leitor, podem ser lidos em
+qualquer ordem, uma vez que são independentes entre si.
+O V olume 2 traz capítulos exclusivamente sobre os modelos de linguagem ( Language
+Models ), dada sua relevância atual na área de IA e PLN. Os capítulos introduzem os
+conceitos comuns à área de Inteligência Artificial, apresentam as técnicas atuais, discutem
+a preparação de dados, o treinamento na prática, técnicas de mitigação de problemas, a
+avaliação dos modelos, bem como uma discussão aprofundada sobre os problemas no uso
+desses modelos; tudo isso com foco na língua portuguesa. O leitor interessado nesta área
+pode explorá-la integralmente e também complementá-la com capítulos relacionados em
+outros volumes, como aqueles do V olume 1 sobre Geração, A valiação, Diálogo, Dataset e
+Corpus , além das diversas aplicações do V olume 3 que utilizam esses modelos.
+OV olume 3 é dedicado às aplicações em geral. São trabalhos de PLN aplicados a tarefas
+recorrentes no PLN (classificação textual, sumarização, tradução, entre outras) e domínios
+do conhecimento (Direito e Saúde, entre outras). T rata-se de um volume que deve receber
+muitas contribuições ao longo do tempo.
+Complementam esse livro as informações Sobre as(os) autoras(es) .
+9A lista completa das autoras e autores deste livro encontra-se em: Sobre as/os autoras/es
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).6
+--- Page 11 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Processamento de Linguagem Natural
+Conceitos, Técnicas e Aplicações em Português
+Organizado por:
+Helena de Medeiros Caseli
+Maria das Graças V olpe Nunes
+4ª Edição
+V olume 1: Conceitos e Técnicas
+Abril 2026
+--- Page 12 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Conteúdo
+Volume 1: Conceitos e Técnicas 1
+Sobre o Volume 1 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1
+Como citar . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2
+I Introdução 4
+1 O que é PLN? 5
+1.1 Introdução . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+1.2 A língua . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+1.3 Um breve histórico do PLN . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+1.4 Os Paradigmas de PLN . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+1.5 Vale a pena relembrar . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13
+II Fala 15
+2 T exto ou fala? 16
+2.1 Histórico e panorama da área . . . . . . . . . . . . . . . . . . . . . . . . . . 16
+2.2 Aspectos teóricos fundamentais . . . . . . . . . . . . . . . . . . . . . . . . . 18
+2.2.1 A estrutura da língua falada . . . . . . . . . . . . . . . . . . . . . . . 19
+2.2.2 Reconhecimento de fala . . . . . . . . . . . . . . . . . . . . . . . . . 28
+2.2.3 Síntese de fala . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 39
+2.2.4 Considerações finais . . . . . . . . . . . . . . . . . . . . . . . . . . . 41
+3 Recursos para o processamento de fala 43
+3.1 Introdução . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 43
+3.2 Recursos para síntese de fala . . . . . . . . . . . . . . . . . . . . . . . . . . 46
+3.3 Recursos para segmentação prosódica . . . . . . . . . . . . . . . . . . . . . 49
+3.4 Recursos para reconhecimento automático de fala . . . . . . . . . . . . . . . 52
+3.5 Recursos para reconhecimento de emoções . . . . . . . . . . . . . . . . . . . 55
+3.6 Recursos para predição de pontuação no cenário de ASR . . . . . . . . . . . 58
+3.6.1 Ilustrando o uso do ASR Whisper na predição da pontuação em
+português . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 58
+3.6.2 Descrição do Corpus MuPe e seu dataset de teste . . . . . . . . . . . 60
+3.6.3 Corpora usados nos trabalhos de predição da pontuação para ASRs . 61
+3.7 Considerações finais . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 64
+Agradecimentos . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 64
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).ii
+--- Page 13 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Conteúdo
+III Palavras 65
+4 Sequência de caracteres e palavras 66
+4.1 Conceitos básicos da morfologia . . . . . . . . . . . . . . . . . . . . . . . . . 68
+4.1.1 Morfema . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 68
+4.1.2 T oken eT ype . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 71
+4.1.3 Lexema, Lexia e Lema . . . . . . . . . . . . . . . . . . . . . . . . . . 71
+4.1.4 Léxico e Gramática . . . . . . . . . . . . . . . . . . . . . . . . . . . . 72
+4.1.5 Léxico comum e Léxico especializado . . . . . . . . . . . . . . . . . . 73
+4.1.6 Palavras funcionais e palavras lexicais . . . . . . . . . . . . . . . . . 74
+4.1.7 Processos de formação das palavras . . . . . . . . . . . . . . . . . . . 74
+4.1.8 Morfologia e morfossintaxe . . . . . . . . . . . . . . . . . . . . . . . 75
+4.2 O processamento morfológico em PLN . . . . . . . . . . . . . . . . . . . . . 75
+4.2.1 Sentenciação . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 76
+4.2.2 Tokenização . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 77
+4.2.3 Tokenização em Subpalavras . . . . . . . . . . . . . . . . . . . . . . 79
+4.2.4 Normalização . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 80
+4.2.5 PoS tagging . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 81
+4.2.6 Anotação de atributos morfológicos . . . . . . . . . . . . . . . . . . . 83
+4.3 Ferramentas e recursos para o processamento morfológico . . . . . . . . . . 84
+4.3.1 Ferramentas para o português . . . . . . . . . . . . . . . . . . . . . . 84
+4.3.2 Recursos para o português . . . . . . . . . . . . . . . . . . . . . . . . 87
+4.3.3 PortiLexicon-UD: um recurso para processamento léxico em português 89
+4.4 Considerações finais . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 95
+5 Expressões multipalavras 97
+5.1 Introdução . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 97
+5.2 Hora de dar nome aos bois . . . . . . . . . . . . . . . . . . . . . . . . . . . . 98
+5.2.1 As pedras fundamentais . . . . . . . . . . . . . . . . . . . . . . . . . 98
+5.2.2 Definições de MWE: uma pedra no nosso sapato . . . . . . . . . . . 99
+5.2.3 Separando o joio do trigo . . . . . . . . . . . . . . . . . . . . . . . . 101
+5.2.4 MWEs para dar e vender . . . . . . . . . . . . . . . . . . . . . . . . 102
+5.2.5 Um osso duro de roer . . . . . . . . . . . . . . . . . . . . . . . . . . 104
+5.3 Tarefas: botando a mão na massa . . . . . . . . . . . . . . . . . . . . . . . . 105
+5.4 Recursos: uma joia rara . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 107
+5.4.1 Léxicos de MWEs . . . . . . . . . . . . . . . . . . . . . . . . . . . . 107
+5.4.2 Corpora de MWEs . . . . . . . . . . . . . . . . . . . . . . . . . . . . 110
+5.4.3 Corpora de MWEs em português . . . . . . . . . . . . . . . . . . . . 111
+5.5 Avaliação: colocando os pingos nos ’i’s . . . . . . . . . . . . . . . . . . . . . 112
+5.6 Até onde chegamos e para onde vamos . . . . . . . . . . . . . . . . . . . . . 114
+Criação e manutenção de recursos . . . . . . . . . . . . . . . . . . . . . . . 114
+Diálogo entre projetos e equipes . . . . . . . . . . . . . . . . . . . . . . . . . 115
+Diversidade linguística . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 115
+Descrição aprimorada e ampliada de MWEs . . . . . . . . . . . . . . . . . . 116
+Processamento cognitivo de MWEs . . . . . . . . . . . . . . . . . . . . . . . 116
+5.7 Ao infinito e além . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 116
+Agradecimentos . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 117
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).iii
+--- Page 14 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Conteúdo
+IV Estrutura 118
+6 A ordem e a função das palavras em uma sentença 119
+6.1 Introdução . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 119
+6.2 Reflexões Iniciais . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 121
+6.3 Noções Básicas de Sintaxe . . . . . . . . . . . . . . . . . . . . . . . . . . . . 122
+6.4 Tipos de representação . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 124
+6.4.1 Colchetes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 124
+6.4.2 Árvores . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 125
+6.4.3 Setas . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 126
+6.4.4 Parênteses . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 126
+6.4.5 Indentação . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 127
+6.5 Sintaxe de constituência . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 127
+6.5.1 Possibilidades de interpretação e ambiguidades sintáticas . . . . . . 129
+6.6 Sintaxe de dependência . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 131
+6.6.1 Núcleo e dependente . . . . . . . . . . . . . . . . . . . . . . . . . . . 132
+6.6.2 A representação da sintaxe de dependência . . . . . . . . . . . . . . 133
+6.6.3 Projetos de anotação multilingue: Universal Dependencies . . . . . . 136
+6.7 Qual é melhor: constituência ou dependência? . . . . . . . . . . . . . . . . . 140
+6.8 Fronteiras da sintaxe . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 141
+6.8.1 Sintaxe e Morfologia . . . . . . . . . . . . . . . . . . . . . . . . . . . 141
+6.8.2 Sintaxe e Semântica . . . . . . . . . . . . . . . . . . . . . . . . . . . 142
+6.8.3 Sintaxe e Pragmática . . . . . . . . . . . . . . . . . . . . . . . . . . 143
+6.8.4 Sintaxe e Discurso . . . . . . . . . . . . . . . . . . . . . . . . . . . . 143
+6.9 Considerações finais . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 144
+7 Ferramentas e recursos para o processamento sintático 145
+7.1 Introdução . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 145
+7.2 Tipos de parsing . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 145
+7.3 Recursos e ferramentas para o português . . . . . . . . . . . . . . . . . . . . 147
+7.3.1 Corpora . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 148
+7.3.2 Parsers . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 149
+7.4 Visualização, anotação e edição de treebanks . . . . . . . . . . . . . . . . . . 159
+7.4.1 Árvores de constituência . . . . . . . . . . . . . . . . . . . . . . . . . 159
+7.4.2 Árvores de dependência . . . . . . . . . . . . . . . . . . . . . . . . . 160
+7.4.3 Anotação de corpus em múltiplos níveis . . . . . . . . . . . . . . . . 161
+7.5 Considerações finais . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 163
+V Significado 164
+8 E o significado? 165
+9 Semântica com técnicas simbólicas 171
+9.1 Bases de Conhecimento Semântico . . . . . . . . . . . . . . . . . . . . . . . 173
+9.1.1 W ordnets . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 174
+9.1.2 FrameNet . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 178
+9.1.3 ConceptNet . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 183
+9.2 Considerações finais . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 189
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).iv
+--- Page 15 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Conteúdo
+10 Representação vetorial e semântica distribucional 191
+10.1 Representação Vetorial . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 193
+10.1.1 Matriz termo-documento . . . . . . . . . . . . . . . . . . . . . . . . 195
+10.1.2 Matriz termo-contexto . . . . . . . . . . . . . . . . . . . . . . . . . . 196
+10.1.3 Calculando a similaridade entre vetores . . . . . . . . . . . . . . . . 197
+10.2 Vetores esparsos . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 198
+10.2.1 Atribuindo pesos aos termos da matriz termo-documento com TF-IDF 199
+10.2.2 Atribuindo pesos aos termos da matriz termo-contexto com PMI . . 200
+10.2.3 Reduzindo a dimensionalidade com LSA . . . . . . . . . . . . . . . . 202
+10.3 Vetores densos estáticos . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 204
+10.3.1 Word2Vec . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 206
+10.3.2 Fasttext . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 209
+10.3.3 Glove . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 211
+10.4 Considerações finais . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 213
+VI Discurso 214
+11 Modelos discursivos 215
+11.1 Introdução . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 215
+11.2 Modelos de relações discursivas . . . . . . . . . . . . . . . . . . . . . . . . . 217
+11.2.1 O modelo RST (Mann e Thompson, 1988) . . . . . . . . . . . . . . . 220
+11.2.2 CST: Cross-document Structure Theory, 2000 . . . . . . . . . . . . . 222
+11.3 Recursos e aplicações para o português brasileiro . . . . . . . . . . . . . . . 225
+11.4 Considerações finais . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 226
+12 Resolução de correferência 228
+12.1 Introdução . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 228
+12.2 Resolução de Correferência . . . . . . . . . . . . . . . . . . . . . . . . . . . 228
+12.2.1 Referentes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 229
+12.2.2 Relações Semânticas Referenciais . . . . . . . . . . . . . . . . . . . . 231
+12.2.3 Correferência, Anáfora e Catáfora . . . . . . . . . . . . . . . . . . . 232
+12.2.4 Referências Endofóricas e Exofóricas . . . . . . . . . . . . . . . . . . 234
+12.2.5 Correferência, coerência e coesão . . . . . . . . . . . . . . . . . . . . 234
+12.3 Abordagens Computacionais para Resolução de Correferência . . . . . . . . 234
+12.3.1 Modelos Baseados em Regras . . . . . . . . . . . . . . . . . . . . . . 235
+12.3.2 Modelos Baseados em Aprendizado de Máquina . . . . . . . . . . . . 235
+12.3.3 Entity-Mention . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 238
+12.3.4 Mention-Ranking . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 239
+12.3.5 Antecedent-Tree . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 240
+12.3.6 Modelos Voltados à Língua Portuguesa . . . . . . . . . . . . . . . . 241
+12.4 Avaliação da Tarefa de Resolução de Correferência . . . . . . . . . . . . . . 242
+12.4.1 Métricas de Avaliação . . . . . . . . . . . . . . . . . . . . . . . . . . 243
+12.5 Aplicações . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 246
+VII Geração e Interação 248
+13 Geração de linguagem natural 249
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).v
+--- Page 16 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Conteúdo
+13.1 Introdução . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 249
+13.1.1 Geração de Linguagem Natural . . . . . . . . . . . . . . . . . . . . . 251
+13.1.2 Seleção de Conteúdo e Realização Textual . . . . . . . . . . . . . . . 252
+13.1.3 Avaliação de sistemas de GLN . . . . . . . . . . . . . . . . . . . . . . 252
+13.1.4 Arquiteturas de GLN . . . . . . . . . . . . . . . . . . . . . . . . . . 253
+13.2 Arquitetura Baseada em Templates . . . . . . . . . . . . . . . . . . . . . . . 253
+13.2.1 Aplicações . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 254
+13.2.2 Exemplo – Sistema Rosie . . . . . . . . . . . . . . . . . . . . . . . . 254
+13.2.3 Limitações . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 255
+13.3 Arquitetura pipeline . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 256
+13.3.1 Aplicações . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 258
+13.3.2 Exemplo . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 258
+13.3.3 Limitações . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 263
+13.4 Arquitetura Ponta-a-Ponta . . . . . . . . . . . . . . . . . . . . . . . . . . . 263
+13.4.1 Aplicações . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 265
+13.4.2 Exemplo – sistema CoronaReporter . . . . . . . . . . . . . . . . . . 266
+13.4.3 Limitações . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 267
+13.5 Arquiteturas Pré-treinadas . . . . . . . . . . . . . . . . . . . . . . . . . . . . 268
+13.5.1 Aplicações . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 269
+13.5.2 Exemplo . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 269
+13.5.3 Limitações . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 270
+13.6 Conclusão . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 271
+14 Perguntas e Respostas 273
+14.1 Introdução . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 273
+14.2 Classificação de Sistemas de Perguntas e Respostas . . . . . . . . . . . . . . 275
+14.2.1 Tipo de pergunta . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 275
+14.2.2 Tipo de Fonte de Conhecimento . . . . . . . . . . . . . . . . . . . . . 277
+14.2.3 Domínio de conhecimento . . . . . . . . . . . . . . . . . . . . . . . . 281
+14.3 Abordagens . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 282
+14.3.1 Abordagem modular com documentos . . . . . . . . . . . . . . . . . 283
+14.3.2 Abordagem modular com grafo de conhecimento . . . . . . . . . . . 287
+14.3.3 Abordagem end-to-end . . . . . . . . . . . . . . . . . . . . . . . . . . 289
+14.4 Métodos de avaliação . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 291
+14.5 Outras tarefas relacionadas a PR . . . . . . . . . . . . . . . . . . . . . . . . 293
+14.5.1 Comunidades de Perguntas e Respostas - Community QA. . . . . . 293
+14.5.2 PR de múltiplas etapas Multihopping QA. . . . . . . . . . . . . . . 294
+14.5.3 PR com dados visuais . . . . . . . . . . . . . . . . . . . . . . . . . . 294
+14.6 Sistemas de PR para o Português . . . . . . . . . . . . . . . . . . . . . . . . 294
+14.7 Considerações finais . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 295
+15 Diálogo e Interatividade 297
+15.1 Introdução: Dialogando . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 297
+15.2 Conceitos: O que forma um diálogo? . . . . . . . . . . . . . . . . . . . . . . 299
+15.3 Fenômenos: O que ocorre em uma conversa? . . . . . . . . . . . . . . . . . . 302
+15.3.1 Incrementalidade . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 302
+15.3.2 Troca de Turnos e Estrutura Sequencial . . . . . . . . . . . . . . . . 304
+15.3.3 Disfluências e Reparos . . . . . . . . . . . . . . . . . . . . . . . . . . 305
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).vi
+--- Page 17 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Conteúdo
+15.3.4 Construção de Base Comum e de Referências . . . . . . . . . . . . . 308
+15.3.5 Sinais Multimodais . . . . . . . . . . . . . . . . . . . . . . . . . . . . 309
+15.3.6 Análises de diálogo em português . . . . . . . . . . . . . . . . . . . . 310
+15.4 Modelos e Tarefas: Implementando um processo complexo . . . . . . . . . . 310
+15.4.1 Modelos . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 311
+15.4.2 Tarefas . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 314
+15.5 Avaliação: Verificando a qualidade de um sistema . . . . . . . . . . . . . . . 315
+Considerações éticas . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 318
+15.6 Recursos: Trabalhando com dados e sistemas interativos . . . . . . . . . . . 318
+15.6.1 Atuando de Forma Responsável . . . . . . . . . . . . . . . . . . . . . 318
+15.6.2 Corpora . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 319
+15.6.3 Ferramentas . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 322
+15.6.4 Para Saber Mais . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 324
+15.7 Conclusão: Mantendo o valor humano em foco . . . . . . . . . . . . . . . . 324
+15.8 Exercícios . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 326
+Agradecimentos . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 328
+VIII Dados 329
+16 Conjunto de dados, dataset ecorpus 330
+16.1 Introdução . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 330
+16.1.1 Dataset ou corpus anotado? . . . . . . . . . . . . . . . . . . . . . . . 331
+16.1.2 Anotação linguística . . . . . . . . . . . . . . . . . . . . . . . . . . . 333
+16.2 Datasets pra quê? . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 335
+16.2.1 Sobre a importância dos dados . . . . . . . . . . . . . . . . . . . . . 337
+16.3 Características de um bom dataset linguístico . . . . . . . . . . . . . . . . . 338
+16.4 Por onde começar? . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 339
+16.4.1 Definição do problema ou tarefa . . . . . . . . . . . . . . . . . . . . 340
+16.4.2 Conjunto de etiquetas e instruções: o esquema de anotação . . . . . 340
+16.4.3 Escolha do corpus . . . . . . . . . . . . . . . . . . . . . . . . . . . . 342
+16.4.4 Codificação . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 343
+16.4.5 Anotação: sabedoria de especialistas ou sabedoria da multidão? . . . 345
+16.4.6 Ferramentas de anotação . . . . . . . . . . . . . . . . . . . . . . . . 347
+16.4.7 Estratégias de anotação . . . . . . . . . . . . . . . . . . . . . . . . . 348
+16.4.8 Formas de avaliação . . . . . . . . . . . . . . . . . . . . . . . . . . . 349
+16.5 Procedimentos e estratégias de anotação e revisão . . . . . . . . . . . . . . . 349
+16.5.1 Palavras, regras e padrões linguísticos na construção de um corpus
+padrão ouro . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 349
+16.5.2 Revisão de anotação . . . . . . . . . . . . . . . . . . . . . . . . . . . 352
+16.5.3 Até onde precisamos rever? . . . . . . . . . . . . . . . . . . . . . . . 354
+16.6 Como avaliar a qualidade do dataset ?. . . . . . . . . . . . . . . . . . . . . 354
+16.6.1 Concordância entre-anotadores . . . . . . . . . . . . . . . . . . . . . 356
+16.6.2 Quando a discordância não é erro: divergências legítimas . . . . . . 357
+16.6.3 Avaliação intrínseca . . . . . . . . . . . . . . . . . . . . . . . . . . . 358
+16.6.4 Avaliação extrínseca . . . . . . . . . . . . . . . . . . . . . . . . . . . 360
+16.7 Em resumo… . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 362
+Agradecimentos . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 363
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).vii
+--- Page 18 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Conteúdo
+17 Aprendizado T ransdutivo em PLN 364
+17.1 Introdução . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 364
+17.2 E o que seria esse tal de aprendizado transdutivo? . . . . . . . . . . . . . . 365
+17.2.1 Transdução como forma de aprendizado . . . . . . . . . . . . . . . . 367
+17.3 Aplicações do Aprendizado Transdutivo em PLN . . . . . . . . . . . . . . . 369
+17.3.1 Métodos baseados em propagação de rótulos . . . . . . . . . . . . . 369
+17.3.2 Adaptação de modelos supervisionados . . . . . . . . . . . . . . . . . 372
+17.3.3 Avaliação dos dados anotados . . . . . . . . . . . . . . . . . . . . . . 377
+17.4 Benefícios e Limitações . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 378
+IX Avaliação 379
+18 Avaliação de tecnologias de linguagem 380
+18.1 Introdução: Avaliando . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 380
+18.2 Contexto: Por onde começar? . . . . . . . . . . . . . . . . . . . . . . . . . . 382
+18.2.1 Um pouco de história . . . . . . . . . . . . . . . . . . . . . . . . . . 382
+18.2.2 Formalização de problemas e de modelos . . . . . . . . . . . . . . . . 384
+18.2.3 Caracterização de tarefas de PLN . . . . . . . . . . . . . . . . . . . . 385
+18.3 Paradigmas: Tipos de avaliação . . . . . . . . . . . . . . . . . . . . . . . . . 387
+Avaliação Conjunta e Leaderboards . . . . . . . . . . . . . . . . . . . . . . . 390
+18.4 Procedimentos: Como avaliar? . . . . . . . . . . . . . . . . . . . . . . . . . 392
+18.4.1 Hipóteses e Experimentos . . . . . . . . . . . . . . . . . . . . . . . . 392
+18.4.2 Referências . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 393
+18.4.3 Mensurações . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 394
+18.4.4 Partição de dados . . . . . . . . . . . . . . . . . . . . . . . . . . . . 395
+18.4.5 Validação Cruzada . . . . . . . . . . . . . . . . . . . . . . . . . . . . 395
+18.4.6 Comparação de Performance . . . . . . . . . . . . . . . . . . . . . . 397
+18.4.7 Testes de Significância Estatística . . . . . . . . . . . . . . . . . . . . 397
+18.4.8 Baselines . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 398
+18.4.9 Ablação e Substituição . . . . . . . . . . . . . . . . . . . . . . . . . . 399
+18.4.10Análise de Dados . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 400
+18.4.11Análise de Erro . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 400
+18.4.12Avaliação Humana . . . . . . . . . . . . . . . . . . . . . . . . . . . . 401
+18.5 Métricas: Medindo a performance . . . . . . . . . . . . . . . . . . . . . . . . 402
+18.5.1 Usando métricas de forma responsável . . . . . . . . . . . . . . . . . 402
+18.5.2 Métricas comuns em PLN . . . . . . . . . . . . . . . . . . . . . . . . 404
+18.6 Uso Responsável e Boas Práticas . . . . . . . . . . . . . . . . . . . . . . . . 405
+18.6.1 Como reportar resultados? . . . . . . . . . . . . . . . . . . . . . . . 405
+18.6.2 Como tornar os resultados reprodutíveis? . . . . . . . . . . . . . . . 408
+18.6.3 Como testar e documentar um sistema? . . . . . . . . . . . . . . . . 409
+18.6.4 Como organizar experimentos? . . . . . . . . . . . . . . . . . . . . . 410
+18.6.5 Atuando com ética . . . . . . . . . . . . . . . . . . . . . . . . . . . . 410
+18.7 Para Concluir . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 410
+18.8 Exercícios . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 412
+Agradecimentos . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 414
+19 Avaliação conjunta em português 415
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).viii
+--- Page 19 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Conteúdo
+19.1 Apresentação . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 415
+19.2 Avaliação conjunta: o que é e para que serve . . . . . . . . . . . . . . . . . . 416
+19.2.1 Características e ingredientes de uma avaliação conjunta . . . . . . . 418
+19.3 Por que participar de uma avaliação conjunta . . . . . . . . . . . . . . . . . 419
+19.4 Como implementar uma avaliação conjunta . . . . . . . . . . . . . . . . . . 420
+19.4.1 Cartografia do problema e da tarefa . . . . . . . . . . . . . . . . . . 420
+19.4.2 Criação dos recursos . . . . . . . . . . . . . . . . . . . . . . . . . . . 421
+19.4.3 Medidas de avaliação . . . . . . . . . . . . . . . . . . . . . . . . . . . 422
+19.5 Como avaliar uma avaliação conjunta . . . . . . . . . . . . . . . . . . . . . . 422
+19.5.1 Críticas e limitações . . . . . . . . . . . . . . . . . . . . . . . . . . . 422
+19.6 Morfolimpíadas: análise morfológica (2003-2004) . . . . . . . . . . . . . . . 424
+19.7 Primeiro e Segundo HAREM: avaliação de entidades, relações e expressões
+temporais (2005 e 2007-2008) . . . . . . . . . . . . . . . . . . . . . . . . . . 425
+19.7.1 Reconhecimento de entidades mencionadas . . . . . . . . . . . . . . 425
+19.7.2 Identificação, classificação e normalização de expressões temporais . 426
+19.7.3 ReRelEM - relações entre entidades . . . . . . . . . . . . . . . . . . 427
+19.8 CLEF: Recuperação de Informação e QA (2003-2009) . . . . . . . . . . . . 428
+19.8.1 CLEF clássico . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 428
+19.8.2 Resposta automática a perguntas (QA@CLEF) . . . . . . . . . . . . 429
+19.8.3 GeoCLEF . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 429
+19.8.4 GikiP: Informação geográfica (2008) . . . . . . . . . . . . . . . . . . 430
+19.8.5 GikiCLEF . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 430
+19.9 Págico: RI complexa sobre culturas de língua portuguesa (2012) . . . . . . 430
+19.10ASSIN e ASSIN 2: similaridade semântica e inferência (2016 e 2019) . . . . 432
+19.11IberLEF 2019: reconhecimento de entidades e de relações . . . . . . . . . . 433
+19.12IDPT: Identificação de ironia (2021) . . . . . . . . . . . . . . . . . . . . . . 434
+19.13ABSAPT: Avaliação de mineração de opiniões por aspecto (2022) . . . . . . 434
+19.14DIP: Desafio de Identificação de Personagens (2022-2023) . . . . . . . . . . 435
+19.15Resumo das avaliações conjuntas . . . . . . . . . . . . . . . . . . . . . . . . 435
+19.16Considerações finais e lições aprendidas . . . . . . . . . . . . . . . . . . . . 436
+Agradecimentos . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 437
+X Desafios e Perspectivas 438
+20 Questões éticas em IA e PLN 439
+20.1 Ética em IA . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 439
+20.2 Ética em PLN . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 445
+20.3 Modelos de língua como fonte de conhecimento? . . . . . . . . . . . . . . . 446
+21 E agora, PLN? 448
+21.1 Desafios e perspectivas para o PLN-Português . . . . . . . . . . . . . . . . . 448
+21.2 Há limites para o PLN? . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 451
+Referências 453
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).ix
+--- Page 20 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Conteúdo
+Apêndices 536
+A Alguns pressupostos para o processamento de fala 536
+A.1 Alguns pressupostos: estatística, probabilidade, teoria da informação . . . . 536
+A.1.1 Probabilidade . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 537
+A.1.2 Variáveis aleatórias . . . . . . . . . . . . . . . . . . . . . . . . . . . . 537
+A.1.3 Média e Variância . . . . . . . . . . . . . . . . . . . . . . . . . . . . 538
+A.1.4 Covariância e Correlação . . . . . . . . . . . . . . . . . . . . . . . . 538
+A.1.5 Vetores aleatórios e distribuições multivariadas . . . . . . . . . . . . 539
+A.1.6 Algumas distribuições úteis . . . . . . . . . . . . . . . . . . . . . . . 539
+A.1.7 Teoria da Estimação e Teste de Significância . . . . . . . . . . . . . 540
+A.1.8 Teoria da Informação, Entropia e Informação Mútua . . . . . . . . . 541
+B Diretrizes de avaliação 543
+B.1 Diretrizes de avaliação para um modelo de cinco estágios . . . . . . . . . . . 543
+C EAGLES 547
+C.1 EAGLES . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 547
+Sobre as/os autoras/es 549
+Helena de Medeiros Caseli . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 549
+Maria das Graças Volpe Nunes . . . . . . . . . . . . . . . . . . . . . . . . . . . . 549
+Adriana Silvina Pagano . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 549
+Aline Aver Vanin . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 549
+Aline Villavicencio . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 550
+Amanda Pontes Rassi . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 550
+Ana Clara Souza Pagano . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 550
+Arnaldo Candido Junior . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 550
+Brielen Madureira . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 550
+Camila de Araújo Azevedo . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 551
+Carlos Ramisch . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 551
+Cláudia Freitas . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 551
+Daniela Barreiro Claro . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 551
+Dante Augusto Barone . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 552
+Diana Santos . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 552
+Edresson Casanova . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 552
+Eduardo Cortes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 552
+Elisa Terumi Rubel Schneider . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 552
+Eloize Rossi Marques Seno . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 553
+Evandro Fonseca . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 553
+Flaviane Romani Fernandes Svartman . . . . . . . . . . . . . . . . . . . . . . . . 553
+Heliana Mello . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 553
+Ivandré Paraboni . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 554
+Jackson Wilke da Cruz Souza . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 554
+Laila Mota . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 554
+Lucelene Lopes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 554
+Maria José Bocorny Finatto . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 554
+Mariza Ferro . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 555
+Marli Quadros Leite . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 555
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).x
+--- Page 21 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Conteúdo
+Nataly Leopoldina Patti da Silva . . . . . . . . . . . . . . . . . . . . . . . . . . . 555
+Norton Trevisan Roman . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 555
+Paula Christina Figueira Cardoso . . . . . . . . . . . . . . . . . . . . . . . . . . . 555
+Priscila Osório Côrtes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 556
+Renata Ramisch . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 556
+Renata Vieira . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 556
+Ricardo Marcacini . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 556
+Roana Rodrigues . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 556
+Sandra Maria Aluísio . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 557
+Solange Rezende . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 557
+Tayane Soares . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 557
+Thiago Castro Ferreira . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 557
+Valéria de Paiva . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 558
+Vinícius G. Santos . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 558
+Vládia Pinheiro . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 558
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).xi
+--- Page 22 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Volume 1: Conceitos e Técnicas
+Sobre o Volume 1
+Este volume destina-se a introduzir os principais conceitos, tarefas, técnicas e métodos
+do PLN. Ele deve fornecer uma boa visão geral da área, registrando marcos importantes
+desde seu início. O leitor iniciante se beneficiará de uma leitura sequencial dos capítulos
+(exceção feita à Parte 2, sobre Fala, que é bastante independente das demais).
+A Parte 1 (Introdução) introduz os principais conceitos e traz um breve histórico do
+PLN, no Capítulo 1, e é leitura obrigatória para o leitor não familiarizado com PLN.
+A Parte 2 (F ala) , ao contrário do restante do livro, que trata de processamento de
+texto, apresenta a área de processamento de fala: seus principais conceitos (Capítulo 2),
+e técnicas, recursos e aplicações (Capítulo 3). Além dos capítulos deste Volume, o leitor
+também encontrará no Capítulo Classificação de Áudio aplicada à Saúde do Volume 3
+uma aplicação do processamento da fala para a classificação de áudios visando a detecção
+de problemas respiratórios. O leitor, ainda que interessado apenas na síntese ou reconheci-
+mento de fala, se beneficiará dos demais capítulos deste livro para complementar conceitos
+comuns, como a anotação e o uso de corpus , o processamento da fala transcrita em texto,
+entre outros.
+Na Parte 3 (Palavras) , a primeira fase do processamento textual é discutida. O Capí-
+tulo4dedica-se a desvendar a morfologia, que estuda as palavras isoladamente, suas partes
+(morfemas), seus processos de derivação e composição, bem como partes importantes do
+processamento automático como a tokenização e a atribuição das categorias das palavras
+(part-of-speech tagging ). Se o leitor desejar aprofundar o estudo sobre a importância das
+palavras para a complexidade textual, sugere-se a leitura do Capítulo Complexidade Tex-
+tual e suas Tarefas Relacionadas . Se ao leitor interessa o processamento de expressões
+idiomáticas, o Capítulo 5explora amplamente o mundo das expressões multipalavras, que
+traz grandes desafios à medida que a combinação dos componentes dessas expressões está
+relacionada à cultura de uso da língua.
+Crescendo em complexidade, a Parte 4 (Estrutura) considera a ordem das palavras
+numa sentença, buscando extrair seus papéis na organização sintática parcial ou total da
+sentença. Com tal conhecimento, o processamento da língua alcança um novo patamar, e
+a partir dele já é possível realizar várias tarefas de PLN, como parsing parcial ou total, e
+viabilizar várias aplicações. O Capítulo 6fornece toda a conceitualização de sintaxe, os
+principais tipos de análise, suas diferenças, vantagens e desvantagens. O Capítulo 7mos-
+tra as diferentes ferramentas computacionais para o processamento sintático, em especial,
+as que são dedicadas ao português. As Partes 3 e 4 são indispensáveis para o leitor, estu-
+dante ou profissional, que pretende atuar na área de PLN, pesquisando ou implementando
+sistemas.
+AParte 5 (Significado) promove um salto significativo para a complexidade do PLN:
+trata dos conceitos, modelos e técnicas relativos à apreensão do sentido implicado pela
+língua escrita. Isso pode ocorrer pelo uso de teorias e modelos simbólicos ou não simbólicos.
+O Capítulo 8introduz toda a complexidade da semântica da língua. Os Capítulos 9e
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).1
+--- Page 23 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Como citar
+10mostram as diferentes abordagens (simbólica e estatística, respectivamente) para o
+tratamento do sentido. A leitura desta parte é indispensável para quem quer conhecer de
+que forma o PLN busca apreender o significado das expressões linguísticas num texto.
+Questões discursivas e retóricas implicadas pelo texto são tratadas na Parte 6 (Dis-
+curso) deste volume. No Capítulo 11, o leitor encontra os principais modelos discursivos
+para PLN; no Capítulo 12, um fenômeno muito frequente, e clássico no PLN, é tratado
+em detalhes: como resolver as correferências discursivas presentes em textos.
+A Parte 7 (Geração e Interação) trata das diferentes arquiteturas de sistemas de
+geração de linguagem natural no Capítulo 13, e cobre, nos Capítulos 14e15, dois tipos
+de sistemas clássicos de PLN que se tornaram muito populares com o comércio eletrônico
+e, mais recentemente, com os agentes conversacionais: são os sistemas de perguntas e
+respostas, mais conhecidos na sua denominação em inglês – Question Answering – e os
+sistemas de diálogos.
+A Parte 8 (Dados) trata da escolha e da preparação dos dados que alimentam os
+algoritmos e os métodos e critérios de avaliação dos sistemas criados. O Capítulo 16aborda
+tudo o que está envolvido na construção e na anotação de datasets ou corpus , bem como
+seu papel no treinamento de modelos de aprendizado de máquina. Para o leitor interessado
+em saber como os dados são usados no treinamento dos grandes modelos de linguagem
+(Large Language Models , LLMs), sugere-se a leitura do Capítulo O papel dos dados no pré-
+treinamento de Grandes Modelos de Linguagem . E o Capítulo 17discute o aprendizado
+transdutivo, uma alternativa ao aprendizado indutivo, como forma de incorporar grandes
+quantidades de dados não rotulados e, com isso, reduzir custos e aumentar a eficiência no
+treinamento de modelos.
+AParte 9 (A valiação) inclui o Capítulo 18, que apresenta um panorama dos métodos
+de avaliação comumente usados para medir, analisar e comparar o desempenho de sistemas
+de PLN, e o Capítulo 19, que aborda o tema da avaliação conjunta ( shared tasks ) e
+oferece um amplo panorama das avaliações conjuntas promovidas para a língua portuguesa:
+leitura obrigatória para todos os desenvolvedores de sistemas de PLN, sejam pesquisadores
+ou não. No escopo dos LLMs, sugere-se a leitura do Capítulo Avaliação de Grandes
+Modelos de Linguagem , que complementa a discussão desse importante tópico, que é a
+avaliação de sistemas tecnológicos.
+Antes de finalizar o volume, a Parte 10 (Desafios e Perspectivas) discute algumas
+questões éticas (Capítulo 20) que a IA, em geral, e o PLN, em particular, têm provo-
+cado, pela forma como novas tecnologias têm sido criadas e usadas recentemente. Para
+aprofundar ainda mais esta discussão, sugere-se a leitura do Capítulo Responsabilidade
+no desenvolvimento e uso de tecnologias de linguagem baseadas em IA que discute respon-
+sabilidade no desenvolvimento dos grandes modelos de linguagem. Finalmente, o último
+Capítulo ( 21) discorre sobre algumas perspectivas para o PLN do português.
+Como citar
+Caseli, H.M.; Nunes, M.G.V. (org.) Processamento de Linguagem Natural: Con-
+ceitos, Técnicas e Aplicações em Português . 4 ed. BPLN, 2026. v. 1. ISBN
+978-65-02-00148-6. Disponível em: https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1 .
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).2
+--- Page 24 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/Como citar
+Note 1: Bibref
+@Book{BPLN_livro_4ed_vol1:2026,
+title = {Processamento de Linguagem Natural: Conceitos,
+Técnicas e Aplicações em Português},
+editor = {Caseli, H. M. and Nunes, M. G. V.},
+year = {2026},
+publisher = {BPLN},
+edition = {4},
+volume = {1},
+isbn = {978-65-02-00148-6},
+url = {https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1}
+}
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).3
+--- Page 25 ---
+ç https://brasileiraspln.ufscar.br/livro-pln-4ed-vol1/
+Parte I
+Introdução
+©2026 Direitos autorais deste livro a seus autores. Uso permitido sob licença Creative Commons
+Atribuição-NãoComercial-SemDerivações 3.0 Brasil (CC BY-NC-ND 3.0 BR).4

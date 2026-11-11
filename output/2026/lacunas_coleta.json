@@ -1,0 +1,13 @@
+{
+  "video_id": "Gqc1rQtzWUk",
+  "source": "chat_ao_vivo.csv",
+  "gaps": [
+    {
+      "last_message_before_utc": "2026-10-19T00:26:37.501775+00:00",
+      "first_message_after_utc": "2026-10-19T00:36:15.152732+00:00",
+      "duration_seconds": 577.651,
+      "reason": "Coletor interrompido após falha temporária de acesso ao arquivo chat_estado.json",
+      "note": "Não há mensagens registradas neste intervalo. A ausência de registros não indica que o chat ficou sem mensagens."
+    }
+  ]
+}

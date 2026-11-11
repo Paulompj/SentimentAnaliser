@@ -1,0 +1,37 @@
+[
+  {
+    "id": "4293a634-55a8-406d-864d-cd9169c15d4b",
+    "name": "1 parte",
+    "started_at_utc": "2026-10-18T23:30:15.044Z",
+    "video_id": "Gqc1rQtzWUk",
+    "ended_at_utc": "2026-10-18T23:30:22.530Z"
+  },
+  {
+    "id": "e240e9f2-5682-4366-b51b-4bb86dd17994",
+    "name": "Bloco 1 - Livre",
+    "started_at_utc": "2026-10-18T23:30:38.562Z",
+    "video_id": "Gqc1rQtzWUk",
+    "ended_at_utc": "2026-10-19T00:04:25.297Z"
+  },
+  {
+    "id": "b578deb7-123f-4a40-bfe1-c624cfd9faf1",
+    "name": "Bloco 2",
+    "started_at_utc": "2026-10-19T00:13:10.847Z",
+    "video_id": "Gqc1rQtzWUk",
+    "ended_at_utc": "2026-10-19T00:35:03.081Z"
+  },
+  {
+    "id": "75718f6a-715b-4085-bf0b-778ee22d6b95",
+    "name": "Bloco 3",
+    "started_at_utc": "2026-10-19T00:43:01.265Z",
+    "video_id": "Gqc1rQtzWUk",
+    "ended_at_utc": "2026-10-19T01:04:29.484Z"
+  },
+  {
+    "id": "6f0d822a-1047-4751-ace7-d0c99c5d5e95",
+    "name": "consideracoes",
+    "started_at_utc": "2026-10-19T01:04:40.513Z",
+    "video_id": "Gqc1rQtzWUk",
+    "ended_at_utc": "2026-10-19T01:12:19.632Z"
+  }
+]

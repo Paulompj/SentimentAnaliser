@@ -1,0 +1,5 @@
+{
+  "status": "pendente_de_rotulacao_e_nova_avaliacao",
+  "window_end_utc": "2022-10-17T04:06:39+00:00",
+  "message": "Preencha os rótulos humanos e execute main.py evaluate para calcular métricas deste recorte."
+}

@@ -1,0 +1,44 @@
+{
+  "source": "YouTube Data API v3 / commentThreads.list (comentários principais)",
+  "collected_at_utc": "2026-10-18T22:31:00.089899+00:00",
+  "window_start_utc": "2022-10-16T23:00:00+00:00",
+  "window_end_utc": "2022-10-17T04:06:39+00:00",
+  "debate_end_utc": "2022-10-17T00:52:18+00:00",
+  "video_published_at_utc": "2022-10-17T01:06:39+00:00",
+  "video": {
+    "video_id": "iYVk1CeIs60",
+    "title": "DEBATE NA BAND: PRESIDENCIAL 2022 - SEGUNDO TURNO",
+    "published_at": "2022-10-17T01:06:39Z",
+    "live_start_at": "2022-10-16T21:56:51Z",
+    "live_end_at": "2022-10-17T00:52:18Z",
+    "comment_count": 53879
+  },
+  "collection": {
+    "pages": 332,
+    "inspected": 33153,
+    "in_window": 15088,
+    "after_window": 18005,
+    "before_window": 0,
+    "edited_after_window": 60,
+    "duplicates": 0,
+    "complete": true
+  },
+  "sentiment_counts": {
+    "positive": 5944,
+    "negative": 3148,
+    "neutral": 1494,
+    "insufficient_evidence": 4502
+  },
+  "period_counts": {
+    "durante_debate": 0,
+    "entre_debate_e_publicacao": 2341,
+    "apos_publicacao": 12747
+  },
+  "explicit_mentions": {
+    "lula": 4983,
+    "bolsonaro": 6735,
+    "both": 1581
+  },
+  "annotation_sample_size": 500,
+  "second_rater_sample_size": 125
+}

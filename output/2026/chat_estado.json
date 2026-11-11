@@ -1,0 +1,142 @@
+{
+  "video_id": "Gqc1rQtzWUk",
+  "phase": "finished",
+  "complete": true,
+  "total_messages": 33621,
+  "pages": 114,
+  "status_updated_at_utc": "2026-10-19T01:12:18.325547+00:00",
+  "status_message": "Transmissão encerrada",
+  "video_title": "[AO VIVO] Flávio Bolsonaro x Lula: debate presidencial do 2º turno na Band - 18/10/2026",
+  "live_chat_id": "Cg0KC0dxYzFyUXR6V1VrKicKGFVDb2EtRF9WZk1rRnJDWW9kck9DOS1tQRILR3FjMXJRdHpXVWs",
+  "coverage_verified": false,
+  "started_at_utc": "2026-10-18T23:24:34.915109+00:00",
+  "next_page_token": "GK35oqPzxJcDIOL3j7vzxJcD",
+  "last_response_at_utc": "2026-10-19T01:12:18.325541+00:00",
+  "last_batch_messages": 296,
+  "recent_batches": [
+    {
+      "at_utc": "2026-10-19T00:44:28.838834+00:00",
+      "messages": 288
+    },
+    {
+      "at_utc": "2026-10-19T00:45:19.736120+00:00",
+      "messages": 294
+    },
+    {
+      "at_utc": "2026-10-19T00:46:07.593085+00:00",
+      "messages": 301
+    },
+    {
+      "at_utc": "2026-10-19T00:47:00.099089+00:00",
+      "messages": 305
+    },
+    {
+      "at_utc": "2026-10-19T00:47:51.089080+00:00",
+      "messages": 291
+    },
+    {
+      "at_utc": "2026-10-19T00:48:38.916254+00:00",
+      "messages": 301
+    },
+    {
+      "at_utc": "2026-10-19T00:49:31.440570+00:00",
+      "messages": 288
+    },
+    {
+      "at_utc": "2026-10-19T00:50:22.140119+00:00",
+      "messages": 294
+    },
+    {
+      "at_utc": "2026-10-19T00:51:12.510096+00:00",
+      "messages": 286
+    },
+    {
+      "at_utc": "2026-10-19T00:52:00.335635+00:00",
+      "messages": 279
+    },
+    {
+      "at_utc": "2026-10-19T00:53:01.073177+00:00",
+      "messages": 281
+    },
+    {
+      "at_utc": "2026-10-19T00:54:01.166720+00:00",
+      "messages": 283
+    },
+    {
+      "at_utc": "2026-10-19T00:55:01.606527+00:00",
+      "messages": 266
+    },
+    {
+      "at_utc": "2026-10-19T00:56:03.220583+00:00",
+      "messages": 271
+    },
+    {
+      "at_utc": "2026-10-19T00:57:04.167646+00:00",
+      "messages": 275
+    },
+    {
+      "at_utc": "2026-10-19T00:58:06.942020+00:00",
+      "messages": 259
+    },
+    {
+      "at_utc": "2026-10-19T00:59:04.728930+00:00",
+      "messages": 273
+    },
+    {
+      "at_utc": "2026-10-19T01:00:06.575029+00:00",
+      "messages": 293
+    },
+    {
+      "at_utc": "2026-10-19T01:01:09.626688+00:00",
+      "messages": 253
+    },
+    {
+      "at_utc": "2026-10-19T01:02:11.481285+00:00",
+      "messages": 279
+    },
+    {
+      "at_utc": "2026-10-19T01:03:14.468277+00:00",
+      "messages": 266
+    },
+    {
+      "at_utc": "2026-10-19T01:04:17.683629+00:00",
+      "messages": 266
+    },
+    {
+      "at_utc": "2026-10-19T01:05:20.522803+00:00",
+      "messages": 271
+    },
+    {
+      "at_utc": "2026-10-19T01:06:18.572954+00:00",
+      "messages": 276
+    },
+    {
+      "at_utc": "2026-10-19T01:07:21.368798+00:00",
+      "messages": 254
+    },
+    {
+      "at_utc": "2026-10-19T01:08:22.439025+00:00",
+      "messages": 295
+    },
+    {
+      "at_utc": "2026-10-19T01:09:19.840115+00:00",
+      "messages": 264
+    },
+    {
+      "at_utc": "2026-10-19T01:10:17.492744+00:00",
+      "messages": 299
+    },
+    {
+      "at_utc": "2026-10-19T01:11:20.575840+00:00",
+      "messages": 296
+    },
+    {
+      "at_utc": "2026-10-19T01:12:18.325510+00:00",
+      "messages": 296
+    }
+  ],
+  "last_message_at_utc": "2026-10-19T01:12:16.278701+00:00",
+  "first_response_at_utc": "2026-10-18T23:24:35.229541+00:00",
+  "ended_at_utc": "2026-10-19T01:12:00.858116329+00:00",
+  "end_reason": "offlineAt"
+}

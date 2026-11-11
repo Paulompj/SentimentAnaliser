@@ -1,0 +1,616 @@
+ 
+\documentclass[
+	% -- opções da classe memoir --
+	12pt,				% tamanho da fonte
+	openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
+	oneside,			% para impressão em recto e verso use 'twoside'. Oposto a 'oneside'
+	a4paper,			% tamanho do papel. 
+	% -- opções da classe abntex2 --
+	%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+	%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+	%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+	%subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
+	% -- opções do pacote babel --
+	english,			% idioma adicional para hifenização
+	brazil				% o último idioma é o principal do documento
+	]{abntex2}
+
+% ---
+% Pacotes básicos 
+% ---
+\usepackage{multirow}
+\usepackage{lmodern}			% Usa a fonte Latin Modern		
+\usepackage{float} %adicionado
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage{caption} %adicionado
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage{microtype} 			% para melhorias de justificação
+%\usepackage{emoji}
+% ---
+		
+% ---
+% Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2
+% ---
+\usepackage{lipsum}				% para geração de dummy text
+% ---
+
+% ---
+% Pacotes de citações
+% ---
+\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[alf, abnt-etal-list=0]{abntex2cite}	% Citações padrão ABNT
+\citebrackets()
+
+% --- 
+% CONFIGURAÇÕES DE PACOTES
+% --- 
+
+% ---
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+% ---
+
+% ---
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% ---
+\titulo{EleiSent - Ferramenta para análise de Sentimentos em Comentários do YouTube Aplicada ao Cenário Político Brasileiro Usando NLP e SentiWordNet}
+\autor{Paulo Moraes Pessoa Jardim}
+
+
+\local{Belém}
+\data{2026}
+\orientador{Roberto Yuri da Silva Franco}
+\coorientador{Coorientador}
+
+\instituicaounidade{MINISTÉRIO DA EDUCAÇÃO}
+\instituicaosubunidade{UNIVERSIDADE FEDERAL RURAL DA AMAZÔNIA - UFRA}
+
+
+\tipotrabalho{Trabalho de Conclusão de Curso}
+% O preambulo deve conter o tipo do trabalho, o objetivo, 
+% o nome da instituição e a área de concentração 
+\preambulo{Pré-projeto do Trabalho de Conclusão de Curso apresentado a Universidade Federal Rural da Amazônia – UFRA, como requisito básico para a conclusão do curso de Bacharelado em Sistemas de Informação.}
+% ---
+
+
+% ---
+% Configurações de aparência do PDF final
+
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+
+% informações do PDF
+\makeatletter
+\hypersetup{
+     	%pagebackref=true,
+		pdftitle={\@title}, 
+		pdfauthor={\@author},
+    	pdfsubject={\imprimirpreambulo},
+	    pdfcreator={LaTeX with abnTeX2},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{trabalho acadêmico}, 
+		colorlinks=true,       		% false: boxed links; true: colored links
+    	linkcolor=black,          	% color of internal links
+    	citecolor=black,        		% color of links to bibliography
+    	filecolor=black,      		% color of file links
+		urlcolor=black,
+		bookmarksdepth=4
+}
+\makeatother
+% --- 
+
+% ---
+% Posiciona figuras e tabelas no topo da página quando adicionadas sozinhas
+% em um página em branco. Ver https://github.com/abntex/abntex2/issues/170
+\makeatletter
+\setlength{\@fptop}{5pt} % Set distance from top of page to first float
+\makeatother
+% ---
+
+% ---
+% Possibilita criação de Quadros e Lista de quadros.
+% Ver https://github.com/abntex/abntex2/issues/176
+%
+\newcommand{\quadroname}{Quadro}
+\newcommand{\listofquadrosname}{Lista de quadros}
+
+\newfloat[chapter]{quadro}{loq}{\quadroname}
+\newlistof{listofquadros}{loq}{\listofquadrosname}
+\newlistentry{quadro}{loq}{0}
+
+% configurações para atender às regras da ABNT
+\setfloatadjustment{quadro}{\centering}
+\counterwithout{quadro}{chapter}
+\renewcommand{\cftquadroname}{\quadroname\space} 
+\renewcommand*{\cftquadroaftersnum}{.\hfill}
+
+\setfloatlocations{quadro}{hbtp} % Ver https://github.com/abntex/abntex2/issues/176
+% ---
+
+% --- 
+% Espaçamentos entre linhas e parágrafos 
+% --- 
+
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.3cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+
+% ---
+% compila o indice
+% ---
+\makeindex
+% ---
+
+% ----
+% Início do documento
+% ----
+\begin{document}
+
+% Seleciona o idioma do documento (conforme pacotes do babel)
+%\selectlanguage{english}
+\selectlanguage{brazil}
+
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing 
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+% \pretextual
+
+% ---
+% Capa
+% ---
+\imprimircapa
+% ---
+
+% ---
+% Folha de rosto
+% (o * indica que haverá a ficha bibliográfica)
+% ---
+
+\imprimirfolhaderosto*
+% ---
+
+% ---
+% Inserir a ficha bibliografica
+% ---
+
+% Isto é um exemplo de Ficha Catalográfica, ou ``Dados internacionais de
+% catalogação-na-publicação''. Você pode utilizar este modelo como referência. 
+% Porém, provavelmente a biblioteca da sua universidade lhe fornecerá um PDF
+% com a ficha catalográfica definitiva após a defesa do trabalho. Quando estiver
+% com o documento, salve-o como PDF no diretório do seu projeto e substitua todo
+% o conteúdo de implementação deste arquivo pelo comando abaixo:
+%
+% \begin{fichacatalografica}
+%     \includepdf{fig_ficha_catalografica.pdf}
+% \end{fichacatalografica}
+
+
+% ---
+% Inserir errata
+% ---
+%\begin{errata}
+%Elemento opcional da %\cite{NBR14724:2011}. Exemplo:
+
+%\vspace{\onelineskip}
+
+%FERRIGNO, C. R. A. \textbf{Tratamento de neoplasias ósseas apendiculares com
+%reimplantação de enxerto ósseo autólogo autoclavado associado ao plasma
+%rico em plaquetas}: estudo crítico na cirurgia de preservação de membro em
+%cães. 2011. 128 f. Tese (Livre-Docência) - Faculdade de Medicina Veterinária e
+%Zootecnia, Universidade de São Paulo, São Paulo, 2011.
+
+%\begin{table}[htb]
+%\center
+%\footnotesize
+%\begin{tabular}{|p{1.4cm}|p{1cm}|p{3cm}|p{3cm}|}
+%  \hline
+%   \textbf{Folha} & \textbf{Linha}  & \textbf{Onde se lê}  & \textbf{Leia-se}  \\
+%    \hline
+%    1 & 10 & auto-conclavo & autoconclavo\\
+%   \hline
+%\end{tabular}
+%\end{table}
+
+%\end{errata}
+% ---
+
+% ---
+% Inserir folha de aprovação
+% ---
+
+% Isto é um exemplo de Folha de aprovação, elemento obrigatório da NBR
+% 14724/2011 (seção 4.2.1.3). Você pode utilizar este modelo até a aprovação
+% do trabalho. Após isso, substitua todo o conteúdo deste arquivo por uma
+% imagem da página assinada pela banca com o comando abaixo:
+%
+% \begin{folhadeaprovacao}
+% \includepdf{folhadeaprovacao_final.pdf}
+% \end{folhadeaprovacao}
+%
+\begin{folhadeaprovacao}
+
+  \begin{center}
+    {\ABNTEXchapterfont\large\imprimirautor}
+
+    \vspace*{\fill}\vspace*{\fill}
+    \begin{center}
+      \ABNTEXchapterfont\bfseries\Large\imprimirtitulo
+    \end{center}
+    \vspace*{\fill}
+    
+    \hspace{.45\textwidth}
+    \begin{minipage}{.5\textwidth}
+        \imprimirpreambulo
+    \end{minipage}%
+    \vspace*{\fill}
+   \end{center}
+        
+   Conceito: \rule{3cm}{.1pt}
+   
+   \imprimirlocal, 04 de março de 2021.
+   
+   \vspace{1cm}
+   \begin{center}
+   BANCA EXAMINADORA
+   \end{center}
+
+\assinatura{\textbf{\imprimirorientador} - Orientador \linebreak UFRA - Universidade Federal Rural da Amazônia}
+\assinatura{\textbf{\imprimircoorientador} - Coorientador \linebreak UFRA - Universidade Federal Rural da Amazônia}
+\assinatura{\textbf{Banca1} \linebreak UFRA - Universidade Federal Rural da Amazônia}
+\assinatura{\textbf{Banca2} \linebreak UFRA - Universidade Federal Rural da Amazônia}
+%\assinatura{\textbf{Nome Convidado 3} \\ SIGLA INSTITUIÇÃO}
+
+  
+\end{folhadeaprovacao}
+% ---
+
+
+
+
+    
+\pagebreak
+
+% ---
+
+
+
+% ---
+% RESUMOS
+% ---
+
+% resumo em português
+\setlength{\absparsep}{18pt} % ajusta o espaçamento dos parágrafos do resumo
+\begin{resumo} 
+O presente trabalho aborda as áreas de Processamento de Linguagem Natural (PLN) e Análise de Sentimentos aplicadas ao contexto político de redes sociais, especificamente a plataforma YouTube. O Processamento de Linguagem Natural é o campo da inteligência artificial responsável por permitir que computadores interpretem e entendam a linguagem humana, utilizando técnicas como \textit{tokenização}, \textit{lematização} e \textit{classificação gramatical}. A Análise de Sentimentos é uma subárea do PLN que tem como objetivo identificar e classificar a polaridade emocional em textos, categorizando palavras como positivos, negativos ou neutros. Nesse contexto, o objetivo deste trabalho é desenvolver a ferramenta EleiSent para o monitoramento e classificação de polaridade (positiva, negativa ou neutra) de comentários publicados em debates políticos no YouTube. Para isso, serão utilizados como base de dados os registros referentes à eleição presidencial brasileira de 2022, permitindo avaliar a opinião expressa dos usuários em relação a cada candidato.
+
+
+ \textbf{Palavras-chave}: Processamento de Linguagem Natural; Analise de Sentimentos; YouTube; SentiWordNet;
+\end{resumo}
+
+% ---
+% inserir lista de ilustrações
+% ---
+\pdfbookmark[0]{\listfigurename}{lof}
+\cleardoublepage
+
+
+% ---
+% inserir o sumario
+% ---
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+% ---
+
+
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+
+% ----------------------------------------------------------
+% Introdução (exemplo de capítulo sem numeração, mas presente no Sumário)
+% ----------------------------------------------------------
+\chapter{Introdução}
+O Processamento de Linguagem Natural (PLN) é um campo de pesquisa que tem como objetivo investigar e propor métodos e sistemas de processamento computacional da linguagem humana. Está área pode ser empregada em diversos ramos da sociedade moderna, como na tradução automática de textos, assistentes virtuais/chatbots, sistemas de detecção de fake news e análise de opniões baseados em textos \cite{BPLN_livro_4ed_2026}. Nessa perspectiva, a PLN abrange um amplo campo de atuação, dentre eles a extração de sentidos em textos, como em comentários de redes sociais ou plataformas de vídeos, como o Youtube.
+
+A Análise de Sentimentos é área que aborda a classificação das emoções de pessoas através de expressões faciais, fala, escrita, entre outros.
+(TAO; TAN, 2009).No campo da análise de textos, ela permite fazer uma identificação de positividade ou negatividade em uma frase, sendo útil para a obtenção do sentido de um discurso como um todo. Dessa forma, a análise de sentimentos é uma ferramenta utilizado para buscar compreender a percepção pública sobre candidatos, partidos e pautas políticas, como feitos em redes sociais, ou debates ao vivo, para mensurar a opnião do público em relação aos candidatos.
+
+Com as redes sociais ocupando um espaço cada vez maior na vida do público em geral, elas se tornaram palco de disputas de narrativas cada vez mais acaloradas. Em um período eleitoral, isso se torna ainda mais evidente, como nas Eleições presidenciais de 2022, com candidatos realizando debates em canais abertos do YouTube. Nesse sentido, é de interesse do público, e também dos candidatos, conseguir avaliar e medir percepção do público em relação as pautas defendidas por cada canditado durante o debate, se estão sendo bem avaliados, ou mal vistos.
+
+No entanto, há desafios significativos associados à análise dessas opniões em formato textual. O grande volume de comentários gerados em um único debate torna inviável qualquer tentativa de análise manual. Além disso, a linguagem coloquial utilizada pelo público em geral nos comentários de debates dificulta a atuação das técnicas de PLN e Analise de sentimentos, como o uso frequente de gírias, abreviações, erros ortográficos, ironia e sarcasmo (CASELI; NUNES, 2026). 
+Outro obstáculo relevante é a escassez de ferramentas e recursos léxicos voltados especificamente para a língua portuguesa, visto que a maioria das bases de análise de sentimentos foram desenvolvidas originalmente para o idioma inglês (CASELI; NUNES, 2026).
+
+Dessa forma, o objetivo principal deste projeto consiste no desenvolvimento de uma aplicação web voltada ao monitoramento e à análise de comentários públicos em vídeos de debates políticos no YouTube, com foco no cenário da eleição presidencial de 2022. A ferramenta visa classificar a polaridade (positiva ou negativa) das opiniões expressas pelo público, fornecendo a geração de visualizações gráficas que mapeiam a percepção do eleitorado sobre os respectivos candidatos. A aplicação proposta realiza a coleta de comentários por meio do YouTube, classificando cada comentário individualmente, a ferramenta possibilita a análise detalhada por candidato, permitindo aos pesquisadores e interessados uma compreensão quantitativa e organizada da opinião pública expressa nessa plataforma durante o período eleitoral.
+
+\section{Problematização}
+
+As eleições presidenciais brasileiras de 2022 foram marcadas por um cenário de intensa polarização política, aumentada pelo alcance atual que as plataformas digitais possuem \cite{Alfaro_2025}. Nesse âmbito, o YouTube teve um papel fundamental ao transmitir debates presidenciais ao vivo, alcançando grandes audiências. Segundo o \cite{Poder360}, o primeiro debate da eleição presidencial realizado em 28 de agosto de 2022 registrou um pico de 1,8 milhão de espectadores simultâneos no YouTube, estabelecendo um recorde para transmissões de debates eleitorais no Brasil. Esses números evidenciam o crescimento da plataforma como espaço de consumo de informação, participação e debate político.
+
+Entretanto, essa grande audiência nao gera apenas visualizações, mas tambem uma enorme quantidade de comentários expressando críticas, apoio e rejeição aos candidatos. Essas manifestações espontâneas são uma importante fonte de dados para a compreensão da opinião pública, pois, diferentemente de pesquisas baseadas em questionários estruturados, registram reações produzidas naturalmente durante os acontecimentos. Conforme afirma Eaton (2024), essa característica permite identificar temas e percepções relevantes sem a interferência do pesquisador, tornando os comentários do YouTube uma fonte promissora para estudos sobre comunicação política e comportamento eleitoral.
+
+No entanto, a grande quantidade de comentários produzidos durante debates presidenciais dificulta sua análise manual. Diante desse cenário, é de suma importancia a utilização de técnicas capazes de processar automaticamente grandes quantidades de dados textuais. Nesse contexto, o Processamento de Linguagem Natural (PLN) e a Análise de Sentimentos permitem identificar a polaridade das opiniões expressas pelos usuários, reconhecer padrões de comportamento coletivo e compreender como candidatos e temas foram percebidos pelo público durante os debates eleitorais, contribuindo para estudos sobre opinião pública e comunicação política \cite{Munger2025}.
+
+
+\section{Objetivos}
+Esta seção é dedicada a apresentar os objetivos que direcionam este trabalho de conclusão de curso. Abrange o objetivo geral, que visa a identificação da ideia central e os objetivos específicos que indicam os estágios para a concretização desse propósito.
+
+\subsection{Objetivos Gerais}
+Desenvolver uma aplicação web para monitoramento e classificação de comentários em debates presidenciais realizados no YouTube, com o objetivo de mensurar os níveis de polaridade da opinião pública em relação a cada candidato no decorrer do evento. A ferramenta utilizará painéis gráficos (dashboards) para exibir os dados coletados de forma intuitiva, priorizando a experiência do usuário e facilitando a análise das informações.
+\subsection{Objetivos Específicos}
+
+\begin{enumerate}
+    \item Coletar base de comentários realizados em debates no Youtube, utilizando a própria API da plataforma YouTube Data API v3. 
+    \item Determinar as técnicas de PLN e Analise de sentimentos a serem utilizadas para classificação da polaridade de cada comentário. 
+    \item Desenvolver a Interface Visual (Front-End) para exibição dos dados
+\end{enumerate}
+
+
+\section{Justificativa}
+O avanço das plataformas digitais alterou de forma expressiva a forma como as pessoas acompanham o que acontece na política e expressam suas opiniões \cite{Alfaro_2025}. Quando chega o período eleitoral no Brasil, plataformas como o YouTube se tornaram um espaço onde as grandes emissoras utilizam para transmitir debates entre os candidatos. Nesse sentido, assim como ocorrem entre os candidatos, debatendo ideias e políticas para o país, o público também reage a essas ideias expressando e discutindo opniões políticas, por meio de comentários feitos de forma espontânea em tempo real dentro da plataforma durante a transmissão dos debates \cite{Eaton2024}.Muitas pessoas utilizam esse espaço para expor suas opiniões, apoiar um candidato, ou critica-lo.
+
+Entretanto, durante os debates estes comentários são realizados de forma massiva pelos telespectadores, resultando em um enorme volume de dados, impossibilitando uma análise manual\cite{Munger2025}. Esses dados constituem uma importante fonte para mensurar a opinião pública \cite{Eaton2024}.
+
+Por isso é importante desenvolver uma ferramenta que processe esses dados de forma automática, utilizando técnicas de PLN e análise de sentimentos para classificão dos textos. Isso ajuda a poder analisar esses comentários, extrair as reações do público e torna-las acessíveis.
+
+\section{Contribuição}
+Este trabalho oferece como contribuição o desenvolvimento de uma ferramenta para extração, processamento e classificação de comentários realizados no Youtube, durante debates nas eleições de 2022 entre os presidenciaveis.Identificando comentários positivos e negativos em relação a cada candidato, por meio de técnicas de PLN e análise de sentimentos. Dessa forma, espera-se contribuir também para pesquisas na aréa de aplicação de técnicas de Processamento de Linguagem Natural na análise de dados provenientes de redes sociais.
+
+
+\section{Organização}
+Este trabalho está estruturado com 5 capítulos, sendo eles denominados por: introdução, revisão da literatura, metodologia, cronograma de atividades e resultados esperados.
+A seguir, no segundo capítulo trata-se sobre o embasamento teórico de três grandes assuntos abordados neste trabalho, que são: Processamento de Linguagem Natural, Analise de Sentimentos e Mineração de textos em redes sociais. 
+Este capítulo exibe seu conceito, breve histórico e pontos essenciais
+que foram elaborados neste trabalho. Também apresenta-se neste capitulo 4 produções bibliográficas que se assemelham com este trabalho, na seção "Trabalhos Relacionados". O terceiro capítulo aborda quais foram as ferramentas e tecnologias utilizadas, além de explicar por qual motivo foram escolhidas. Também é compreendido a partir deste, a arquitetura, as técnicas de PLN, analise de Sentimentos e os testes que serão utilizados.
+No quarto capítulo está organizado o cronograma de deveres para o desenvolvimento deste projeto nos prazos que devem ser seguidos. E por fim, o último capítulo expressa as expectativas do resultado em relação a este projeto.
+
+
+
+\chapter{Revisão da Literatura} \label{ap_exemplos}
+
+Neste capítulo \ref{ap_exemplos}, apresenta a revisão da literatura, com o objetivo de conceituar as temáticas importantes para o trabalho, tais como: Processamento de Linguagem Natural, Analise de Sentimentos e Mineração de textos em redes sociais.
+
+\section{Processamento de Linguagem Natural (PLN)}
+O Processamento de Linguagem Natural (PLN) é um campo de pesquisa que tem como objetivo investigar e propor métodos e sistemas de processamento computacional da linguagem humana. De modo geral, a PLN é responsável por buscar soluções computacionais para problemas que requerem processamento e entedimento computacional de texto em uma lingua(Português, Inglês, Francês), como traduções de textos, chatbos e demais ferramentas que demandem entender textos\cite{BPLN_livro_4ed_2026}. Esses textos podem ser uma frase onde buscamos entender o sentido que o autor tentou passar com as palavras. Conforme definiu \cite{BPLN_livro_4ed_2026}, a PLN utiliza técnicas de processamento para fazer a extração de sentido em frases, que são as etapas:
+
+\textbf{Limpeza textual}: Nessa etapa buscaremos excluir elementos que nao contribuam com a análise textual, como emojis, expressões que simbolizam risada 'kkkk'.
+Por exemplo: o comentáio 'O canditado é muito bom kkkkk' após esta etapa ficaria dessa forma: 'O canditado é muito bom'.
+
+\textbf{Tokenização}: Etapa onde buscaremos dividir a frase em unidades menores chamadas \emph{tokens}, para analisar cada token individualmente Na frase, 'O canditado é muito bom', após a tokenização ficaria dessa forma: 'o','canditado','é','muito','bom'
+
+\textbf{Remoção de \emph{stopwords}}: Exclusão de palavras nao úteis como artigos, preposições e conjunções (ex.: “o”, “a”, “de”, “para”, “e”, “ou”). Essa remoção de \emph{stopwords} deixa a frase mais limpa apenas com as palavras que possuam sentido, facilitando o processo de lematização para que busque polaridade apenas nas palavras que possuam sentido.
+
+\textbf{Lematização}: É o processo no qual identificaremos o tipo gramatical da palavra (\emph{lema}) dentro da frase. Esse processo é necessário para redução das palavras as suas formas básicas (lemas) de acordo com regras morfológicas e léxicas do idioma utilizada. A lematização transforma cada palavra flexionada em sua forma base, de modo que diferentes variações de uma palavra seja reconhecida e reduzida ao mesmo lema. 
+Por exemplo, “Estudam”, “Estudamos”,“Estudaram” e "Estudei" seriam reduzidas ao lema *“Estudar”. 
+Conforme mostra a figura 1 abaixo:
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{image.png}
+    \caption{Autor}
+    \label{fig:placeholder}
+\end{figure}
+\section{Análise de Sentimentos}
+A Análise de Sentimentos é uma sub-área do Processamento de Linguagem Natural que busca técnicas para identificar os sentimentos e opiniões expressos em um texto. De modo geral, seu objetivo é determinar a polaridade de uma frase, ou palavra, classificando-o como positivo, negativo ou neutro em relação a um determinado assunto \cite{BPLN_livro_4ed_2026}.
+
+No contexto eleitoral, os comentários publicados em vídeos de debates eleitorais constituem uma importante e grande fonte de dados para compreender a percepção do público sobre candidatos e temas políticos. E conforme observado por \cite{info15110705},a análise de Sentimentos possibilita identificar em grandes volumes de dados a polaridade dessas manifestações textuais e compreender como os eleitores reagem aos acontecimentos políticos em ambientes digitais. Por esta razão, a utilização das técnicas de análise de sentimentos se torna fundamental para a realização da extração de sentidos em comentários pulicados nas redes sociais. 
+\chapter{Trabalhos Relacionados} \label{cap:trabRel}
+ Neste capítulo são apresentados trabalhos relacionados à aplicação de técnicas de Processamento de Linguagem Natural e Análise de Sentimentos em comentários publicados em plataformas digitais, com foco em conteúdos de natureza política. O objetivo é apresentar pesquisas que abordam problemas semelhantes ao deste trabalho de conclusão de curso, destacando suas metodologias, principais resultados e as diferenças em relação à proposta deste trabalho.
+\section{From the Comments Section: Analyzing Online Public Discourse on the First 2020 Presidential Debate}
+
+Neste trabalho \cite{Eaton2024} investigou o potencial dos comentários publicados no YouTube durante debates presidenciais como fonte de dados para pesquisas em comunicação política. O estudo analisou os comentários gerados durante os debates das eleições presidenciais dos Estados Unidos de 2020, demonstrando que essas manifestações representam uma fonte rica de informações sobre a percepção dos eleitores. Segundo o autor, por serem produzidos espontaneamente durante a transmissão dos debates, os comentários permitem identificar preocupações, opiniões e temas relevantes sem a interferência de questionários ou instrumentos tradicionais de pesquisa.
+
+Como principal contribuição, o trabalho evidencia que os comentários do YouTube constituem uma importante fonte de dados para estudos sobre opinião pública e comportamento eleitoral. Entretanto, o foco da pesquisa está na análise qualitativa dos comentários e na discussão do seu potencial como objeto de estudo, não realizando uma classificação automática dos sentimentos expressos pelos usuários.
+
+Diferentemente do estudo de \cite{Eaton2024}, esta pesquisa propõe a utilização de técnicas de Processamento de Linguagem Natural para classificar automaticamente os comentários publicados durante os debates presidenciais brasileiros de 2022, permitindo identificar a polaridade dos sentimentos expressos em relação aos candidatos.
+
+\section{Exploring Sentiment Analysis for the Indonesian Presidential Election Through Online Reviews Using Multi-Label Classification with a Deep Learning Algorithm}
+
+Com o objetivo de analisar opnioes expressas em debates da eleição presidencial da Indonésia de 2024, \cite{info15110705} processaram cerca de 32 mil comentários do YouTube utilizando a metodologia CRISP-DM. Os autores compararam três arquiteturas de aprendizado profundo (CNN, Bi-LSTM e CNN-BiLSTM) para classificar os textos em oito emoções.
+
+Embora possua um escopo de aplicação semelhante ao desta pesquisa, o estudo de \cite{info15110705} baseia-se em redes neurais para uma classificação multirrótulo de emoções. O presente trabalho, por outro lado, prioriza uma abordagem fundamentada em recursos léxicos (WordNet, Open Multilingual WordNet e SentiWordNet) para identificar a polaridade de comentários dos debates presidenciais brasileiros de 2022. Entretando, essa pesquisa e o presente trabalho possuem semelhanças quanto a tecnologias utilizadas, como a Youtube Data API para busca dos dados na plataforma, o emprego de Técnicas de PLN e análise de sentimentos para classificação dos comentários.
+
+\section{Analysis of Twitter and YouTube during USelections 2020}
+
+Shevtsov et al. (2023) realizaram um estudo com o objetivo de compreender como as discussões políticas se propagam entre diferentes plataformas digitais durante as eleições presidenciais dos Estados Unidos de 2020. Diferentemente de trabalhos que analisam apenas uma rede social, os autores integraram dados do Twitter e do YouTube para investigar a relação entre as comunidades formadas em ambas as plataformas e a percepção dos usuários em relação aos candidatos \cite{Shevtsov2023}.
+
+Para a realização da pesquisa, foram coletados aproximadamente 20 milhões de tweets publicados entre julho e novembro de 2020, contendo hashtags relacionadas às eleições norte-americanas. A partir desses tweets, os autores extraíram mais de 28 mil links de vídeos do YouTube e seus respectivos metadados, incluindo comentários, número de visualizações e demais informações disponíveis na plataforma. Em seguida, foram aplicadas técnicas de Processamento de Linguagem Natural para análise de sentimentos, além de métodos de análise de grafos para identificar comunidades de usuários e compreender como o conteúdo político se propagava entre Twitter e YouTube \cite{Shevtsov2023}.
+
+Os resultados mostraram que existe uma forte correlação entre as comunidades formadas nas duas plataformas, indicando que usuários pertencentes a uma mesma comunidade no Twitter tendem a compartilhar vídeos cujos comentários também apresentam características semelhantes no YouTube. Além disso, a análise de sentimentos permitiu acompanhar a evolução da percepção dos usuários sobre os principais candidatos ao longo do período eleitoral, demonstrando o potencial das redes sociais como fonte de informações para estudos sobre comportamento político e opinião pública \cite{Shevtsov2023}.
+
+Embora possua um escopo mais amplo, envolvendo simultaneamente Twitter e YouTube, o trabalho apresenta diversas semelhanças com esta pesquisa, como a utilização de técnicas de Processamento de Linguagem Natural e Análise de Sentimentos para compreender manifestações políticas em ambientes digitais. Entretanto, enquanto Shevtsov et al. (2023) concentram-se na relação entre comunidades de usuários e na propagação de conteúdo entre diferentes plataformas, o presente trabalho tem como foco a classificação automática da polaridade dos comentários publicados durante os debates presidenciais brasileiros de 2022 no YouTube, empregando uma abordagem baseada em recursos léxicos e o desenvolvimento da ferramenta EleiSent.
+\chapter{Metodologia}
+Neste capitulo será apresentada a metodologia para a construção deste trabalho de conclusão de curso.
+\section{Materiais}
+A seguir serão descritos todos os materiais que manipularemos para o desenvolvimento deste trabalho de conclusão de curso
+\subsection{Python}
+Python irá ser a principal linguagem de programação utilizada no desenvolvimento deste trabalho, conhecida por sua sintaxe relativamente simples em comparação com Java e outras linguagens, ela é amplamente utilizada no desenvolvimento de aplicações científicas, automação, análise de dados, inteligência artificial e processamento de linguagem natural \cite{Lutz2013}. Sua extensa biblioteca padrão e o amplo ecossistema de bibliotecas de terceiros tornam a linguagem uma das mais utilizadas em projetos de ciência de dados.
+\subsection{NLTK}
+O NLTK (\textit{Natural Language Toolkit}) é uma das bibliotecas mais consolidadas para Processamento de Linguagem Natural em Python. Ela fornece acesso a diversos corpora linguísticos, ferramentas de tokenização, \textit{stemming}, lematização e classificação gramatical. No contexto deste trabalho, o NLTK é utilizado para acessar o \textit{WordNet}, o \textit{SentiWordNet} e o conjunto de \textit{stopwords} da língua portuguesa, recursos essenciais para a etapa de análise de sentimentos.
+\subsection{spaCy}
+O spaCy é uma biblioteca de Processamento de Linguagem Natural de alto desempenho, projetada para uso em ambientes de produção. Diferentemente do NLTK, que possui foco educacional, o spaCy oferece modelos pré-treinados otimizados para diversas línguas, incluindo o português . Neste trabalho, utiliza-se o modelo \texttt{pt\_core\_news\_lg}, que é o maior modelo disponível para o português no spaCy, para realizar a tokenização, a lematização e a classificação gramatical (\textit{POS tagging}) dos comentários coletados.
+\subsection{WordNet e Open Multilingual WordNet}
+O WordNet é uma base de dados léxica que organiza substantivos, verbos, adjetivos e advérbios da língua inglesa em conjuntos de sinônimos denominados \textit{synsets}, interligados por relações semânticas como sinonímia, hiperonímia e hiponímia. O \textit{Open Multilingual WordNet} (OMW) é uma extensão que estende a cobertura do WordNet para diversas línguas, incluindo o português, permitindo que palavras em português sejam mapeadas para os \textit{synsets} correspondentes. Neste trabalho, o OMW é utilizado como ponte entre as palavras em português dos comentários e os escores de sentimento do SentiWordNet.
+\subsection{SentiWordNet}
+O SentiWordNet 3.0 é um recurso léxico construído a partir do WordNet que atribui a cada \textit{synset} três pontuações numéricas: positividade (\textit{pos\_score}), negatividade (\textit{neg\_score}) e objetividade (\textit{obj\_score}), cuja soma é sempre igual a 1. Essas pontuações permitem quantificar o teor emocional de cada conceito lexical, sendo amplamente utilizadas em abordagens oléxicas de análise de sentimentos. No presente trabalho, o SentiWordNet é a base do cálculo de polaridade dos comentários analisados.
+\subsection{YouTube Data API v3}
+A YouTube Data API v3 é uma interface de programação disponibilizada pelo Google que permite o acesso programático a dados públicos da plataforma YouTube, tais como informações de vídeos, canais, playlists e comentários. Neste trabalho, a API é utilizada para a coleta automatizada dos comentários publicados em vídeos de debates eleitorais, utilizando o \textit{endpoint} \texttt{commentThreads} com paginação automática para recuperar todos os comentários disponíveis.
+\section{Métodos}
+A seguir são descritos os métodos adotados para o desenvolvimento deste trabalho, abrangendo os requisitos do sistema, a arquitetura proposta, as técnicas de Processamento de Linguagem Natural e Análise de Sentimentos empregadas, bem como as formas de avaliação previstas.
+
+
+\subsection{Arquitetura do Trabalho}
+A arquitetura do trabalho proposto é organizada em três módulos principais: \textbf{Coleta de Dados}, \textbf{Processamento e Análise}, e \textbf{Visualização}. A Figura \ref{fig:arquitetura} ilustra o fluxo geral da aplicação.
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\linewidth]{figures/Arquitetura.png}
+    \caption{Arquitetura do Trabalho}
+    \caption*{\footnotesize Fonte: Autor}
+    \label{fig:placeholder}
+\end{figure}
+
+% Descomente e substitua pelo caminho da figura quando disponível:
+% \begin{figure}[htp]
+%     \centering
+%     \includegraphics[width=0.85\linewidth]{arquitetura.png}
+%     \caption{Arquitetura do trabalho proposto}
+%     \label{fig:arquitetura}
+% \end{figure}
+
+O módulo de \textbf{Coleta de Dados} é responsável pela extração dos comentários públicos de vídeos do YouTube por meio da YouTube Data API v3. A partir da URL do vídeo, o sistema realiza uma requisição HTTP ao \textit{endpoint} \texttt{commentThreads}, para recuperar todos os comentários. Além dos textos dos comentários, são extraídas informações complementares do vídeo, como título, canal, data de publicação, número de visualizações, curtidas e total de comentários. 
+
+O módulo de \textbf{Processamento e Análise} realiza o tratamento linguístico e a classificação de sentimentos dos comentários coletados. Esse módulo é subdividido nas seguintes etapas:
+
+\begin{enumerate}
+    \item \textbf{Pré-processamento}: remoção de pontuações, emojis e caracteres especiais dos textos dos comentários por meio de expressões regulares.
+
+   \item \textbf{Classificação gramatical e lematização}: Análise morfossintática executada através do modelo pré-treinado \texttt{pt\_core\_news\_lg} em português da biblioteca spaCy. Nesta etapa, realiza-se a tokenização do comentário utilizando o NLTK, seguida pela identificação da classe gramatical de cada termo (\textit{Part-of-Speech tagging} ou \textit{POS tagging}) e pela lematização, que consiste em reduzir as palavras flexionadas às suas respectivas formas canônicas (lemas). 
+    
+    A Figura~\ref{fig:tags} apresenta as principais classes gramaticais (\textit{POS Tags}) definidas pelo modelo do spaCy.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\linewidth]{figures/tags_gramaticais.png}
+        \caption{Principais classes gramaticais (\textit{POS Tags}) utilizadas pelo spaCy.}
+        \label{fig:tags}
+    \end{figure}
+
+    A Figura~\ref{fig:lematizador} ilustra um exemplo da aplicação do modelo \texttt{pt\_core\_news\_lg} para classificação gramatical e lematização de um comentário.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\linewidth]{figures/lematizador.png}
+        \caption{Exemplo de classificação gramatical e lematização utilizando spaCy e NLTK.}
+        \label{fig:lematizador}
+    \end{figure}
+    Conforme apresentado na Figura~\ref{fig:lematizador}, verbos de ligação e determinantes como 'o' e 'ser' (lema de 'é') são catalogados como \textit{stopwords} e excluídos do fluxo. A exclusão da palavra 'ser', apesar de ser um verbo, justifica-se pelo fato de ele atuar atuar apenas como um verbo de ligação nesta frase (como no exemplo 'candidato é bom', onde o  'é' apenas liga o sujeito ao adjetivo), sem carga emocional.
+    
+    \item \textbf{Remoção de \textit{stopwords}}: exclusão de palavras nao relevantes negativa ou postivamente da língua portuguesa (artigos, preposições, conjunções) utilizando o conjunto de \textit{stopwords} do NLTK.
+    \item \textbf{Cálculo de polaridade}: para cada palavra restante após a etapa de remoção dos \textit{stopwords}, o sistema realiza o mapeamento do lema em português para os \textit{synsets} correspondentes no WordNet, por meio do Open Multilingual WordNet. Em seguida, são consultados os escores de positividade (\textit{pos\_score}), negatividade (\textit{neg\_score}) e objetividade (\textit{obj\_score}) atribuídos pelo SentiWordNet a cada \textit{synset}. A polaridade final do comentário é determinada pela soma acumulada dos escores positivos e negativos de todas as palavras analisadas.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=1.0\linewidth]{figures/calculo_polaridade.png}
+        \caption{Exemplo de busca da polaridade}
+        \label{fig:polaridade}
+    \end{figure}
+Como pode ser observado na Figura~\ref{fig:polaridade}, o lema em português "bom" é enviado ao OMW, que mapeia e localiza seus \textit{synsets} equivalentes em inglês, como o conceito \textit{good.a.01}. Com a identificação desse conceito, é  realizada uma consulta ao SentiWordNet para extrair os respectivos \textit{scores} de sentimento. Para o exemplo analisado, o primeiro termo obtém um \textit{score} positivo de $0{,}750$, enquanto a pontuação negativa permanece zerada ($0{,}000$). Esse valor será somado e acumulado com os outros valore positovos e o processo se repetirá para os outros \textit{Synsets}.
+    \item \textbf{Classificação do comentário}: o comentário é classificado como \textit{positivo} caso a soma dos \textit{scores} positivos supere a soma dos \textit{scores} negativos, como \textit{negativo} caso a soma dos \textit{scores} negativos seja superior, ou como \textit{neutro} quando ambos os valores forem iguais.
+    \item \textbf{Detecção de candidato}: A identificação das menções a candidatos é realizada por meio de uma busca utilizando o nome de cada presidenciável nas frases comentadas.
+\end{enumerate}
+
+O módulo de \textbf{Visualização} é responsável pela apresentação dos resultados da análise por meio de uma interface web com painéis gráficos (\textit{dashboards}). A interface exibe o resumo geral da análise (quantidade e porcentagem de comentários positivos, negativos e neutros), bem como os resultados segmentados por candidato, permitindo uma compreensão intuitiva da percepção do público sobre cada candidato durante o debate.
+\subsection{Requisitos}
+
+\subsubsection{Requisitos funcionais}
+
+As informações consideradas para o levantamento dos requisitos funcionais foram obtidas através da análise das necessidades do usuário relacionado ao EleiSent.
+
+\begin{table}[!htbp]
+\centering
+\caption{Tabela de requisitos funcionais}
+\label{tab:req_funcionais}
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|c|p{11cm}|}
+\hline
+\multicolumn{2}{|c|}{\textbf{REQUISITOS FUNCIONAIS}} \\ \hline
+\textbf{RF} & \multicolumn{1}{c|}{\textbf{Descrição}} \\ \hline
+\textbf{RF-001} & O sistema deve possuir um conjunto pré-definido de vídeos de debates eleitorais do YouTube.\\ \hline
+\textbf{RF-002} & O sistema deve coletar automaticamente os comentários dos vídeos pré-configurados por meio da YouTube Data API v3. \\ \hline
+\textbf{RF-003} & O sistema deve extrair e armazenar informações complementares de cada vídeo analisado, como título, canal, data de publicação, número de visualizações, curtidas e total de comentários. \\ \hline
+\textbf{RF-004} & O sistema deve realizar o pré-processamento dos comentários coletados, removendo pontuações, emojis e caracteres especiais por meio de expressões regulares. \\ \hline
+\textbf{RF-005} & O sistema deve realizar a tokenização e a classificação gramatical (\textit{POS tagging}) dos comentários utilizando o modelo \texttt{pt\_core\_news\_lg} do spaCy. \\ \hline
+\textbf{RF-006} & O sistema deve realizar a lematização das palavras dos comentários, reduzindo-as às suas formas canônicas. \\ \hline
+\textbf{RF-007} & O sistema deve remover \textit{stopwords} da língua portuguesa dos comentários processados, utilizando a base do NLTK. \\ \hline
+\textbf{RF-008} & O sistema deve mapear os lemas em português para os \textit{synsets} correspondentes no WordNet, por meio do Open Multilingual WordNet. \\ \hline
+\textbf{RF-009} & O sistema deve calcular a polaridade de cada comentário com base nos escores de positividade e negatividade atribuídos pelo SentiWordNet. \\ \hline
+\textbf{RF-010} & O sistema deve classificar cada comentário como positivo, negativo ou neutro com base na comparação entre os escores acumulados. \\ \hline
+\textbf{RF-011} & O sistema deve identificar menções a candidatos nos comentários, utilizando um dicionário de palavras-chave pré-definido. \\ \hline
+\textbf{RF-012} & O sistema deve associar a classificação de sentimento de cada comentário ao respectivo candidato mencionado. \\ \hline
+\textbf{RF-013} & O sistema deve gerar um resumo geral dos sentimentos, exibindo a quantidade e a porcentagem de comentários positivos, negativos e neutros. \\ \hline
+\textbf{RF-014} & O sistema deve gerar um resumo de sentimentos segmentado por candidato. \\ \hline
+\textbf{RF-015} & O sistema deve exibir os resultados da análise por meio de painéis gráficos (\textit{dashboards}) na interface web. \\ \hline
+\end{tabular}
+\caption*{\footnotesize Fonte: Autor}
+\end{table}
+\subsubsection{Requisitos não funcionais}
+As informações obtidas para o levantamento dos requisitos não funcionais são de como o EleiSent deve ser para que seu funcionamento seja eficiente.
+\begin{table}[H]
+\centering
+\caption{Tabela de requisitos não funcionais}
+\label{tab:req_nao_funcionais}
+\footnotesize
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\multicolumn{2}{|c|}{\textbf{REQUISITOS NÃO FUNCIONAIS}} \\ \hline
+\textbf{RNF} & \multicolumn{1}{c|}{\textbf{Descrição}} \\ \hline
+\textbf{RNF-001} & O sistema deve ser desenvolvido utilizando a linguagem Python como linguagem principal. \\ \hline
+\textbf{RNF-002} & O sistema deve utilizar a biblioteca spaCy com o modelo \texttt{pt\_core\_news\_lg} para processamento linguístico em português. \\ \hline
+\textbf{RNF-003} & O sistema deve utilizar o NLTK para acesso ao WordNet, Open Multilingual WordNet e SentiWordNet. \\ \hline
+\textbf{RNF-004} & A interface web deve ser responsiva e compatível com os principais navegadores modernos. \\ \hline
+\textbf{RNF-005} & A chave de acesso à YouTube Data API v3 deve ser armazenada em variáveis de ambiente, não sendo exposta no código-fonte. \\ \hline
+\end{tabular}
+\caption*{\footnotesize Fonte: Autor}
+\end{table}
+
+\subsection{Avaliações}
+Para validar a aplicação proposta e verificar a qualidade dos resultados obtidos, serão realizadas avaliações em três frentes:
+
+\textbf{Testes funcionais}: verificação de que todas as funcionalidades descritas nos requisitos funcionais estão implementadas e funcionam conforme esperado, incluindo a coleta de comentários, o processamento linguístico, o cálculo de polaridade e a exibição dos resultados.
+
+\textbf{Avaliação da classificação de sentimentos}: comparação dos resultados obtidos pelo sistema com anotações manuais realizadas em uma amostra representativa de comentários, a fim de medir a acurácia, a precisão e a revocação da classificação de polaridade. Essa avaliação permitirá identificar limitações da abordagem léxica, especialmente em comentários com linguagem coloquial, ironia ou sarcasmo.
+
+\chapter{CRONOGRAMA DE ATIVIDADES}
+Neste capítulo, apresenta-se o cronograma de desenvolvimento do projeto, distribuindo as atividades ao longo do período letivo de fevereiro a dezembro de 2026.
+
+\begin{table}[htp]
+\centering
+\caption{Cronograma de atividades}
+\label{tab:cronograma}
+\scriptsize
+\setlength{\tabcolsep}{3.5pt} % reduz o espaçamento horizontal das colunas para caber na página
+\begin{tabular}{|p{4.2cm}|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\multirow{2}{*}{\textbf{Atividades}} & \multicolumn{11}{c|}{\textbf{2026}} \\ \cline{2-12} 
+ & \textbf{FEV} & \textbf{MAR} & \textbf{ABR} & \textbf{MAI} & \textbf{JUN} & \textbf{JUL} & \textbf{AGO} & \textbf{SET} & \textbf{OUT} & \textbf{NOV} & \textbf{DEZ} \\ \hline
+Revisão Bibliográfica & \textbf{X} & \textbf{X} & \textbf{X} & \textbf{X} & \textbf{X} & & & & & & \\ \hline
+Definição de escopo & \textbf{X} & \textbf{X} & & & & & & & & & \\ \hline
+Levantamento de Requisitos & & \textbf{X} & \textbf{X} & \textbf{X} & & & & & & & \\ \hline
+Configuração do projeto & & & \textbf{X} & \textbf{X} & \textbf{X} & & & & & & \\ \hline
+Armazenamento de dados & & & & \textbf{X} & \textbf{X} & \textbf{X} & & & & & \\ \hline
+Criação de Servidor & & & & & \textbf{X} & \textbf{X} & \textbf{X} & & & & \\ \hline
+Implementação do Protótipo & & \textbf{X} & \textbf{X} & \textbf{X} & \textbf{X} & \textbf{X} & \textbf{X} & \textbf{X} & \textbf{X} & & \\ \hline
+Avaliação de Usabilidade & & & & & & & & & \textbf{X} & \textbf{X} & \\ \hline
+Escrita da Monografia & & & \textbf{X} & \textbf{X} & \textbf{X} & \textbf{X} & \textbf{X} & \textbf{X} & \textbf{X} & \textbf{X} & \textbf{X} \\ \hline
+Apresentação & & & & & & & & & & & \textbf{X} \\ \hline
+\end{tabular}
+\caption*{\footnotesize Fonte: Autor}
+\end{table}
+
+\chapter{Resultados esperados }
+Com o decorrer deste trabalho, espera-se que seja desenvolvida uma aplicação web que seja capaz de proporcionar a extração e a análise de sentimentos em comentários de debates políticos eleitorais no YouTube, por meio de técnicas de Processamento de Linguagem Natural (PLN) que tornem o processo de classificação claro, eficaz e rápido. Também esperamos que a ferramenta, denominada EleiSent, obtenha bons resultados nos testes de avaliação de usabilidade e de acurácia na classificação da polaridade das manifestações públicas.
+
+Ademais, espera-se que o EleiSent não apenas seja uma ferramenta capaz de classificar tais comentários, mas também desempenhe um papel crucial no entendimento da opinião pública expressa nos debates. Esta aplicação poderá preencher as lacunas existentes na análise de grandes volumes de dados textuais, superando as limitações do processamento manual de comentários por meio do processamento computacional automatizado \cite{Munger2025}. E, com isso, no futuro, este projeto possa ser expandido para analisar outras mídias sociais e pleitos eleitorais, contribuindo de forma mais abrangente para os campos de comunicação política e processamento de linguagem natural.
+\postextual
+
+\bibliography{Referencias}
+
+\end{document}

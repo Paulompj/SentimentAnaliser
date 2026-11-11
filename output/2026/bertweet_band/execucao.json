@@ -1,0 +1,154 @@
+{
+  "created_at_utc": "2026-11-10T04:00:29.433269+00:00",
+  "source_manifest": [
+    {
+      "bloco": "1 parte",
+      "arquivo": "1_parte_4293a634.csv",
+      "registros": 124,
+      "sha256": "82acf5da4f576bb7ee0510394e1f1c1e422e6b6700cc6d71f64017d6a04bc4b6"
+    },
+    {
+      "bloco": "Bloco 1 - Livre",
+      "arquivo": "bloco_1_livre_e240e9f2.csv",
+      "registros": 11291,
+      "sha256": "f91260942f75bd99b3fbea02c049b1b0a450a8487c03fe9953c0ee4ddb0d171b"
+    },
+    {
+      "bloco": "Bloco 2",
+      "arquivo": "bloco_2_b578deb7.csv",
+      "registros": 4347,
+      "sha256": "0eda20b82caa391a187ab4adf31992676570e9d23b998268f58a04a30ff89b38"
+    },
+    {
+      "bloco": "Bloco 3",
+      "arquivo": "bloco_3_75718f6a.csv",
+      "registros": 6509,
+      "sha256": "ec495b70ab878754bed15830bdcbaa0c65fafef962ae1192fab0b9364a0fc5b3"
+    },
+    {
+      "bloco": "consideracoes",
+      "arquivo": "consideracoes_6f0d822a.csv",
+      "registros": 2251,
+      "sha256": "0b349ac302d56d8202b1f90a2afb7b28cb890e28e9548f1ff6835a884c1635a8"
+    }
+  ],
+  "source_index_sha256": "8aabda3ce99df1c722dbc2c65255e3ded1eed9ee7e35da5efe61869bf9255f7c",
+  "lacunas_coleta_sha256": "2afb1625941e74f39a43fd78e786d47defea1cbd2e364a191736ec7a9bbfc736",
+  "model_id": "pysentimiento/bertweet-pt-sentiment",
+  "model_revision": "726612815d49447cbfe3f55bbfc2993c1f5fad10",
+  "torch_version": "2.14.1+cpu",
+  "transformers_version": "4.57.6",
+  "preprocessing_sha256": "f32e02038a799786c7490a2673aadf97324d33901e7267aab909958c703ca4fd",
+  "maximum_model_tokens": 128,
+  "batch_size": 8,
+  "batch_benchmark_seconds": {
+    "8": 4.885,
+    "16": 6.02,
+    "24": 6.447
+  },
+  "minimum_candidate_proxy_probability": 0.6,
+  "sample_equivalence": {
+    "mensagens_conferidas": 500,
+    "maior_diferenca_probabilidade": 5.478820800375317e-07,
+    "fonte_sha256": "765183d2705f1f4dc56a71b1fe9dc36de22a6be931cfe22cb53d32a60490801b"
+  },
+  "total_messages": 24522,
+  "common_text_messages": 23594,
+  "superchats_with_comment": 649,
+  "excluded_messages": 279,
+  "unique_inference_texts": 17442,
+  "new_inference_texts_after_sample": 16766,
+  "truncated_common_messages": 3,
+  "truncated_superchats": 1,
+  "blocks": [
+    {
+      "bloco": "1 parte",
+      "arquivo_origem": "1_parte_4293a634.csv",
+      "total_registros": 124,
+      "mensagens_texto": 117,
+      "superchats_com_comentario": 3,
+      "superchats_sem_comentario": 4,
+      "stickers": 0,
+      "outros_excluidos": 0,
+      "positivo_texto": 38,
+      "neutro_texto": 52,
+      "negativo_texto": 27,
+      "positivo_superchat": 0,
+      "neutro_superchat": 1,
+      "negativo_superchat": 2
+    },
+    {
+      "bloco": "Bloco 1 - Livre",
+      "arquivo_origem": "bloco_1_livre_e240e9f2.csv",
+      "total_registros": 11291,
+      "mensagens_texto": 10789,
+      "superchats_com_comentario": 348,
+      "superchats_sem_comentario": 124,
+      "stickers": 30,
+      "outros_excluidos": 0,
+      "positivo_texto": 1726,
+      "neutro_texto": 5171,
+      "negativo_texto": 3892,
+      "positivo_superchat": 29,
+      "neutro_superchat": 136,
+      "negativo_superchat": 183
+    },
+    {
+      "bloco": "Bloco 2",
+      "arquivo_origem": "bloco_2_b578deb7.csv",
+      "total_registros": 4347,
+      "mensagens_texto": 4193,
+      "superchats_com_comentario": 106,
+      "superchats_sem_comentario": 39,
+      "stickers": 9,
+      "outros_excluidos": 0,
+      "positivo_texto": 671,
+      "neutro_texto": 2081,
+      "negativo_texto": 1441,
+      "positivo_superchat": 5,
+      "neutro_superchat": 34,
+      "negativo_superchat": 67
+    },
+    {
+      "bloco": "Bloco 3",
+      "arquivo_origem": "bloco_3_75718f6a.csv",
+      "total_registros": 6509,
+      "mensagens_texto": 6298,
+      "superchats_com_comentario": 151,
+      "superchats_sem_comentario": 55,
+      "stickers": 5,
+      "outros_excluidos": 0,
+      "positivo_texto": 937,
+      "neutro_texto": 3342,
+      "negativo_texto": 2019,
+      "positivo_superchat": 16,
+      "neutro_superchat": 71,
+      "negativo_superchat": 64
+    },
+    {
+      "bloco": "consideracoes",
+      "arquivo_origem": "consideracoes_6f0d822a.csv",
+      "total_registros": 2251,
+      "mensagens_texto": 2197,
+      "superchats_com_comentario": 41,
+      "superchats_sem_comentario": 11,
+      "stickers": 2,
+      "outros_excluidos": 0,
+      "positivo_texto": 401,
+      "neutro_texto": 1089,
+      "negativo_texto": 707,
+      "positivo_superchat": 6,
+      "neutro_superchat": 17,
+      "negativo_superchat": 18
+    }
+  ],
+  "substantive_blocks": [
+    "Bloco 1 - Livre",
+    "Bloco 2",
+    "Bloco 3",
+    "consideracoes"
+  ],
+  "interpretation": "Sentimento geral do texto. Atribuições a candidatos são aproximações exploratórias, não apoio político.",
+  "coverage_note": "Existe lacuna documentada durante o Bloco 2; proporções descrevem apenas mensagens capturadas.",
+  "validation_note": "A equivalência com 500 previsões anteriores não mede acurácia; rótulos humanos estão vazios."
+}

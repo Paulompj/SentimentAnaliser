@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "analise-sentimentos-debates"
+version = "0.1.0"
+description = "Análise de sentimento de comentários e chats de debates"
+requires-python = ">=3.10"
+
+[project.scripts]
+analise-wordnet = "analise_sentimentos.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["analise_sentimentos*"]
+
+[tool.setuptools.package-data]
+analise_sentimentos = ["web/*.html", "web/*.css", "web/*.js"]
