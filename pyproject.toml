@@ -7,12 +7,20 @@ name = "analise-sentimentos-debates"
 version = "0.1.0"
 description = "Análise de sentimento de comentários e chats de debates"
 requires-python = ">=3.10"
+dynamic = ["dependencies", "optional-dependencies"]
 
 [project.scripts]
 analise-wordnet = "analise_sentimentos.cli:main"
 
 [tool.setuptools.packages.find]
 include = ["analise_sentimentos*"]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[tool.setuptools.dynamic.optional-dependencies]
+modelo = {file = ["requirements-modelo.txt"]}
+docs = {file = ["requirements-docs.txt"]}
 
 [tool.setuptools.package-data]
 analise_sentimentos = ["web/*.html", "web/*.css", "web/*.js"]

@@ -58,11 +58,6 @@ function render(state) {
     (phase === "idle" ? "Assim que o coletor for iniciado com o link, o status aparecerá aqui." : "");
   $("phaseDot").className = `phase-dot phase-${phase}`;
   $("staleWarning").hidden = !state.stale;
-  const gaps = state.gaps || [];
-  $("coverageWarning").hidden = gaps.length === 0;
-  $("coverageText").textContent = gaps.map(gap =>
-    `${formatDate(gap.last_message_before_utc)} até ${formatDate(gap.first_message_after_utc)}`
-  ).join("; ");
   $("lastUpdate").textContent = `Última atualização: ${formatDate(state.status_updated_at_utc)}`;
   $("messages").textContent = count.format(state.total_messages || 0);
   $("pages").textContent = count.format(state.pages || 0);

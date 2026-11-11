@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EleiSent · Termômetro do debate</title>
+  <link rel="stylesheet" href="resultados.css">
+  <link rel="stylesheet" href="termometro.css">
+  <link rel="stylesheet" href="participacao.css">
+  <script src="bertweet_metrics.js" defer></script>
+  <script src="participacao.js" defer></script>
+  <script src="resultados.js" defer></script>
+</head>
+<body>
+  <header class="masthead">
+    <div class="shell header-line"><a href="/resultados" class="brand"><span class="brand-mark">E</span> EleiSent <span class="brand-separator">/</span> Band · Debate de 2026</a></div>
+    <div class="shell hero"><div><p class="eyebrow">BAND · CHAT DE 2026 · ANÁLISE EXPLORATÓRIA</p><h1 class="project-title">EleiSent<span>O sentimento do debate em perspectiva.</span></h1><p class="hero-text">Um termômetro das mensagens associadas a cada candidato.<br>Explore as previsões, os emojis e os limites da interpretação.</p></div></div>
+  </header>
+  <main class="shell">
+    <div id="loadStatus" class="notice" role="status">Lendo as previsões auditadas…</div>
+    <div id="dashboard" hidden>
+      <nav class="tabs" aria-label="Seções do painel"><button class="tab active" data-view="overview" aria-pressed="true">01 <span>Termômetro</span></button><button class="tab" data-view="language" aria-pressed="false">02 <span>Emojis & ironia</span></button><button class="tab" data-view="participation" aria-pressed="false">03 <span>Participação</span></button></nav>
+      <section class="filter-bar" aria-label="Filtros da análise">
+        <label>Recorte do debate<select id="blockFilter"><option value="main">Quatro blocos principais</option></select></label>
+        <div class="filter-checks"><label><input id="paidFilter" type="checkbox"> Incluir Super Chats</label><label><input id="emojiFilter" type="checkbox"> Somente mensagens com emoji</label></div>
+        <button id="resetFilters" class="button subtle">Restaurar</button>
+      </section>
+      <p id="scopeText" class="scope-text"></p>
+      <section id="overview" class="view">
+        <div class="section-heading"><div><p class="eyebrow dark">LEITURA POR CANDIDATO</p><h2>Entre o positivo e o negativo</h2></div><span class="tag">Contagem por mensagem</span></div>
+        <p class="method-line">O termômetro considera as mensagens positivas e negativas associadas a cada candidato pelas regras da análise. As contagens descrevem o sentimento das mensagens capturadas.</p>
+        <div id="candidateCards" class="candidate-grid"></div>
+        <div class="formula"><strong>Como ler o termômetro</strong><p>O marcador compara a quantidade de mensagens positivas e negativas. Os percentuais usam a soma dessas duas categorias. Essa leitura descreve mensagens classificadas; não mede votos, aprovação ou intenção política.</p></div>
+        <div class="overview-grid"><section class="card"><p class="eyebrow dark">TEXTO INTEIRO</p><h3>Sentimento geral do recorte</h3><div id="generalBar" class="stacked-bar" aria-label="Distribuição do sentimento geral"></div><div id="generalLegend" class="general-legend"></div><p class="footnote">Inclui mensagens sem referência aos candidatos. As mesmas pessoas podem publicar várias mensagens.</p></section><section class="card coverage-card"><p class="eyebrow dark">CONTEXTO DOS DADOS</p><h3>Uma leitura com limites</h3><div class="context-metrics"><div><strong id="emojiCount">—</strong><span>mensagens com emojis</span></div><div><strong id="cueCount">—</strong><span>com possíveis pistas de ironia</span></div><div><strong id="uniqueCount">—</strong><span>textos distintos</span></div></div><p class="footnote">Pistas são marcas como “sqn”, “confia”, 🙄 ou 🤡; elas não comprovam ironia.</p></section></div>
+        <section class="card explorer"><div class="section-heading"><div><p class="eyebrow dark">RASTREABILIDADE</p><h3>Veja as mensagens por trás dos números</h3></div><button id="exportCsv" class="button">Exportar seleção</button></div><div class="explorer-filters"><label>Buscar no texto<input id="searchText" type="search" placeholder="Ex.: Lula, Flávio, debate…"></label><label>Referência<select id="targetFilter"><option value="all">Todas as mensagens</option><option value="lula">Menção a Lula</option><option value="flavio">Menção a Flávio</option></select></label><label>Rótulo<select id="labelFilter"><option value="all">Todos</option><option value="positivo">Positivo</option><option value="negativo">Negativo</option><option value="neutro">Neutro</option><option value="incerto">Incerto (por candidato)</option></select></label></div><p id="tableNote" class="footnote"></p><div class="table-wrap"><table><thead><tr><th>Mensagem / bloco</th><th>Frase inteira</th><th>Lula</th><th>Flávio</th><th>Inspecionar</th></tr></thead><tbody id="messageRows"></tbody></table></div><div class="pagination"><span id="pageText"></span><div><button id="prevPage" class="button subtle">Anterior</button><button id="nextPage" class="button subtle">Próxima</button></div></div></section>
+      </section>
+      <section id="language" class="view" hidden>
+        <div class="section-heading"><div><p class="eyebrow dark">EXEMPLOS CONTROLADOS</p><h2>Um mesmo elogio, pistas diferentes</h2></div><label class="inline-label">Exemplo<select id="exampleCandidate"><option value="Lula">Lula</option><option value="Flávio">Flávio</option><option value="isolated">Emojis e risada isolados</option></select></label></div><p class="method-line">Frases construídas para inspecionar o comportamento; não fazem parte das contagens do chat. Clique em “Ver entrada e tokens” para conferir o caminho completo.</p><div id="diagnosticCases" class="diagnostic-grid"></div>
+        <section class="irony-note spaced"><span class="big-symbol" aria-hidden="true">“</span><div><p class="eyebrow dark">A IRONIA CONTINUA EM ABERTO</p><h3>Entender a palavra não basta para entender a intenção.</h3><p>Um elogio literal pode virar crítica em “muito bem, só que não”. O modelo pode reagir à contradição, mas não tem um detector de ironia neste pipeline. Mesmo uma previsão com 99% pode interpretar a frase ao pé da letra ou atribuir a crítica ao alvo errado.</p><p>O projeto pysentimiento oferece ironia como outra tarefa, com outro modelo. Para avaliar seu chat, é preciso rotular exemplos humanos de ironia e sentimento dirigido aos candidatos; a presença de 🙄 ou “kk” sozinha não resolve essa avaliação.</p></div></section>
+      </section>
+      <section id="participation" class="view" hidden>
+        <div class="section-heading"><div><p class="eyebrow dark">CONTAS, MENSAGENS E TEMPO</p><h2>Quem participou, quando e como</h2></div><span class="tag">Quatro blocos principais</span></div>
+        <p class="method-line">Comportamento textual observado no chat capturado da Band de 2026. Uma única ocorrência no recorte não significa que a conta comentou apenas uma vez no chat inteiro.</p>
+        <div id="participationContent"><p class="notice" role="status">Preparando os indicadores de participação…</p></div>
+      </section>
+    </div>
+  </main>
+  <footer class="shell"><span>EleiSent / Observatório do debate</span><span>Sentimento de mensagens capturadas · resultados exploratórios</span></footer>
+  <dialog id="inspector"><div class="dialog-header"><h2>Por dentro da previsão</h2><button id="closeInspector" class="button subtle">Fechar</button></div><div id="inspectorContent"></div></dialog>
+  <dialog id="accountDialog"><div class="dialog-header"><h2 id="accountDialogTitle">Sequência capturada</h2><button id="closeAccountDialog" class="button subtle">Fechar</button></div><div id="accountDialogContent"></div></dialog>
+</body>
+</html>

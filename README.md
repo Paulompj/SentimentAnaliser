@@ -20,7 +20,7 @@ analiseSentimentos/
 ├── scripts/                 # comandos de coleta, classificação e utilitários
 ├── tests/                   # testes automatizados
 ├── docs/                    # guias, TCC, referências e experimentos antigos
-└── output/                  # bases e resultados, ignorados pelo Git
+└── output/                  # bases e resultados versionados
 ```
 
 `.env` e `.venv/` permanecem na raiz. Os scripts em `docs/experimentos/` não são
@@ -29,7 +29,8 @@ slides são material de apresentação e devem ser conferidos com o fluxo atual
 antes de serem usados como descrição da metodologia.
 
 As bases de comentários e rótulos permanecem em `output/` e `output/2026/`.
-Essa pasta é ignorada pelo Git: clonar o repositório não copia essas bases.
+Os arquivos atualmente versionados são copiados ao clonar o repositório.
+O checkpoint SQLite e os caches de modelos são ignorados pelo Git.
 
 Este projeto investiga comentários relacionados ao debate do segundo turno
 transmitido pela Band em 16/10/2022, desde as **20h até três horas após a
@@ -59,14 +60,80 @@ não configura uma coleta nova nem altera os resultados de 2022.
 No PowerShell, na pasta do projeto:
 
 ```powershell
+py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe -m nltk.downloader stopwords wordnet sentiwordnet omw-2.0
+.\.venv\Scripts\python.exe -m nltk.downloader -d .venv\nltk_data stopwords wordnet sentiwordnet omw-2.0
 ```
 
-Se ainda não houver `.venv`, crie-o com `py -m venv .venv`. Configure
+Use Python 3.12 e Node.js 22 ou superior. Crie a `.venv` apenas na primeira
+instalação. Configure
 `YOUTUBE_API_KEY` em `.env`, usando `.env.example` como referência.
 
+Para instalar também o classificador Transformers e os utilitários de PDF e
+PowerPoint, registre o pacote em modo editável com os dois grupos opcionais:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -e ".[modelo,docs]"
+```
+
+As dependências dos utilitários também estão em `requirements-docs.txt`.
+As 78 versões de dependências do ambiente validado no Windows com Python 3.12
+estão registradas em `requirements-lock-windows-py312.txt`; esse snapshot é
+específico dessa plataforma.
+O painel usa apenas módulos nativos do Node.js e pode ser iniciado com
+`npm start` ou `node scripts/servir_painel.js`. Não precisa de `npm install`.
+
+Para validar o ambiente sem coletar dados ou substituir resultados:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip check
+.\.venv\Scripts\python.exe -m unittest discover -s tests -v
+node --test tests/test_rotulacao_chat.js tests/test_web_routes.js tests/test_bertweet_dashboard.js
+```
+
 ## Coleta e análise
+
+### Painel BERTweet: termômetros, emojis e validação
+
+Para conferir os resultados existentes da Band e preparar o painel:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\validar_bertweet.py
+node scripts\servir_painel.js
+```
+
+Abra **http://127.0.0.1:8765/resultados**. A tela mostra termômetros para
+Lula e Flávio com suas fotos, contagens positivas e negativas nos termômetros,
+filtros por bloco principal, Super Chats e presença de emojis, além de uma tabela
+com busca, inspeção do texto preparado e exportação do recorte.
+
+A posição do marcador compara mensagens positivas e negativas; o índice
+numérico e os textos de predominância não são exibidos. O padrão
+exclui os Super Chats; o bloco experimental não é oferecido no painel.
+Os rótulos publicados são usados sem um novo filtro de probabilidade.
+A polaridade da frase só é
+associada a um candidato pela regra nominal conservadora existente. Essa
+leitura não estima apoio, aprovação ou intenção de voto.
+O endereço inicial `/` redireciona para `/resultados`, dedicado à Band de
+2026. As telas da análise de 2022 e de rotulação não são servidas pelo painel.
+
+**Emojis & ironia** apresenta frases construídas com o mesmo modelo,
+o texto efetivamente recebido pelo tokenizer e suas subpalavras. A inspeção
+explica a marca interna `@@` de continuação dos tokens BPE. As pistas de possível ironia são
+heurísticas para revisão; não constituem um detector de ironia.
+
+A auditoria separa a consistência técnica da acurácia ainda não medida com
+rótulos humanos e é mantida nos arquivos, sem uma aba de validação na interface.
+O comando confere todas as saídas e
+reexecuta a amostra anterior mais uma amostra estratificada dos resultados.
+Ele grava `auditoria.json` e `painel.json` em
+`output/2026/bertweet_validacao/`, preservando os arquivos originais. O
+servidor verifica os hashes de entrada e recusa uma auditoria desatualizada.
+Depois de modificar as classificações ou preencher rótulos humanos, rode o
+comando novamente. `--sem-inferencia` executa apenas a conferência dos
+arquivos e deixa os experimentos do modelo vazios.
+
+Veja os [resultados e limites da validação](docs/VALIDACAO_BERTWEET.md).
 
 ### Debate de 2026: chat ao vivo
 
@@ -102,7 +169,7 @@ mensagens. Se um clique atrasar em relação à fala real do debate, confira os
 horários antes da análise e ajuste `blocos.json` para corrigir o recorte.
 
 Interrupções observadas na coleta ficam documentadas em
-`output/2026/lacunas_coleta.json` e aparecem no painel. Um intervalo sem
+`output/2026/lacunas_coleta.json`. Um intervalo sem
 registros não deve ser interpretado como ausência de mensagens no chat.
 
 Ele espera o chat ficar ativo, consulta `liveChatMessages.list` usando o
@@ -131,9 +198,8 @@ tipo da mensagem; a análise de opinião deverá selecionar `textMessageEvent`.
 
 ### Rotulação manual do chat de 2026
 
-Com o painel local ligado (`node scripts/servir_painel.js`), abra
-`http://127.0.0.1:8765/rotulacao`. Na primeira visita, o projeto cria
-`output/2026/rotulacao_chat_2026.csv` com 500 mensagens de texto distintas:
+A tela de rotulação foi retirada da interface atual. O arquivo existente
+`output/2026/rotulacao_chat_2026.csv` preserva 500 mensagens de texto distintas:
 125 de cada bloco substantivo. O bloco experimental de sete segundos (`1 parte`)
 fica fora da amostra. A seleção usa uma semente fixa e equilibra menções
 aproximadas a Lula, Flávio, ambos e outras mensagens. A regra de seleção fica
@@ -143,9 +209,8 @@ Para cada mensagem, escolha um rótulo para **Lula** e outro para **Flávio**:
 `sem_referencia`, `positivo`, `negativo`, `neutro`, `misto` ou `incerto`.
 `Sem referência` significa que a mensagem não avalia aquele candidato;
 `neutro` significa que o cita sem avaliação; `incerto` significa que o texto
-não permite decidir. Clique em **Salvar e continuar** para gravar no CSV.
-O progresso e o botão **Baixar CSV da rotulação** estão na própria tela.
-Reabrir a página não substitui os rótulos já salvos.
+não permite decidir. Esses campos podem ser preenchidos diretamente no CSV,
+preservando IDs, textos e demais metadados.
 
 Essa amostra foi criada para construir e avaliar modelos. Como equilibra
 blocos e menções, suas proporções não estimam a distribuição real de opiniões
@@ -198,8 +263,14 @@ Para classificar as mensagens capturadas nos cinco CSVs de
 `output/2026/blocos/`, execute:
 
 ```powershell
+.\.venv\Scripts\python.exe scripts\preparar_modelo.py
 .\.venv\Scripts\python.exe scripts\classificar_blocos_band.py
 ```
+
+Execute `preparar_modelo.py` uma vez por ambiente para baixar e verificar a
+revisão fixada no cache `.cache_huggingface/` (cerca de 540 MB). O classificador
+dos blocos usa somente o cache local; instalar `torch` e `transformers` não
+baixa os pesos do modelo.
 
 O comando usa a revisão do BERTweet já aplicada à amostra de 500 mensagens e
 confere se suas previsões continuam equivalentes antes de avançar. Classifica
@@ -303,27 +374,13 @@ escore lexical aparecem sem synset e contribuem com zero. Não some diretamente
 as linhas de `synsets.csv`: a contribuição de um termo se repete em cada linha
 dos seus synsets.
 
-### Painel para filtrar a análise detalhada
+### Interface atual
 
-Depois que `output/analise_detalhada.jsonl` existir, execute na raiz do projeto:
-
-```powershell
-node scripts\servir_painel.js
-```
-
-Abra `http://127.0.0.1:8765` no navegador. O painel carrega o JSONL local
-automaticamente e permite filtrar por ID, texto, sentimento, período, data,
-scores totais, palavra/lema, classe gramatical, negação e synsets. Clique em
-`+` na linha para ver as contribuições de cada termo e os scores de seus
-synsets. Também é possível ordenar, ocultar colunas, paginar e exportar os
-resultados filtrados em CSV. Pare o servidor com `Ctrl+C`.
-
-O servidor escuta apenas em `127.0.0.1` e expõe somente os arquivos do painel
-e o JSONL. Ele usa apenas módulos internos do Node.js, sem `npm install`.
-Se preferir abrir `analise_sentimentos/web/index.html` diretamente, selecione o JSONL no
-botão **Abrir outro JSONL**; nessa modalidade o navegador não consegue carregar
-o arquivo padrão automaticamente. O painel lê resultados já gerados e não
-chama a API nem executa o modelo novamente.
+O servidor local apresenta os resultados BERTweet da Band de 2026 em
+`http://127.0.0.1:8765/resultados`. O endereço inicial redireciona para essa
+tela. A interface histórica de 2022 e a tela de rotulação foram retiradas do
+servidor; arquivos e ferramentas de pesquisa anteriores permanecem no
+repositório para consulta. O servidor usa apenas módulos internos do Node.js.
 
 ### Fonte externa de chat
 

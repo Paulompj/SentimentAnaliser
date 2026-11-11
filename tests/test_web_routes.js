@@ -35,9 +35,27 @@ test("o painel serve os arquivos movidos para o pacote", async t => {
     }),
   ]).finally(() => clearTimeout(timeout));
 
-  for (const route of ["/", "/coleta", "/rotulacao", "/app.js"]) {
+  for (const route of ["/", "/coleta", "/resultados", "/resultados.css", "/termometro.css", "/resultados.js", "/bertweet_metrics.js"]) {
     const response = await fetch(`http://127.0.0.1:${port}${route}`);
     assert.equal(response.status, 200, route);
     assert.ok((await response.text()).length > 0, route);
+  }
+  const home = await fetch(`http://127.0.0.1:${port}/`, { redirect: "manual" });
+  assert.equal(home.status, 302);
+  assert.equal(home.headers.get("location"), "/resultados");
+  for (const route of ["/rotulacao", "/rotulacao.js", "/rotulacao.css", "/api/rotulacao", "/api/rotulacao.csv", "/app.js", "/dados"]) {
+    const response = await fetch(`http://127.0.0.1:${port}${route}`);
+    assert.equal(response.status, 404, route);
+  }
+  const writeLabels = await fetch(`http://127.0.0.1:${port}/api/rotulacao`, {
+    method: "POST", headers: { "Content-Type": "application/json" }, body: "{}",
+  });
+  assert.equal(writeLabels.status, 404);
+  for (const route of ["/assets/lula.jpg", "/assets/flavio.jpg"]) {
+    const response = await fetch(`http://127.0.0.1:${port}${route}`);
+    assert.equal(response.status, 200, route);
+    assert.equal(response.headers.get("content-type"), "image/jpeg");
+    const bytes = new Uint8Array(await response.arrayBuffer());
+    assert.deepEqual([...bytes.slice(0, 2)], [0xff, 0xd8], "JPEG esperado");
   }
 });

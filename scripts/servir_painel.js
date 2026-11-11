@@ -6,21 +6,22 @@ const fs = require("node:fs");
 const path = require("node:path");
 const { randomUUID } = require("node:crypto");
 const { blockFilename, exportChatBlock } = require("./chat_block_export");
-const { ensureAnnotations, saveAnnotation } = require("./rotulacao_chat");
+const { readDashboard } = require("./bertweet_dashboard");
 
 const root = path.resolve(__dirname, "..");
 const blocksPath = path.join(root, "output/2026/blocos.json");
 const routes = new Map([
-  ["/", ["analise_sentimentos/web/index.html", "text/html; charset=utf-8"]],
+  ["/resultados", ["analise_sentimentos/web/resultados.html", "text/html; charset=utf-8"]],
+  ["/resultados.css", ["analise_sentimentos/web/resultados.css", "text/css; charset=utf-8"]],
+  ["/termometro.css", ["analise_sentimentos/web/termometro.css", "text/css; charset=utf-8"]],
+  ["/assets/lula.jpg", ["Assets/Lula foto Oficial.jpg", "image/jpeg"]],
+  ["/assets/flavio.jpg", ["Assets/Flavio foto oficial.jpg", "image/jpeg"]],
+  ["/resultados.js", ["analise_sentimentos/web/resultados.js", "text/javascript; charset=utf-8"]],
+  ["/bertweet_metrics.js", ["analise_sentimentos/web/bertweet_metrics.js", "text/javascript; charset=utf-8"]],
   ["/coleta", ["analise_sentimentos/web/coleta.html", "text/html; charset=utf-8"]],
-  ["/rotulacao", ["analise_sentimentos/web/rotulacao.html", "text/html; charset=utf-8"]],
   ["/style.css", ["analise_sentimentos/web/style.css", "text/css; charset=utf-8"]],
-  ["/app.js", ["analise_sentimentos/web/app.js", "text/javascript; charset=utf-8"]],
   ["/coleta.css", ["analise_sentimentos/web/coleta.css", "text/css; charset=utf-8"]],
   ["/coleta.js", ["analise_sentimentos/web/coleta.js", "text/javascript; charset=utf-8"]],
-  ["/rotulacao.css", ["analise_sentimentos/web/rotulacao.css", "text/css; charset=utf-8"]],
-  ["/rotulacao.js", ["analise_sentimentos/web/rotulacao.js", "text/javascript; charset=utf-8"]],
-  ["/dados", ["output/analise_detalhada.jsonl", "application/x-ndjson; charset=utf-8"]],
   ["/chat-csv", ["output/2026/chat_ao_vivo.csv", "text/csv; charset=utf-8"]],
   ["/rotulacao-automatica.csv", ["output/2026/rotulacao_automatica_chat_2026.csv", "text/csv; charset=utf-8"]],
 ]);
@@ -81,34 +82,17 @@ function readSmallJson(request) {
 
 http.createServer(async (request, response) => {
   const pathname = new URL(request.url, "http://localhost").pathname;
-  if (pathname === "/api/rotulacao") {
-    const output = path.join(root, "output/2026");
-    if (request.method === "GET") {
-      try { sendJson(response, 200, { rows: ensureAnnotations(output).rows }); }
-      catch (error) { sendJson(response, 500, { error: error.message }); }
-    } else if (request.method === "POST") {
-      const origin = request.headers.origin;
-      if (origin && origin !== `http://127.0.0.1:${port}`) {
-        sendJson(response, 403, { error: "Origem inválida" }); return;
-      }
-      try {
-        const row = saveAnnotation(output, await readSmallJson(request));
-        sendJson(response, 200, { row });
-      } catch (error) { sendJson(response, error.status || 400, { error: error.message }); }
-    } else sendJson(response, 405, { error: "Método inválido" });
+  if (pathname === "/" && ["GET", "HEAD"].includes(request.method)) {
+    response.writeHead(302, { "Location": "/resultados", "Cache-Control": "no-store" });
+    response.end();
     return;
   }
-  if (pathname === "/api/rotulacao.csv") {
+  if (["/api/bertweet", "/bertweet-auditoria.json"].includes(pathname)) {
     if (request.method !== "GET") { sendJson(response, 405, { error: "Método inválido" }); return; }
     try {
-      const { path: csvPath } = ensureAnnotations(path.join(root, "output/2026"));
-      const stat = fs.statSync(csvPath);
-      response.writeHead(200, { "Content-Type": "text/csv; charset=utf-8",
-        "Content-Length": stat.size, "Cache-Control": "no-store",
-        "Content-Disposition": "attachment; filename=rotulacao_chat_2026.csv",
-        "X-Content-Type-Options": "nosniff" });
-      fs.createReadStream(csvPath).pipe(response);
-    } catch (error) { sendJson(response, 500, { error: error.message }); }
+      const data = readDashboard(root);
+      sendJson(response, 200, pathname === "/api/bertweet" ? data : data.audit);
+    } catch (error) { sendJson(response, error.status || 500, { error: error.message }); }
     return;
   }
   if (pathname === "/api/blocks") {

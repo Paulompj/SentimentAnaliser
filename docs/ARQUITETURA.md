@@ -74,5 +74,6 @@ Para processar novamente um CSV de 2022 sem substituir os resultados atuais:
 
 Os comentários, análises e rótulos de 2022 continuam em `output/`. O chat,
 os blocos e os rótulos de 2026 continuam em `output/2026/`; os dados da Globo
-ficam em `output/2026/globo/`. `output/` segue ignorada pelo Git, portanto é
-necessário copiá-la separadamente ao transferir ou clonar o repositório.
+ficam em `output/2026/globo/`. Os dados atualmente versionados em `output/`
+são incluídos no clone. O checkpoint SQLite e os caches de modelos são
+ignorados pelo Git e precisam ser preparados novamente em outro ambiente.
