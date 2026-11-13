@@ -1,0 +1,25 @@
+% Versão 1: redação acadêmica habitual, revista com research-paper-writing.
+% Contém apenas a introdução; referências em Referencias_Introducao_Transformers.bib.
+
+\chapter{Introdução}
+
+% Papel: tarefa, aplicação e recorte.
+Este trabalho classifica a polaridade das mensagens capturadas no chat ao vivo de um debate transmitido pela Band no YouTube em outubro de 2026. Cada mensagem textual recebe uma previsão positiva, neutra ou negativa; os horários de publicação permitem examinar a distribuição dessas classes nos blocos do evento. A análise de comentários em vídeos de debates já foi empregada para investigar discussões políticas na plataforma \cite{Eaton2024}. O chat ao vivo oferece outro recorte: registra manifestações durante a transmissão e exige que o pesquisador delimite quais períodos foram efetivamente cobertos pela coleta.
+
+% Papel: trabalho anterior e desafio técnico do novo recorte.
+A etapa inicial do EleiSent aplicou WordNet e SentiWordNet a comentários associados a um debate de 2022. Essa implementação e suas bases foram preservadas, mas o chat de 2026 apresenta uma fonte e um período diferentes. Suas mensagens são curtas e podem conter abreviações, repetições, emojis e ironia. Há também um problema de alvo semântico: a avaliação expressa em uma frase pode se referir à transmissão, a um candidato ou a outro assunto mencionado no mesmo texto. Classificar a polaridade da mensagem inteira, portanto, não resolve automaticamente a identificação de quem recebe o elogio ou a crítica. A pesquisa anterior com WordNet não foi avaliada nesse chat, de modo que sua eficácia relativa aqui permanece desconhecida.
+
+% Papel: solução aplicada e fundamento da escolha do modelo.
+Para classificar as mensagens de 2026, o projeto utiliza \texttt{pysentimiento/bertweet-pt-sentiment}, modelo baseado em Transformers que prevê as três classes de polaridade \cite{PysentimientoBertweetPT}. A arquitetura Transformer foi apresentada por \citeonline{Vaswani2017}. A base do classificador é o BERTabaporu, pré-treinado em publicações do Twitter em português brasileiro \cite{Costa2023}. O pré-treinamento em textos de redes sociais fundamenta a escolha para uma base de escrita informal, embora não comprove que o modelo interprete corretamente o chat político. O resultado do modelo é uma previsão sobre o texto completo; a associação dessa previsão a uma pessoa exigiria uma avaliação de alvo que esta classificação não fornece.
+
+% Papel: fluxo técnico e razão de sua rastreabilidade.
+O fluxo de 2026 consulta a API do YouTube, conserva identificadores e horários e separa as mensagens pelos blocos registrados durante a transmissão \cite{YouTubeLiveChatMessages}. Depois de preparar os textos, executa o modelo e grava o rótulo e as probabilidades de cada classe. Os arquivos de origem, a revisão do modelo e os resultados são registrados para permitir a conferência da execução. Uma auditoria reconcilia os identificadores de entrada com as saídas e reproduz uma amostra das inferências; o painel permite inspecionar as mensagens que compõem cada recorte. Esses procedimentos sustentam a rastreabilidade das contagens, sem substituir uma avaliação humana da correção dos rótulos.
+
+% Papel: contribuição do trabalho.
+A contribuição deste estudo é a aplicação documentada e auditável de um classificador de polaridade ao chat organizado por blocos de um debate brasileiro. A base preserva mensagens comuns e Super Chats em categorias distintas e mantém o recorte experimental separado dos quatro blocos principais. Com isso, é possível examinar quando cada classe prevista aparece nas mensagens coletadas e retornar dos resumos aos textos. O trabalho também explicita a diferença entre sentimento geral da mensagem e avaliação dirigida a um candidato, limite necessário para interpretar as visualizações.
+
+% Papel: evidência obtida na execução.
+Os cinco arquivos dos blocos contêm 24.522 registros. O modelo atribuiu rótulos a 23.594 mensagens comuns de texto e a 649 Super Chats com comentário extraível; 279 registros sem comentário classificável ficaram fora da inferência textual. Entre as 23.477 mensagens comuns dos quatro blocos principais, 49,76\% receberam a classe neutra, 34,33\% a negativa e 15,91\% a positiva. Essas porcentagens descrevem previsões do modelo; os Super Chats têm distribuição própria e não integram esse cálculo.
+
+% Papel: limites da evidência e da interpretação.
+A cobertura e a validade semântica dessas previsões impõem limites às conclusões. Uma interrupção deixou cerca de nove minutos e 38 segundos sem mensagens registradas e atravessou o fim do segundo bloco. A auditoria confirma consistência técnica, mas a amostra de 500 mensagens destinada à rotulação humana ainda não foi anotada; por isso, não há estimativa de acurácia nesse chat. As contagens referem-se às mensagens alcançadas pela coleta. Elas não medem apoio a candidatos, intenção de voto ou opinião do eleitorado brasileiro, nem permitem comparar diretamente o desempenho desta etapa com o da análise WordNet de 2022.

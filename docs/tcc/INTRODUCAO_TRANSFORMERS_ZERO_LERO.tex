@@ -1,0 +1,25 @@
+% Versão 2: research-paper-writing com revisão de estilo pela skill zero-lero.
+% Contém apenas a introdução; referências em Referencias_Introducao_Transformers.bib.
+
+\chapter{Introdução}
+
+% Papel: tarefa, aplicação e recorte.
+Este TCC examina a polaridade das mensagens capturadas no chat do debate transmitido pela Band em outubro de 2026. O EleiSent atribui a cada texto uma previsão positiva, neutra ou negativa e apresenta as contagens por bloco. \citeonline{Eaton2024} analisou comentários publicados em vídeos de debates no YouTube. Aqui, a fonte é o chat durante a transmissão, com os horários e as interrupções da coleta incorporados ao recorte da pesquisa.
+
+% Papel: trabalho anterior e desafio técnico do novo recorte.
+O projeto conserva a versão WordNet/SentiWordNet usada nos comentários de um debate de 2022. O material de 2026 exige outro tratamento: são frases curtas, muitas vezes com abreviações, emojis, repetições e ironia. O alvo da avaliação também pode ficar fora do alcance de um classificador de polaridade geral. Na frase construída para ilustrar o problema, ``Lula chegou e a transmissão está horrível'', o nome do candidato aparece, mas a crítica é dirigida à transmissão. A versão WordNet não foi testada nesse chat; sua qualidade relativa neste recorte é desconhecida.
+
+% Papel: solução aplicada e fundamento da escolha do modelo.
+Para o chat de 2026, o EleiSent usa \texttt{pysentimiento/bertweet-pt-sentiment}, que prevê as classes positiva, neutra e negativa \cite{PysentimientoBertweetPT}. O modelo se baseia no BERTabaporu, pré-treinado em textos do Twitter em português brasileiro \cite{Costa2023}, e emprega uma arquitetura da família Transformer \cite{Vaswani2017}. Seu treinamento em publicações de rede social motiva o teste com mensagens informais do YouTube. Ainda falta verificar, com rótulos humanos deste chat, se as previsões estão corretas. O modelo classifica a frase inteira e não determina a quem um elogio ou uma crítica se dirige.
+
+% Papel: fluxo técnico e razão de sua rastreabilidade.
+O coletor consultou a API do YouTube e guardou os identificadores, horários e textos recebidos \cite{YouTubeLiveChatMessages}. O EleiSent separou os registros pelos intervalos marcados durante a transmissão, preparou as mensagens e gravou o rótulo e as probabilidades produzidos pelo modelo. A execução registra a revisão do classificador e os arquivos de origem. Uma auditoria confere se os registros aparecem nas saídas corretas e reproduz parte das inferências. Assim, o leitor pode conferir de onde vêm as contagens, inclusive pelo painel, que dá acesso às mensagens de cada recorte.
+
+% Papel: contribuição do trabalho.
+O estudo entrega o chat organizado por blocos, as classificações e uma trilha para conferir cada resultado. Mensagens comuns, Super Chats e registros sem texto classificável ficam separados. O trecho experimental também não entra no resumo dos quatro blocos principais. Essa organização permite acompanhar a variação das classes previstas durante o debate e examinar os textos por trás dos números. Ela mantém visível a diferença entre polaridade da frase e opinião sobre um candidato.
+
+% Papel: evidência obtida na execução.
+Os cinco arquivos dos blocos somam 24.522 registros. O modelo classificou 23.594 mensagens comuns e 649 Super Chats com comentário extraível; 279 stickers e Super Chats sem comentário extraível ficaram sem classificação textual. Nos quatro blocos principais, 23.477 mensagens comuns receberam 49,76\% de previsões neutras, 34,33\% negativas e 15,91\% positivas. Os Super Chats têm contagem própria e não entram nessas porcentagens.
+
+% Papel: limites da evidência e da interpretação.
+Uma interrupção deixou aproximadamente nove minutos e 38 segundos sem mensagens capturadas e atravessou o fim do segundo bloco. A auditoria verifica arquivos e reproduz uma amostra de previsões, mas as 500 mensagens reservadas à rotulação humana continuam sem rótulos. Não há, portanto, medida de acurácia do classificador nesse chat. As porcentagens descrevem as mensagens capturadas, não a opinião do eleitorado brasileiro. Tampouco medem apoio aos candidatos ou demonstram que a etapa Transformers superou a versão WordNet de 2022.
